@@ -44,7 +44,7 @@
 %----------------------------------------------------------------------------------------
 
 % !BIB program = biber
-% !
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
 
@@ -125,9 +125,30 @@
 \part{Introductie tot C++}
 \chapterimage{jcw_header.pdf}
 \chapter{Inleiding}
-Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in \Cpp\index{C++@\Cpp}.
+\section{Wat is C++?}
+Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de programmeertaal \Cpp\index{C++@\Cpp}. Het is niet nodig om de hele programmeertaal te kennen en begrijpen voor je aan de slag kan gaan met programmeren. Daarom geven we hier een beknopt overzicht van de belangrijkste concepten die je nodig hebt om van start te gaan.\\
+
+\noindent In de volgende hoofdstukken komen variabelen en types, controlestructuren (if-then-else, for, while) en functies en procedures aan bod. Tot slot zijn er nog twee hoofdstukken die dieper ingaan op de mogelijkheden van \Cpp, namelijk arrays en lijsten, en klassen en objecten.\\
+
+\noindent Voor een interactieve en uitgebreidere introductie tot \Cpp, kan je terecht bij W3Schools (\url{https://www.w3schools.com/cpp/}).
+
+\section{Commentaar}
 % commentaar in C++
 % // of /* */
+Om de leesbaarheid van je code te verhogen, is het nuttig om commentaar toe te voegen. In deze commentaar\index{Commentaar} beschrijf je wat dit deel van de code juist doet. Hierdoor is het duidelijk wat je juist hebt geprogrammeerd, ook als je later opnieuw je code bekijkt.\\
+
+\noindent In \Cpp{} zijn er twee verschillende manieren om commentaar toe te voegen.\\
+Commentaar op één lijn wordt aangeduid met \mintinline{cpp}{//}. Alle tekst na \mintinline{cpp}{//} tot het einde van de lijn wordt beschouwd als commentaar en zal bijgevolg niet uitgevoerd worden. 
+
+\begin{example}[Commentaarlijn]
+	\vphantom{ }
+	\begin{minted}{cpp}
+	// Dit is een lijn commentaar
+	int a = 42;
+	\end{minted}
+\end{example}
+
+
 
 \chapter{Variabelen en types}
 
@@ -138,9 +159,10 @@ Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in \Cpp\
 \section{Variabelen}
 \subsection{Declareren}
 \subsection{Waarde toekennen}
+\subsection{Operatoren}
 
 \chapter{Controlestructuren}
-% if-then-else, for, while, 
+% if-then-else, switch, for, while, (break, continue)
 \chapter{Functies en procedures}
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
 \chapter{Arrays en lijsten \textsc{\footnotesize(Advanced)}}
