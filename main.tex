@@ -132,7 +132,16 @@ Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de pr
 
 \noindent Voor een interactieve en uitgebreidere introductie tot \Cpp, kan je terecht bij W3Schools (\url{https://www.w3schools.com/cpp/}).
 
-\section{Commentaar}
+% TODO compiler
+
+\section{Syntax}
+\subsection{Puntkomma}
+Achter elke instructie wordt in \Cpp een puntkomma \mintinline{cpp}{;} geplaatst. Deze puntkomma vertelt de compiler dat op die plaats een instructie eindigt. Als je een puntkomma vergeet te plaatsen, is het programma niet correct en zal je het programma niet kunnen compileren. De compiler zal dan een foutmelding geven.
+
+\subsection{Accolades}
+Accolades \mintinline{cpp}{{}} worden gebruikt om een omgeving aan te duiden.
+
+\subsection{Commentaar}
 % commentaar in C++
 % // of /* */
 Om de leesbaarheid van je code te verhogen, is het nuttig om commentaar toe te voegen. In deze commentaar\index{Commentaar} beschrijf je wat dit deel van de code juist doet. Hierdoor is het duidelijk wat je juist hebt geprogrammeerd, ook als je later opnieuw je code bekijkt.\\
@@ -141,10 +150,23 @@ Om de leesbaarheid van je code te verhogen, is het nuttig om commentaar toe te v
 Commentaar op één lijn wordt aangeduid met \mintinline{cpp}{//}. Alle tekst na \mintinline{cpp}{//} tot het einde van de lijn wordt beschouwd als commentaar en zal bijgevolg niet uitgevoerd worden. 
 
 \begin{example}[Commentaarlijn]
-	\vphantom{ }
+	\phantom{ }
 	\begin{minted}{cpp}
-	// Dit is een lijn commentaar
-	int a = 42;
+// Dit is een lijn commentaar
+int a = 42;
+	\end{minted}
+\end{example}
+
+\noindent Commentaar over meerdere lijnen start met \texttt{/*} en eindigt met \texttt{*/}. Alle tekst tussen \texttt{/*} en \texttt{*/} wordt door de compiler genegeerd.
+
+\begin{example}[Commentaar over meerdere lijnen]
+	\phantom{ }
+	\begin{minted}{cpp}
+/*
+  Deze commentaar neemt
+  meerdere lijnen in beslag.
+*/
+int a = 42;
 	\end{minted}
 \end{example}
 
@@ -158,6 +180,7 @@ Commentaar op één lijn wordt aangeduid met \mintinline{cpp}{//}. Alle tekst na
 
 \section{Variabelen}
 \subsection{Declareren}
+\subsection{Scope}
 \subsection{Waarde toekennen}
 \subsection{Operatoren}
 
