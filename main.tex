@@ -99,7 +99,7 @@
 
 \vspace{1cm}
 
-\noindent \textit{Eerste versie, juli 2019} % Printing/edition date
+\noindent \textit{Eerste versie, augustus 2019} % Printing/edition date
 }
 
 %----------------------------------------------------------------------------------------
@@ -126,6 +126,7 @@
 \chapterimage{jcw_header.pdf}
 \chapter{Inleiding}
 \section{Wat is C++?}
+% https://www.tutorialspoint.com/cplusplus
 Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de programmeertaal \Cpp\index{C++@\Cpp}. Het is niet nodig om de hele programmeertaal te kennen en begrijpen voor je aan de slag kan gaan met programmeren. Daarom geven we hier een beknopt overzicht van de belangrijkste concepten die je nodig hebt om van start te gaan.\\
 
 \noindent In de volgende hoofdstukken komen variabelen en types, controlestructuren (if-then-else, for, while) en functies en procedures aan bod. Tot slot zijn er nog twee hoofdstukken die dieper ingaan op de mogelijkheden van \Cpp, namelijk arrays en lijsten, en klassen en objecten.\\
@@ -136,10 +137,10 @@ Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de pr
 
 \section{Syntax}
 \subsection{Puntkomma}
-Achter elke instructie wordt in \Cpp een puntkomma \mintinline{cpp}{;} geplaatst. Deze puntkomma vertelt de compiler dat op die plaats een instructie eindigt. Als je een puntkomma vergeet te plaatsen, is het programma niet correct en zal je het programma niet kunnen compileren. De compiler zal dan een foutmelding geven.
+Achter elke instructie wordt in \Cpp{} een puntkomma \mintinline{cpp}{;} geplaatst. Deze puntkomma vertelt de compiler dat op die plaats een instructie eindigt. Als je een puntkomma vergeet te plaatsen, is het programma niet correct en zal je het programma niet kunnen compileren. De compiler zal dan een foutmelding geven.
 
 \subsection{Accolades}
-Accolades \mintinline{cpp}{{}} worden gebruikt om een omgeving aan te duiden.
+Accolades \mintinline{cpp}{{}} worden gebruikt om een blok code aan te duiden. De accolades moeten gebalanceerd voorkomen in de code, wat betekent dat voor elke openende accolade \texttt{\{} er een bijhorende sluitende accolade \texttt{\}} moet zijn. Het gebruik van accolades wordt later geïllustreerd bij de controlestructuren (if-then-else, for, ..), functies en klassen.
 
 \subsection{Commentaar}
 % commentaar in C++
@@ -170,22 +171,249 @@ int a = 42;
 	\end{minted}
 \end{example}
 
-
-
 \chapter{Variabelen en types}
+\index{Variabele}
+\index{Datatype}
+\index{Type|seealso{Datatype}}
+Variabelen worden gebruikt om informatie of gegevens bij te houden in het programma. Een variabele is een plaats in het geheugen, met een zelfgekozen naam, waar gegevens in opgeslagen kunnen worden. In \Cpp{} heeft elke variabele een type. Een type komt overeen met het soort van gegevens dat opgeslagen kunnen worden in zo'n variabele.
 
 \section{Datatypes}
 % https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm
 % strings https://www.tutorialspoint.com/cplusplus/cpp_strings
 
+Op basis van het datatype van een variabele wordt er geheugen gereserveerd om informatie in op te slaan. In \Cpp{} zijn de volgende primitieve datatypes gedefinieerd:
+
+\begin{definition}[Primitieve datatypes]
+	\phantom{ } \\
+	\begin{minipage}{\columnwidth}
+		\vspace{0.1cm}
+		\begin{tabular}{rl}
+			\textbf{bool} & Booleaanse waarde: \texttt{true} of \texttt{false} \\
+			\textbf{char} & Karakter \\
+			\textbf{int} & Geheel getal \\
+			\textbf{float} & Kommagetal (met enkele precisie) \\
+			\textbf{double} & Kommagetal (met dubbele precisie)
+		\end{tabular}
+		\vspace{0.1cm}
+	\end{minipage}
+\end{definition}
+
+\index{Datatype!bool}
+\index{Datatype!char}
+\index{Datatype!int}
+\index{Datatype!float}
+\index{Datatype!double}
+
+\index{Booleaanse waarde|seealso{Datatype, bool}}
+
+\noindent Deze types worden gebruikt bij variabelen, maar ook bij functies. Deze primitieve datatypes kunnen ook gebruikt worden om complexere types samen te stellen, zoals bijvoorbeeld bij arrays en klassen.
+
 \section{Variabelen}
+Een variabele kan gezien worden als een opslagplaats waaraan een naam verbonden is. In deze opslagplaats kan een waarde geplaatst worden.
 \subsection{Declareren}
+\index{Variabele!Declareren}
+% type naam_variabele;
+Alvorens informatie kan opgeslagen worden in een variabele, moet de variabele eerst \emph{gedefinieerd} of \emph{gedeclareerd} worden. De declaratie van een variabele vertelt de compiler dat er plaats in het geheugen gereserveerd moet worden om gegevens van het gegeven datatype in op te slaan.\\
+
+\noindent Een nieuwe variabele declareren doe je met een instructie van deze vorm: 
+\begin{center}
+	\texttt{type naam\_variabele;}
+\end{center}
+
+\begin{example}[Declareren van een \emph{integer} variabele]
+	\phantom{ }
+	\begin{minted}{cpp}
+// Declareer een nieuwe variabele van het type int met naam a
+int a;
+	\end{minted}
+\end{example}
+
+\noindent Je kan bij het definiëren van een nieuwe variabele er ook meteen een waarde aan toekennen.
+
+\begin{example}[Declareren van een \emph{integer} variabele en een waarde toekennen]
+	\phantom{ }
+	\begin{minted}{cpp}
+/*
+  Declareer een nieuwe variabele van het type int met naam a, 
+  en ken de waarde 42 toe
+*/
+int a = 42;
+	\end{minted}
+\end{example}
+
+\noindent Bij het kiezen van een variabelenaam moet je met de volgende regels rekening houden:
+\begin{itemize}
+	\item namen moeten beginnen met een letter of een laag streepje (\_);
+	\item namen kunnen letters, cijfers en lage streepjes bevatten;
+	\item namen zijn hoofdlettergevoelig;
+	\item spaties of speciale karakters zijn niet toegelaten;
+	\item \Cpp{}-keywords (zoals \texttt{int}, \texttt{if}, ...) kunnen niet gebruikt worden als variabelenaam.
+\end{itemize}
+
+\todo{Voorbeeld van elk type + waarde}
+
 \subsection{Scope}
-\subsection{Waarde toekennen}
+\index{Variabele!Scope}
+De \emph{scope} van een variabele is de plaats in het programma waar je een gedefinieerde variabele kan gebruiken. Je kan dit ook beschouwen als de levensduur van de variabele.\\
+
+\noindent
+De scope van een variabele wordt bepaald door waar de variabele werd gedeclareerd. Dit kunnen we opdelen in 3 verschillende soorten plaatsen.
+
+\begin{enumerate}
+	\item in een functie of blok: \textbf{lokale variabelen},
+	\item in de definitie van een functie: \textbf{parameters},
+	\item buiten alle functies: \textbf{globale variabelen}.
+\end{enumerate}
+
+\noindent
+In het algemeen kan gesteld worden dat de scope van de variabelen beperkt is tot het blok, aangeduid met accolades \texttt{\{\}}, waarin de variabele gedefinieerd is.
+
+\begin{example}[Scope van variabelen]
+	\phantom{ }
+	\begin{minted}{cpp}
+// Globale variabele g
+int g = 12;
+
+void setup() {
+  // Lokale variabelen a en b
+  int a = 42;
+  
+  
+  /*
+    Globale variabelen kunnen na declaratie 
+    overal gebruikt worden
+  */
+  int b = a + g;
+  
+  // Na declaratie moet het type van variabelen niet gespecifieerd worden
+  g = b;
+}
+
+// Variabelen a en b kunnen buiten de functie setup() niet gebruikt worden
+
+	\end{minted}
+\end{example}
+
 \subsection{Operatoren}
+Om de waarde in de variabelen aan te passen, maken we gebruik van \emph{operatoren}. Hieronder geven we een overzicht van de belangrijkste operatoren in \Cpp.
+
+\index{Operatoren}
+\subsubsection{Rekenkundige operatoren}
+\index{Operatoren!Rekenkundig}
+
+Rekenkundige operatoren worden gebruikt om veelgebruikte wiskundige operaties uit te voeren.
+In deze voorbeelden gebruiken we de variabelen $ A = 10 $ en $ B = 3 $.
+
+\begin{center}
+	\begin{tabular}{c l l}
+		\toprule
+		\textbf{Operator} & \textbf{Beschrijving}                     & \textbf{Voorbeeld}                                              \\ \midrule
+		   \texttt{+}     & Optelling                                 & \mintinline{cpp}{A + B} $\rightarrow 13$                        \\
+		   \texttt{-}     & Vermindering                              & \mintinline{cpp}{A - B} $\rightarrow 7$                         \\
+		   \texttt{*}     & Vermenigvuldiging                         & \mintinline{cpp}{A * B} $\rightarrow 30$                        \\
+		   \texttt{/}     & Deling                                    & \mintinline{cpp}{A / B} $\rightarrow 2$                         \\
+		   \texttt{\%}    & Modulus (rest na deling)                  & \mintinline{cpp}{A % B} $\rightarrow 1$                         \\
+		   \texttt{++}    & Verhoogt de waarde van de variabele met 1 & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
+		  \texttt{-{}-}   & Verlaagt de waarde van de variabele met 1 & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
+	\end{tabular}
+\end{center}
+
+
+\subsubsection{Toewijzende operatoren}
+\index{Operatoren!Toewijzend}
+
+De operator voor de toewijzing van een waarde aan een variabele is het gelijkheidsteken (\texttt{=}). Naast deze toewijzingsoperator bestaan er nog andere varianten, die kortere notaties zijn voor een rekenkundige operatie gevolgd door een toewijzing.
+
+\begin{center}
+	\begin{tabular}{c c l}
+		\toprule
+		\textbf{Operator} & \textbf{Voorbeeld}                     & \textbf{Equivalent}           \\ \midrule
+		\texttt{=} & \mintinline{cpp}{A = 12} & \mintinline{cpp}{A = 12}\\
+		\texttt{+=} & \mintinline{cpp}{A += 2} & \mintinline{cpp}{A = A + 2} \\
+		\texttt{-=} & \mintinline{cpp}{A -= 3} & \mintinline{cpp}{A = A - 3} \\
+		\texttt{*=} & \mintinline{cpp}{A *= 4} & \mintinline{cpp}{A = A * 4} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsubsection{Vergelijkende operatoren}
+\index{Operatoren!Vergelijkend}
+Vergelijkende operatoren worden gebruikt om twee waardes met elkaar te vergelijken. Het resultaat van deze operatie is een Booleaanse waarde, \texttt{true} of \texttt{false}.
+
+\begin{center}
+	\begin{tabular}{c l l}
+		\toprule
+		\textbf{Operator} & \textbf{Beschrijving}     & \textbf{Voorbeeld}                                     \\ \midrule
+		   \texttt{==}    & Gelijk aan                & \mintinline{cpp}{10 == 3} $\rightarrow$ \texttt{false} \\
+		   \texttt{!=}    & Niet gelijk aan           & \mintinline{cpp}{10 != 3} $\rightarrow$ \texttt{true}  \\
+		   \texttt{>}     & Groter dan                & \mintinline{cpp}{10 > 10} $\rightarrow$ \texttt{false} \\
+		   \texttt{<}     & Kleiner dan               & \mintinline{cpp}{5 < 10} $\rightarrow$ \texttt{true}   \\
+		   \texttt{>=}    & Groter dan of gelijk aan  & \mintinline{cpp}{10 >= 10} $\rightarrow$ \texttt{true} \\
+		   \texttt{<=}    & Kleiner dan of gelijk aan & \mintinline{cpp}{5 <= 10} $\rightarrow$ \texttt{true}  \\ \bottomrule
+	\end{tabular}
+\end{center}
+
+\subsubsection{Logische operatoren}
+\index{Operatoren!Logisch}
+Logische operatoren worden gebruikt om meerdere Booleaanse waarden te combineren in een formule tot één waarheidswaarde.
+
+\begin{center}
+	\begin{tabular}{c l l}
+		\toprule
+		\textbf{Operator} & \textbf{Beschrijving} & \textbf{Voorbeeld} \\ \midrule
+		\texttt{\&\&} & Logische conjunctie (\textbf{AND}) & \mintinline{cpp}{(true && false)} $\rightarrow$ \texttt{false} \\
+		\texttt{||} & Logische disjunctie (\textbf{OR}) & \mintinline{cpp}{(true || false)} $\rightarrow$ \texttt{true} \\
+		\texttt{!} & Logische negatie (\textbf{NOT}) & \mintinline{cpp}{! true} $\rightarrow$ \texttt{false} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\noindent Voor meer voorbeelden van het gebruik van logische operatoren, kan je een kijkje nemen naar waarheidstabellen~\cite{wiki:Waarheidstabel}.
+
 
 \chapter{Controlestructuren}
+Controlestructuren bepalen de loop van het programma. Zo is het mogelijk om stukken code enkel in specifieke gevallen uit te voeren, of om een blok code meerdere keren te herhalen.
 % if-then-else, switch, for, while, (break, continue)
+\section{If-then-else}
+De eenvoudigste controlestructuur is het \emph{if}-statement. Dit kan verder uitgebreid worden met een \emph{else}-blok voor verdere controle over de uitvoeringsvolgorde.
+
+\subsection{If-then}
+
+\begin{definition}[If-statement]
+	\phantom{ }
+	\begin{minted}{cpp}
+  if (conditie) {
+    /*
+      instructies tussen deze accolades worden enkel 
+      uitgevoerd als de conditie tot true evalueert
+    */
+  }
+	\end{minted}
+\end{definition}
+
+\subsection{Else}
+Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies in dit blok zullen enkel uitgevoerd worden als aan de conditie van het if-statement \textbf{niet} voldaan is. De code ziet er dan uit als volgt.
+
+\begin{definition}[If-then-else]
+	\phantom{ }
+	\begin{minted}{cpp}
+  if (conditie) {
+    // conditie evalueert tot true
+  } else {
+    // conditie evalueert tot false
+  }
+	\end{minted}
+\end{definition}
+
+\subsection{Geneste if-statements}
+
+\section{Switch}
+
+\section{While-lus}
+
+\section{For-lus}
+
+
 \chapter{Functies en procedures}
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
 \chapter{Arrays en lijsten \textsc{\footnotesize(Advanced)}}
@@ -482,6 +710,9 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 \section*{Boeken}
 \addcontentsline{toc}{section}{Boeken}
 \printbibliography[heading=bibempty,type=book]
+
+\section*{Websites}
+\printbibliography[heading=bibempty,type=misc]
 
 %----------------------------------------------------------------------------------------
 %	INDEX
