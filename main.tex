@@ -178,12 +178,14 @@ int a = 42;
 Variabelen worden gebruikt om informatie of gegevens bij te houden in het programma. Een variabele is een plaats in het geheugen, met een zelfgekozen naam, waar gegevens in opgeslagen kunnen worden. In \Cpp{} heeft elke variabele een type. Een type komt overeen met het soort van gegevens dat opgeslagen kunnen worden in zo'n variabele.
 
 \section{Datatypes}
+\label{section:datatypes}
 % https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm
 % strings https://www.tutorialspoint.com/cplusplus/cpp_strings
 
 Op basis van het datatype van een variabele wordt er geheugen gereserveerd om informatie in op te slaan. In \Cpp{} zijn de volgende primitieve datatypes gedefinieerd:
 
 \begin{definition}[Primitieve datatypes]
+	\label{definition:primitieve-datatypes}
 	\phantom{ } \\
 	\begin{minipage}{\columnwidth}
 		\vspace{0.1cm}
@@ -207,6 +209,10 @@ Op basis van het datatype van een variabele wordt er geheugen gereserveerd om in
 \index{Booleaanse waarde|seealso{Datatype, bool}}
 
 \noindent Deze types worden gebruikt bij variabelen, maar ook bij functies. Deze primitieve datatypes kunnen ook gebruikt worden om complexere types samen te stellen, zoals bijvoorbeeld bij arrays en klassen.
+
+\begin{remark}
+	Het type van een variabele is belangrijk voor de compiler omdat het type bepaald hoeveel geheugen er gereserveerd moet worden voor de variabele. Voor het opslaan van een \texttt{float}-variabele zijn er bijvoorbeeld 32 bits nodig, terwijl er voor de opslag van een kommagetal met dubbele precisie (\texttt{double}) 64 bits nodig zijn.
+\end{remark}
 
 \section{Variabelen}
 Een variabele kan gezien worden als een opslagplaats waaraan een naam verbonden is. In deze opslagplaats kan een waarde geplaatst worden.
@@ -250,7 +256,16 @@ int a = 42;
 	\item \Cpp{}-keywords (zoals \texttt{int}, \texttt{if}, ...) kunnen niet gebruikt worden als variabelenaam.
 \end{itemize}
 
-\todo{Voorbeeld van elk type + waarde}
+\begin{example}[Declareren en initialisatie van verschillende datatypes]
+	\phantom{ }
+	\begin{minted}{cpp}
+bool b = true;
+char c = 'q';
+int i = 42;
+float f = 3.14;
+double d = 3.14159265;
+	\end{minted}
+\end{example}
 
 \subsection{Scope}
 \index{Variabele!Scope}
@@ -259,6 +274,9 @@ De \emph{scope} van een variabele is de plaats in het programma waar je een gede
 \noindent
 De scope van een variabele wordt bepaald door waar de variabele werd gedeclareerd. Dit kunnen we opdelen in 3 verschillende soorten plaatsen.
 
+\index{Variabele!Globaal}
+\index{Variabele!Lokaal}
+\index{Variabele!Parameter}
 \begin{enumerate}
 	\item in een functie of blok: \textbf{lokale variabelen},
 	\item in de definitie van een functie: \textbf{parameters},
@@ -277,7 +295,6 @@ int g = 12;
 void setup() {
   // Lokale variabelen a en b
   int a = 42;
-  
   
   /*
     Globale variabelen kunnen na declaratie 
@@ -318,6 +335,7 @@ In deze voorbeelden gebruiken we de variabelen $ A = 10 $ en $ B = 3 $.
 	\end{tabular}
 \end{center}
 
+\pagebreak
 
 \subsubsection{Toewijzende operatoren}
 \index{Operatoren!Toewijzend}
@@ -335,6 +353,7 @@ De operator voor de toewijzing van een waarde aan een variabele is het gelijkhei
 		\bottomrule
 	\end{tabular}
 \end{center}
+
 
 \subsubsection{Vergelijkende operatoren}
 \index{Operatoren!Vergelijkend}
@@ -378,8 +397,9 @@ Controlestructuren bepalen de loop van het programma. Zo is het mogelijk om stuk
 De eenvoudigste controlestructuur is het \emph{if}-statement. Dit kan verder uitgebreid worden met een \emph{else}-blok voor verdere controle over de uitvoeringsvolgorde.
 
 \subsection{If-then}
+Het if-statement wordt gebruikt om code uit te voeren die bedoeld is voor specifieke gevallen. Enkel wanneer aan de opgegeven conditie voldaan is, zullen de instructies in de body van het if-statement uitgevoerd worden. Als er niet aan de conditie voldaan wordt, zullen de instructies in de body overgeslagen worden.
 
-\begin{definition}[If-statement]
+\begin{definition}[If]
 	\phantom{ }
 	\begin{minted}{cpp}
   if (conditie) {
@@ -389,7 +409,10 @@ De eenvoudigste controlestructuur is het \emph{if}-statement. Dit kan verder uit
     */
   }
 	\end{minted}
+	\vspace{0cm}
 \end{definition}
+
+\pagebreak
 
 \subsection{Else}
 Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies in dit blok zullen enkel uitgevoerd worden als aan de conditie van het if-statement \textbf{niet} voldaan is. De code ziet er dan uit als volgt.
@@ -398,24 +421,270 @@ Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies
 	\phantom{ }
 	\begin{minted}{cpp}
   if (conditie) {
-    // conditie evalueert tot true
+    /*
+      instructies in dit blok worden uitgevoerd 
+      als de conditie tot evalueert tot true
+    */
   } else {
-    // conditie evalueert tot false
+    /*
+    instructies in dit blok worden uitgevoerd 
+    als de conditie tot evalueert tot false
+    */
+  }
+	\end{minted}
+%	\vspace{0cm}
+\end{definition}
+
+\subsection{Geneste if-statements}
+Als er meerdere condities zijn waarop getest moet worden, kan je gebruik maken van een genest if-statement. Hierbij plaats je in de else-blok een nieuw if-statement waarbij je de volgende conditie test. Dit ziet er uit als volgt.
+
+\begin{example}[Geneste if-statements]
+	\phantom{ }
+	\begin{minted}{cpp}
+int x = 42;
+
+if (x < 10) {
+  x = x * 2;
+} else {
+  if (x > 50) {
+    x = x - 25;
+  } else {
+    x++;
+  }
+}
+	\end{minted}
+\end{example}
+
+\noindent
+Omdat deze geneste if-statements snel onoverzichtelijk worden, kan deze code vereenvoudigd worden als volgt.
+
+\begin{example}[Else-if]
+	\phantom{ }
+	\begin{minted}{cpp}
+int x = 42;
+
+if (x < 10) {
+  x = x * 2;
+} else if (x > 50) {
+  x = x - 25;
+} else {
+  x++;
+}
+	\end{minted}
+\end{example}
+
+\section{Switch}
+Als je een expressie wil testen op meerdere waardes, kan je in plaats van geneste if-statements ook gebruik maken van een \emph{switch}-statement.
+
+\begin{definition}[Switch]
+	\phantom{ }
+	\begin{minted}{cpp}
+  switch (expressie) {
+    case x:
+      // instructies
+      break;
+    case y:
+      // instructies
+      break;
+    default:
+      // instructies
   }
 	\end{minted}
 \end{definition}
 
-\subsection{Geneste if-statements}
+\noindent
+Hierbij wordt de expressie in de \texttt{switch} één keer geëvalueerd. Vervolgens wordt de waarde ervan vergeleken met de waarde in elke \texttt{case}. Als de waarden overeenkomen, dan wordt het bijhorende blok van instructies uitgevoerd. 
 
-\section{Switch}
+Het \texttt{break}-statement zorgt ervoor dat, na een overeenkomstige \texttt{case} is gevonden, er niet nog op matches met andere \texttt{case}s gezocht moet worden. Het \texttt{default} keyword kan dan gebruikt worden om instructies uit te voeren in het geval dat er geen overeenkomstige \texttt{case} wordt gevonden.
+
+\begin{example}[Switch -- dagen van de week]
+	\label{example:switch}
+	\phantom{ }
+	\begin{minted}{cpp}
+int dag = 5;
+char c;
+
+switch (dag) {
+  case 1:
+    c = 'M';
+    break;
+  case 2:
+    c = 'D';
+    break;
+  case 3:
+    c = 'W';
+    break;
+  case 4:
+    c = 'd';
+    break;
+  case 5:
+    c = 'V';
+    break;
+  case 6:
+    c = 'Z';
+    break;
+  case 7:
+    c = 'z';
+    break;
+  default:
+    c = 'X';
+}
+	\end{minted}
+\end{example}
+
+\begin{exercise}[Switch -- dagen van de week]
+	Welk karakter is er na het uitvoeren van bovenstaande code (Voorbeeld~\ref{example:switch}) opgeslagen in variabele \texttt{c}?
+\end{exercise}
 
 \section{While-lus}
+Als je een stuk code meerdere keren achter elkaar wil laten uitvoeren, kan je gebruik maken van een lus. De \texttt{while}-lus bevat een conditie en een body met instructies. Zolang als de conditie waar is, worden de instructies in de body herhaald uitgevoerd.
+
+\begin{definition}[While]
+	\phantom{ }
+	\begin{minted}{cpp}
+  while (conditie) {
+    // body van de lus
+    instructie;
+  }
+	\end{minted}
+	\vspace{0cm}
+\end{definition}
+
+\begin{example}[While]
+	Deze code berekent het kleinste veelvoud \texttt{vv} van het getal \texttt{x} dat groter is dan 24.
+	\begin{minted}{cpp}
+int x = 3;
+int vv = 0;
+
+while (vv <= 24) {
+  vv += x;
+}
+	\end{minted}
+\end{example}
 
 \section{For-lus}
+Vaak zullen lussen voorkomen waarbij het aantal herhalingen vooraf vastligt. Deze lussen hebben dan volgende vorm.
 
+\begin{example}
+	\label{example:while-for}
+	\phantom{ }
+	\begin{minted}{cpp}
+int i = 0;
+
+while (i < 10) {
+  // instructies
+  
+  i++;
+}
+	\end{minted}
+\end{example}
+\noindent
+Hierbij wordt voor het begin van de lus dan eerst de variabele \texttt{i} gedeclareerd, die in de lus gebruikt wordt om het aantal iteraties (herhalingen) te tellen. Hiervoor wordt op het einde van elke iteratie de waarde van \texttt{i} opgehoogd (\texttt{i++}). Dit soort lussen kan eenvoudiger worden geschreven met een \texttt{for}-lus.
+
+\begin{definition}[For]
+	\phantom{ }
+	\begin{minted}{cpp}
+  for (statement1; statement2; statement3) {
+    // body, bevat een blok code dat telkens herhaald wordt
+  }
+	\end{minted}
+	Waarbij:
+	\begin{description}
+		\item[statement1] één maal uitgevoerd wordt voor het begin van de lus. Vaak is dit de declaratie van een \emph{loop-variabele}, bijvoorbeeld \texttt{int i = 0}.
+		\item[statement2] de conditie van de lus voorstelt.
+		\item[statement3] telkens na een iteratie van de lus wordt uitgevoerd. Vaak is dit een manipulatie van de loop-variabele, zoals \texttt{i++}.
+	\end{description}
+\end{definition}
+\noindent
+De code uit Voorbeeld \ref{example:while-for} kan dus als volgt geschreven worden met een \texttt{for}-lus.
+
+\begin{example}
+	\phantom{ }
+	\begin{minted}{cpp}
+for (int i = 0; i < 10; i++) {
+  // instructies
+}
+	\end{minted}
+\end{example}
 
 \chapter{Functies en procedures}
+\index{Functie}
+\index{Procedure}
+Functies en procedures zijn blokken code die je op verschillende plaatsen in je code kan gebruiken. In plaats van telkens dezelfde code neer te schrijven, kan je beter de gemeenschappelijke code in een functie plaatsen. Dit verhoogt ook de leesbaarheid van de code.
+
+\section{Functies definiëren}
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
+De definitie van een functie is opgebouwd zoals hieronder beschreven.
+\begin{definition}[Functie]
+	\phantom{ }
+	\begin{minted}{cpp}
+  type functienaam(argumenten) {
+    // hier komt de gemeenschappelijke code
+    
+    return resultaat;
+  }
+	\end{minted}
+	\vspace{0cm}
+\end{definition}
+\noindent
+De definitie van een functie bestaat uit de hoofding en de body. In de hoofding wordt eerst het type van de functie genoteerd. Hierna volgt de naam van de functie, en tot slot worden de argumenten van de functie tussen de haakjes geplaatst. Daarna volgt de body van de functie binnen de accolades.
+
+\subsection{Type}
+Het type van de functie, is het type van de waarde die de functie teruggeeft. Een functie wordt vanuit de code aangeroepen, waarna de code in de body van de functie wordt uitgevoerd. Het resultaat van deze berekeningen wordt vervolgens teruggegeven aan de plaats waarop deze functie-aanroep plaatsvond. Daar kan het resultaat dan verder gebruikt worden.
+
+De primitieve datatypes uit Definitie \ref{definition:primitieve-datatypes} kunnen gebruikt worden als type van een functie. Het is ook mogelijk dat een functie geen resultaat heeft. Zo'n functie noemen we een procedure. Als \emph{return type} gebruiken we dan \texttt{void}, het lege type.
+
+
+\subsection{Argumenten}
+\index{Parameter|seealso{Variabele, Parameter}}
+\index{Argument|seealso{Parameter}}
+\index{Variabele!Parameter}
+Via de \emph{argumenten} of \emph{parameters} kan informatie doorgegeven aan de functie. Deze parameters gedragen zich als variabelen binnen in de body van de functie. De verschillende parameters worden in de hoofding van elkaar gescheiden met een komma.
+
+\begin{example}[Functie -- optelling]
+	\phantom{ }
+	\begin{minted}{cpp}
+int optelling(int a, int b, int c) {
+  int som = a + b + c;
+  return som;
+}
+	\end{minted}
+\end{example}
+
+\begin{example}[Functie -- minimum]
+	\label{example:functie-minimum}
+	\phantom{ }
+	\begin{minted}{cpp}
+int minimum(int a, int b) {
+  if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+	\end{minted}
+\end{example}
+
+\section{Functies aanroepen}
+Nadat een functie is gedefinieerd, kan deze functie aangeroepen worden op andere plaatsen in de code. Het aanroepen van een functie doe je als volgt:
+
+\begin{center}
+	\texttt{functienaam(argumenten);}
+\end{center}
+\noindent
+De functie \texttt{minimum()} uit Voorbeeld \ref{example:functie-minimum} kan dus op de volgende manier aangeroepen worden. 
+
+\begin{example}[Aanroepen van de functie \emph{minimum()}]
+	\phantom{ }
+	\begin{minted}{cpp}
+int x = 42;
+int y = 13;
+
+int resultaat = minimum(x, y);
+	\end{minted}
+\end{example}
+
+
 \chapter{Arrays en lijsten \textsc{\footnotesize(Advanced)}}
 % https://www.dinkum.nl/software/cplusplus/doc/arrays/
 % https://github.com/ivanseidel/LinkedList
@@ -427,12 +696,48 @@ Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies
 \part{Arduboy}
 
 \chapter{Arduino}
+\index{Arduino}
 \section{Programmastructuur}
+Elk Arduino-programma heeft dezelfde structuur. De belangrijkste kenmerken die steeds terugkeren zijn de globale variabelen, de \texttt{setup()} procedure en de \texttt{loop()} procedure. In de volgende secties bespreken we deze in meer detail.
+
+\begin{definition}[Arduino programmastructuur]
+	\phantom{}
+	\begin{minted}{cpp}
+  // Declaratie van globale variabelen
+  
+  void setup() {
+    
+  }
+  
+  void loop() {
+  
+  }
+	\end{minted}
+	\vspace{0cm}
+\end{definition}
+
 \subsection{Globale variabelen}
+\index{Variabele!Globaal}
+Bovenaan het Arduino-programma worden de globale variabelen gedeclareerd. Deze globale variabelen kunnen daarna overal in het programma gebruikt worden, zowel in de \texttt{setup()} en \texttt{loop()} functie.
+
 \subsection{De \texttt{setup()} procedure}
+De \texttt{setup()} procedure wordt éénmaal uitgevoerd bij het opstarten van het programma.
+
+\begin{remark}
+	In de \texttt{setup()} procedure ga je waarschijnlijk de waarde van verscheidene variabelen initialiseren. Het is belangrijk dat je deze variabelen declareert \textbf{buiten} de \texttt{setup()} functie. Anders zijn deze variabelen lokaal, en kunnen ze niet buiten de scope van de \texttt{setup()} functie gebruikt worden.
+\end{remark}
+
 \subsection{De \texttt{loop()} procedure}
+De \texttt{loop()} procedure doet precies wat de naam doet vermoeden. De code in deze procedure wordt steeds opnieuw uitgevoerd. Hier wordt de eigenlijk code van het Arduino-programma geschreven. De herhaling blijft duren tot de stroom van de Arduino wordt losgekoppeld of op de reset-knop wordt geduwd.
 
 \section{Importeren van libraries}
+Bij het programmeren voor Arduino is het veel voorkomend om gebruik te maken van \emph{libraries}. Libraries bevatten functies die door andere ontwikkelaars zijn geschreven. Ze hebben als doel om de complexiteit van jouw code te verlagen door operaties te implementeren op een lager niveau. Hierdoor moet je bijvoorbeeld niet handmatig alle communicatie met een display programmeren, maar gebruik je hiervoor de functionaliteit van de library.\\
+
+\noindent
+Het importeren van een library in je code doe je op de volgende manier:
+\begin{center}
+	\mintinline{cpp}{#include <Library.h>}
+\end{center}
 
 \chapter{Arduboy}
 \section{Instellingen}
