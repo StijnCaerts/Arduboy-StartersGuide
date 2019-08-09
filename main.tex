@@ -175,7 +175,7 @@ int a = 42;
 \index{Variabele}
 \index{Datatype}
 \index{Type|seealso{Datatype}}
-Variabelen worden gebruikt om informatie of gegevens bij te houden in het programma. Een variabele is een plaats in het geheugen, met een zelfgekozen naam, waar gegevens in opgeslagen kunnen worden. In \Cpp{} heeft elke variabele een type. Een type komt overeen met het soort van gegevens dat opgeslagen kunnen worden in zo'n variabele.
+Variabelen worden gebruikt om informatie of gegevens bij te houden in het programma. Een variabele is een plaats in het geheugen, met een zelfgekozen naam, waar gegevens in opgeslagen kunnen worden. In \Cpp{} heeft elke variabele een type. Een type komt overeen met het soort van gegevens die opgeslagen kunnen worden in zo'n variabele.
 
 \section{Datatypes}
 \label{section:datatypes}
@@ -328,7 +328,7 @@ In deze voorbeelden gebruiken we de variabelen $ A = 10 $ en $ B = 3 $.
 		   \texttt{+}     & Optelling                                 & \mintinline{cpp}{A + B} $\rightarrow 13$                        \\
 		   \texttt{-}     & Vermindering                              & \mintinline{cpp}{A - B} $\rightarrow 7$                         \\
 		   \texttt{*}     & Vermenigvuldiging                         & \mintinline{cpp}{A * B} $\rightarrow 30$                        \\
-		   \texttt{/}     & Deling                                    & \mintinline{cpp}{A / B} $\rightarrow 2$                         \\
+		   \texttt{/}     & Deling                                    & \mintinline{cpp}{A / B} $\rightarrow 3$                         \\
 		   \texttt{\%}    & Modulus (rest na deling)                  & \mintinline{cpp}{A % B} $\rightarrow 1$                         \\
 		   \texttt{++}    & Verhoogt de waarde van de variabele met 1 & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
 		  \texttt{-{}-}   & Verlaagt de waarde van de variabele met 1 & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
@@ -423,12 +423,12 @@ Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies
   if (conditie) {
     /*
       instructies in dit blok worden uitgevoerd 
-      als de conditie tot evalueert tot true
+      als de conditie evalueert tot true
     */
   } else {
     /*
     instructies in dit blok worden uitgevoerd 
-    als de conditie tot evalueert tot false
+    als de conditie evalueert tot false
     */
   }
 	\end{minted}
@@ -537,7 +537,7 @@ switch (dag) {
 \end{exercise}
 
 \section{While-lus}
-Als je een stuk code meerdere keren achter elkaar wil laten uitvoeren, kan je gebruik maken van een lus. De \texttt{while}-lus bevat een conditie en een body met instructies. Zolang als de conditie waar is, worden de instructies in de body herhaald uitgevoerd.
+Als je een stuk code meerdere keren achter elkaar wil laten uitvoeren, kan je gebruik maken van een lus. De \texttt{while}-lus bevat een conditie en een body met instructies. Zolang de conditie waar is, worden de instructies in de body herhaald uitgevoerd.
 
 \begin{definition}[While]
 	\phantom{ }
@@ -724,7 +724,7 @@ Bovenaan het Arduino-programma worden de globale variabelen gedeclareerd. Deze g
 De \texttt{setup()} procedure wordt éénmaal uitgevoerd bij het opstarten van het programma.
 
 \begin{remark}
-	In de \texttt{setup()} procedure ga je waarschijnlijk de waarde van verscheidene variabelen initialiseren. Het is belangrijk dat je deze variabelen declareert \textbf{buiten} de \texttt{setup()} functie. Anders zijn deze variabelen lokaal, en kunnen ze niet buiten de scope van de \texttt{setup()} functie gebruikt worden.
+	In de \texttt{setup()} procedure ga je waarschijnlijk de waardes van verscheidene variabelen initialiseren. Het is belangrijk dat je deze variabelen declareert \textbf{buiten} de \texttt{setup()} functie. Anders zijn deze variabelen lokaal, en kunnen ze niet buiten de scope van de \texttt{setup()} functie gebruikt worden.
 \end{remark}
 
 \subsection{De \texttt{loop()} procedure}
@@ -739,14 +739,359 @@ Het importeren van een library in je code doe je op de volgende manier:
 	\mintinline{cpp}{#include <Library.h>}
 \end{center}
 
+\section{Arduino IDE}
+Voor het schrijven van Arduino programma's maken we gebruik van de Arduino IDE. Dit programma is een \emph{Integrated Development Environment}, wat betekent dat het alle tools bevat om programma's te schrijven, compileren en op te laden naar de Arduino. De Arduino IDE kan gratis gedownload worden vanaf de Arduino website\footnote{\url{https://www.arduino.cc/en/Main/Software}}.
+
+\begin{figure}[!h]
+	\centering
+	\href{https://www.arduino.cc/en/Main/Software}{
+		\includegraphics[width=4cm]{ArduinoLogo.png}
+	}
+\end{figure}
+
 \chapter{Arduboy}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=13.4cm]{ArduboyGame.png}
+\end{figure}
+
 \section{Instellingen}
 % Arduino Leonardo
 % Importeren library
 
+Voor we aan de slag kunnen gaan met het programmeren van spelletjes voor de Arduboy, moeten we eerst enkele instellingen aanpassen in de Arduino IDE. Voor een handleiding met screenshots kan je terecht bij de Arduboy Community~\cite{arduboy:tuto1}.
+
+\subsection{Installeren van de Arduboy2 library}
+De \emph{Arduboy2} library bevat een handige interface die er voor zorgt dat we gemakkelijk alle functies van het apparaat kunnen aanspreken. Zo kunnen we ons volledig focussen op het ontwerpen en programmeren van het spel zelf. \\
+
+\noindent
+Alvorens we deze library kunnen gebruiken, moet ze eerst geïnstalleerd worden in de IDE. Dit doe je als volgt:
+
+\begin{enumerate}
+	\item Klik op \textbf{Hulpmiddelen} > \textbf{Bibliotheken beheren...}
+	\item In het venster \emph{Bibliotheek Beheer} zoek je naar de library \textbf{Arduboy2}
+	\item Installeer de laatste versie door de \textbf{Arduboy2} library aan te duiden en op \textbf{Installeren} te klikken
+\end{enumerate}
+Via deze manier kan je ook andere libraries installeren indien je dat wenst.
+
+\subsection{Installeren van de Arduboy als Arduino board}
+\begin{enumerate}
+	\item Ga naar \textbf{Bestand} > \textbf{Voorkeuren}
+	\item In het scherm \emph{Voorkeuren} geef je bij \textbf{Additionele Board Beheer URLs} de volgende URL in: \url{https://arduboy.github.io/board-support/package_arduboy_index.json}
+	\item Klik op OK om het venster \emph{Voorkeuren} te sluiten
+	\item Ga naar \textbf{Hulpmiddelen} > \textbf{Board} > \textbf{Board Beheer...}
+	\item Zoek naar \textbf{Arduboy} en klik op \textbf{Installeren}
+\end{enumerate}
+
+\subsection{Board selecteren}
+Om de IDE te laten weten dat je gaat programmeren voor de Arduboy, moet je het board in de IDE aanpassen. Ga naar \textbf{Hulpmiddelen} > \textbf{Board} en kies \textbf{Arduboy} in deze lijst.
+
+\section{Programmastructuur}
+
+\begin{minted}{cpp}
+#include <Arduboy2.h>
+
+Arduboy2 arduboy;
+
+void setup() {
+  arduboy.begin();
+}
+
+void loop() {
+  if (arduboy.nextFrame()) {
+    arduboy.clear();
+
+    // GAME LOGIC
+    
+    arduboy.display();   
+  }
+}
+\end{minted}
+\noindent
+Bovenstaand codefragment geeft een template van waar je kan starten om een Arduboy game te programmeren. Op de eerste lijn wordt de Arduboy2 library ingeladen. Daarna wordt er een \texttt{Arduboy2}-object aangemaakt. Dit object wordt gebruikt om de functionaliteit van de library op te roepen. In de \texttt{setup()} procedure wordt de functionaliteit van de Arduboy geïnitialiseerd. 
+
 \section{De Arduboy2 library}
+Hier geven we een overzicht van de belangrijkste functies in de Arduboy2 library~\cite{arduboy:lib2-doc}. Deze functies kunnen op deze manier gebruikt worden:
+
+\begin{center}
+	\texttt{arduboy.functienaam();}
+\end{center}
+\noindent
+Optionele argumenten voor de functies staan \emph{schuingedrukt}.
+
+\subsection{Core}
+
+\begin{libf}[begin()]
+	Initialiseer de hardware, het logo weergeven, etc. Deze functie moet één keer opgeroepen worden in de \texttt{setup()} procedure.
+\end{libf}
+
+\begin{libf}[initRandomSeed()]
+	Kies een random waarde als \emph{seed} voor de random number generator. Deze methode is het meest effectief wanneer ze na een (semi-)random tijd wordt opgeroepen.
+\end{libf}
+
 \subsection{Display}
+
+\begin{libf}[Display]
+	Er zijn de volgende handige constanten voor de breedte en de hoogte van het scherm. Daarnaast zijn er ook constanten voor de kleuren van het scherm.
+	\begin{multicols}{2}
+		\begin{itemize}
+			\item \texttt{WIDTH}
+			\item \texttt{HEIGHT}
+			\item \texttt{BLACK}
+			\item \texttt{WHITE}
+		\end{itemize}
+	\end{multicols}
+\end{libf}
+
+\begin{libf}[clear()]
+	Wis de display buffer. De volledige inhoud van de display buffer wordt gewist en op zwart (\texttt{BLACK}) gezet.
+\end{libf}
+
+\begin{libf}[display()]
+	Plaats de inhoud van de display buffer op het scherm. De opgeslagen commando's in de display buffer worden weergegeven op het scherm.
+\end{libf}
+
+\begin{libf}[setFrameRate(fps)]
+	Stel de frame-rate in.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{int fps}: de gewenste frame-rate in frames per seconde
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[nextFrame()]
+	Geeft aan of het tijd is om het volgende frame weer te geven.\\ \\
+	\textbf{Returns}
+	\begin{itemize}
+		\item \texttt{bool}: \texttt{true} als het tijd is voor het volgende frame, anders \texttt{false}
+	\end{itemize}
+\end{libf}
+
+\subsection{Draw}
+
+\begin{libf}[drawPixel(x, y, \emph{color=WHITE})]
+	Kleur een enkele pixel in de opgegeven kleur.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van de pixel
+		\item \texttt{int y}: y-coördinaat van de pixel
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawCircle(x, y, r, \emph{color=WHITE})]
+	Teken een cirkel.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van het middelpunt van de cirkel
+		\item \texttt{int y}: y-coördinaat van het middelpunt van de cirkel
+		\item \texttt{int r}: straal van de cirkel
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawRect(x, y, w, h, \emph{color=WHITE})]
+	Teken een rechthoek.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
+		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
+		\item \texttt{int w}: breedte
+		\item \texttt{int h}: hoogte
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawRoundRect(x, y, w, h, r, \emph{color=WHITE})]
+	Teken een rechthoek met afgeronde hoeken.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
+		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
+		\item \texttt{int w}: breedte
+		\item \texttt{int h}: hoogte
+		\item \texttt{int r}: straal van de afronding
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
+	Teken een driehoek.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x0, int x1, int x2}: x-coördinaten van de hoeken
+		\item \texttt{int y0, int y1, int y2}: y-coördinaten van de hoeken
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawLine(x0, y0, x1, y1, \emph{color=WHITE})]
+	Teken een lijn tussen de opgegeven punten.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x0, int x1}: x-coördinaten van de punten
+		\item \texttt{int y0, int y1}: y-coördinaten van de punten
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawFastVLine(x, y, h, \emph{color=WHITE})]
+	Teken een verticale lijn.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van het bovenste uiteinde
+		\item \texttt{int y}: y-coördinaat van het bovenste uiteinde
+		\item \texttt{int h}: lengte
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[drawFastHLine(x, y, w, \emph{color=WHITE})]
+	Teken een horizontale lijn.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van het linkse uiteinde
+		\item \texttt{int y}: y-coördinaat van het rechtse uiteinde
+		\item \texttt{int w}: lengte
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[fillCircle(x, y, r, \emph{color=WHITE})]
+	Teken een gevulde cirkel.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van het middelpunt van de cirkel
+		\item \texttt{int y}: y-coördinaat van het middelpunt van de cirkel
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[fillRect(x, y, w, h, \emph{color=WHITE})]
+	Teken een gevulde rechthoek.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
+		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
+		\item \texttt{int w}: breedte
+		\item \texttt{int h}: hoogte
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[fillRoundRect(x, y, w, h, r, \emph{color=WHITE})]
+	inhoud...
+\end{libf}
+
+\begin{libf}[fillTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
+	inhoud...
+\end{libf}
+
+\begin{libf}[fillScreen(\emph{color=WHITE})]
+	inhoud...
+\end{libf}
+
+\subsubsection{Text}
+\begin{libf}[setCursor(x, y)]
+	Stel de locatie van de tekst cursor in.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}
+		\item \texttt{int y}
+	\end{itemize}
+\end{libf}
+
+% https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html
+\begin{libf}[print(content)]
+	inhoud...
+\end{libf}
+
 \subsection{Buttons}
+
+\begin{libf}[Buttons]
+	Voor de knoppen op de Arduboy zijn de volgende constanten gedefinieerd.
+	\begin{multicols}{3}
+		\begin{itemize}
+			\item \texttt{A\_BUTTON}
+			\item \texttt{B\_BUTTON}
+			\item \texttt{LEFT\_BUTTON}
+			\item \texttt{RIGHT\_BUTTON}
+			\item \texttt{UP\_BUTTON}
+			\item \texttt{DOWN\_BUTTON}
+		\end{itemize}
+	\end{multicols}
+	
+	Buttons kunnen samengevoegd worden in een mask: \texttt{LEFT\_BUTTON + A\_BUTTON}
+\end{libf}
+
+\begin{libf}[pressed(buttons)]
+	Test of de opgegeven knoppen ingedrukt worden.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden 
+	\end{itemize}
+	\textbf{Returns}
+	\begin{itemize}
+		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel ingedrukt zijn
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[notPressed(buttons)]
+	Test of de opgegeven knoppen \textbf{niet} ingedrukt worden.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden
+	\end{itemize}
+	\textbf{Returns}
+	\begin{itemize}
+		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel \textbf{niet} ingedrukt zijn
+	\end{itemize}
+\end{libf}
+
+\subsection{Physics}
+
+\begin{libf}[collide(rect1, rect2)]
+	Controleer of twee rechthoeken elkaar snijden.\\ \\
+	\textbf{Parameters}	
+	\begin{itemize}
+		\item \texttt{Rect rect1, Rect rect2}: rechthoeken $\rightarrow$ Rect(int x, int y, int width, int height)
+	\end{itemize}
+	\textbf{Returns}
+	\begin{itemize}
+		\item \texttt{bool}: \texttt{true} als de opgegeven rechthoeken overlappen
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[collide(point, rect)]
+	Controleer of een punt binnen een rechthoek ligt.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{Point point}: punt $\rightarrow$ Point(int x, int y)
+		\item \texttt{Rect rect}: rechthoek $\rightarrow$ Rect(int x, int y, int width, int height)
+	\end{itemize}
+\end{libf}
+
+\subsection{LED}
+
+\begin{libf}[setRGBled(red, green, blue)]
+	Stel de helderheid van de verschillende kleuren in de RGB LED in. De RGB LED zijn eigenlijk kleine individuele rode, groene en blauwe LEDs die zeer dicht bij elkaar geplaatst zijn. Door de helderheid van de 3 kleuren aan te passen, kan je verschillende kleuren tonen. 	
+	De helderheid van elke LED kan een waarde aannemen van 0 (volledig uit) tot 255 (volledig aan).\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int red}: rode component
+		\item \texttt{int green}: groene component
+		\item \texttt{int blue}: blauwe component
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[setRGBled(color, val)]
+	Stel de helderheid van één van de kleuren in, zonder de andere kleuren aan te passen.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int color}: naam van de kleur: \texttt{RED\_LED}, \texttt{GREEN\_LED} of \texttt{BLUE\_LED}
+		\item \texttt{int val}: helderheid, waarde tussen 0 en 255
+	\end{itemize}
+\end{libf}
 
 \section{Emulator}
 \section{Programma op Arduboy plaatsen}

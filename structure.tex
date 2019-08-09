@@ -272,6 +272,10 @@
 \theoremstyle{ocrenum}
 \newtheorem{proposition}[dummy]{Propositie}
 
+% Library function description
+\theoremstyle{ocrenumbox}
+\newtheorem*{libfT}{Library}
+
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
 %----------------------------------------------------------------------------------------
@@ -346,6 +350,8 @@ innerbottommargin=5pt]{cBox}
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
 \newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacktriangleleft}}\end{exampleT}}		
 \newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}	
+
+\newenvironment{libf}{\begin{tBox}\begin{libfT}}{\end{libfT}\end{tBox}}
 
 %----------------------------------------------------------------------------------------
 %	REMARK ENVIRONMENT
@@ -527,3 +533,4 @@ addtohook={%
 \usepackage{minted}
 
 \usepackage{todonotes}
+\usepackage{multicol}
