@@ -133,7 +133,7 @@ Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de pr
 
 \noindent Voor een interactieve en uitgebreidere introductie tot \Cpp, kan je terecht bij W3Schools (\url{https://www.w3schools.com/cpp/}).
 
-% TODO compiler
+\nocite{w3schools:cpp, tutorialspoint:cpp}
 
 \section{Syntax}
 \subsection{Puntkomma}
@@ -819,7 +819,8 @@ Hier geven we een overzicht van de belangrijkste functies in de Arduboy2 library
 \noindent
 Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 
-\subsection{Core}
+\subsection{Init}
+Deze functies worden gebruikt om de functionaliteit van de Arduboy te initialiseren.
 
 \begin{libf}[begin()]
 	Initialiseer de hardware, het logo weergeven, etc. Deze functie moet één keer opgeroepen worden in de \texttt{setup()} procedure.
@@ -830,6 +831,7 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 \end{libf}
 
 \subsection{Display}
+Deze functies hebben betrekking tot het scherm van de Arduboy.
 
 \begin{libf}[Display]
 	Er zijn de volgende handige constanten voor de breedte en de hoogte van het scherm. Daarnaast zijn er ook constanten voor de kleuren van het scherm.
@@ -844,11 +846,11 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 \end{libf}
 
 \begin{libf}[clear()]
-	Wis de display buffer. De volledige inhoud van de display buffer wordt gewist en op zwart (\texttt{BLACK}) gezet.
+	Wis de display buffer. Het volledige scherm wordt op zwart gezet.
 \end{libf}
 
 \begin{libf}[display()]
-	Plaats de inhoud van de display buffer op het scherm. De opgeslagen commando's in de display buffer worden weergegeven op het scherm.
+	Plaats de inhoud van de display buffer op het scherm.
 \end{libf}
 
 \begin{libf}[setFrameRate(fps)]
@@ -867,7 +869,8 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 	\end{itemize}
 \end{libf}
 
-\subsection{Draw}
+\subsubsection{Draw}
+Deze functies worden gebruikt om zelf vormen te tekenen op het scherm van de Arduboy.
 
 \begin{libf}[drawPixel(x, y, \emph{color=WHITE})]
 	Kleur een enkele pixel in de opgegeven kleur.\\ \\
@@ -925,6 +928,8 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 	\end{itemize}
 \end{libf}
 
+\newpage
+
 \begin{libf}[drawLine(x0, y0, x1, y1, \emph{color=WHITE})]
 	Teken een lijn tussen de opgegeven punten.\\ \\
 	\textbf{Parameters}
@@ -958,7 +963,7 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 \end{libf}
 
 \begin{libf}[fillCircle(x, y, r, \emph{color=WHITE})]
-	Teken een gevulde cirkel.\\ \\
+	Teken een opgevulde cirkel.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
 		\item \texttt{int x}: x-coördinaat van het middelpunt van de cirkel
@@ -968,7 +973,7 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 \end{libf}
 
 \begin{libf}[fillRect(x, y, w, h, \emph{color=WHITE})]
-	Teken een gevulde rechthoek.\\ \\
+	Teken een opgevulde rechthoek.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
 		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
@@ -979,34 +984,94 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 	\end{itemize}
 \end{libf}
 
+\pagebreak
+
 \begin{libf}[fillRoundRect(x, y, w, h, r, \emph{color=WHITE})]
-	inhoud...
+	Teken een opgevulde rechthoek met afgeronde hoeken.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
+		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
+		\item \texttt{int w}: breedte
+		\item \texttt{int h}: hoogte
+		\item \texttt{int r}: straal van de afronding
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
-	inhoud...
+	Teken een opgevulde driehoek.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int x0, int x1, int x2}: x-coördinaten van de hoeken
+		\item \texttt{int y0, int y1, int y2}: y-coördinaten van de hoeken
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillScreen(\emph{color=WHITE})]
-	inhoud...
+	Vul het scherm op met de opgegeven kleur.\\ \\
+	\textbf{Parameters}
+	\begin{itemize}
+		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
 \end{libf}
 
 \subsubsection{Text}
+Deze functies worden gebruikt om tekst weer te geven op het scherm van de Arduboy.
+
 \begin{libf}[setCursor(x, y)]
 	Stel de locatie van de tekst cursor in.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}
-		\item \texttt{int y}
+		\item \texttt{int x}: x-coördinaat
+		\item \texttt{int y}: y-coördinaat
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[setTextSize(s)]
+	Stel de grootte van de tekstkarakters in.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{int s}: tekstgrootte ($\geq 1$)
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[setTextColor(c)]
+	Stel de tekstkleur in.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{int c}: kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[setTextBackground(bg)]
+	Stel de achtergrondkleur van de tekst in.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{int bg}: achtergrondkleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+	\end{itemize}
+\end{libf}
+
+\begin{libf}[setTextWrap(w)]
+	Schakel text wrapping in of uit. Als text wrapping is ingeschakeld wordt de tekst op een nieuwe lijn geplaatst als deze te lang is om op de huidige lijn te passen.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{bool w}: \texttt{true} om text wrapping in te schakelen, \texttt{false} om uit te schakelen
 	\end{itemize}
 \end{libf}
 
 % https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html
-\begin{libf}[print(content)]
-	inhoud...
+\begin{libf}[\href{https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html}{print(content)}]
+	Print de opgegeven content op de plaats van de cursor.\\ \\
+	\textbf{Parameter}
+	\begin{itemize}
+		\item \texttt{content}: tekst die weergegeven moet worden
+	\end{itemize}
 \end{libf}
 
 \subsection{Buttons}
+Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
 
 \begin{libf}[Buttons]
 	Voor de knoppen op de Arduboy zijn de volgende constanten gedefinieerd.
@@ -1048,7 +1113,10 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 	\end{itemize}
 \end{libf}
 
+\newpage
+
 \subsection{Physics}
+Deze functies worden gebruikt om interacties tussen verschillende objecten in je game te berekenen.
 
 \begin{libf}[collide(rect1, rect2)]
 	Controleer of twee rechthoeken elkaar snijden.\\ \\
@@ -1072,6 +1140,7 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 \end{libf}
 
 \subsection{LED}
+Via deze functies kan je de RGB LED van de Arduboy aansturen.
 
 \begin{libf}[setRGBled(red, green, blue)]
 	Stel de helderheid van de verschillende kleuren in de RGB LED in. De RGB LED zijn eigenlijk kleine individuele rode, groene en blauwe LEDs die zeer dicht bij elkaar geplaatst zijn. Door de helderheid van de 3 kleuren aan te passen, kan je verschillende kleuren tonen. 	
@@ -1093,252 +1162,11 @@ Optionele argumenten voor de functies staan \emph{schuingedrukt}.
 	\end{itemize}
 \end{libf}
 
+\newpage
 \section{Emulator}
 \section{Programma op Arduboy plaatsen}
 
 
-
-\part{Part One}
-
-%----------------------------------------------------------------------------------------
-%	CHAPTER 1
-%----------------------------------------------------------------------------------------
-
-\chapter{Text Chapter}
-
-\section{Paragraphs of Text}\index{Paragraphs of Text}
-
-\lipsum[1-7] % Dummy text
-
-%------------------------------------------------
-
-\section{Citation}\index{Citation}
-
-This statement requires citation \cite{article_key}; this one is more specific \cite[162]{book_key}.
-
-%------------------------------------------------
-
-\section{Lists}\index{Lists}
-
-Lists are useful to present information in a concise and/or ordered way\footnote{Footnote example...}.
-
-\subsection{Numbered List}\index{Lists!Numbered List}
-
-\begin{enumerate}
-\item The first item
-\item The second item
-\item The third item
-\end{enumerate}
-
-\subsection{Bullet Points}\index{Lists!Bullet Points}
-
-\begin{itemize}
-\item The first item
-\item The second item
-\item The third item
-\end{itemize}
-
-\subsection{Descriptions and Definitions}\index{Lists!Descriptions and Definitions}
-
-\begin{description}
-\item[Name] Description
-\item[Word] Definition
-\item[Comment] Elaboration
-\end{description}
-
-%----------------------------------------------------------------------------------------
-%	CHAPTER 2
-%----------------------------------------------------------------------------------------
-
-\chapter{In-text Elements}
-
-\section{Theorems}\index{Theorems}
-
-This is an example of theorems.
-
-\subsection{Several equations}\index{Theorems!Several Equations}
-This is a theorem consisting of several equations.
-
-\begin{theorem}[Name of the theorem]
-In $E=\mathbb{R}^n$ all norms are equivalent. It has the properties:
-\begin{align}
-& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
-&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
-\end{align}
-\end{theorem}
-
-\subsection{Single Line}\index{Theorems!Single Line}
-This is a theorem consisting of just one line.
-
-\begin{theorem}
-A set $\mathcal{D}(G)$ in dense in $L^2(G)$, $|\cdot|_0$. 
-\end{theorem}
-
-%------------------------------------------------
-
-\section{Definitions}\index{Definitions}
-
-This is an example of a definition. A definition could be mathematical or it could define a concept.
-
-\begin{definition}[Definition name]
-Given a vector space $E$, a norm on $E$ is an application, denoted $||\cdot||$, $E$ in $\mathbb{R}^+=[0,+\infty[$ such that:
-\begin{align}
-& ||\mathbf{x}||=0\ \Rightarrow\ \mathbf{x}=\mathbf{0}\\
-& ||\lambda \mathbf{x}||=|\lambda|\cdot ||\mathbf{x}||\\
-& ||\mathbf{x}+\mathbf{y}||\leq ||\mathbf{x}||+||\mathbf{y}||
-\end{align}
-\end{definition}
-
-%------------------------------------------------
-
-\section{Notations}\index{Notations}
-
-\begin{notation}
-Given an open subset $G$ of $\mathbb{R}^n$, the set of functions $\varphi$ are:
-\begin{enumerate}
-\item Bounded support $G$;
-\item Infinitely differentiable;
-\end{enumerate}
-a vector space is denoted by $\mathcal{D}(G)$. 
-\end{notation}
-
-%------------------------------------------------
-
-\section{Remarks}\index{Remarks}
-
-This is an example of a remark.
-
-\begin{remark}
-The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
-\end{remark}
-
-%------------------------------------------------
-
-\section{Corollaries}\index{Corollaries}
-
-This is an example of a corollary.
-
-\begin{corollary}[Corollary name]
-The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
-\end{corollary}
-
-%------------------------------------------------
-
-\section{Propositions}\index{Propositions}
-
-This is an example of propositions.
-
-\subsection{Several equations}\index{Propositions!Several Equations}
-
-\begin{proposition}[Proposition name]
-It has the properties:
-\begin{align}
-& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
-&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
-\end{align}
-\end{proposition}
-
-\subsection{Single Line}\index{Propositions!Single Line}
-
-\begin{proposition} 
-Let $f,g\in L^2(G)$; if $\forall \varphi\in\mathcal{D}(G)$, $(f,\varphi)_0=(g,\varphi)_0$ then $f = g$. 
-\end{proposition}
-
-%------------------------------------------------
-
-\section{Examples}\index{Examples}
-
-This is an example of examples.
-
-\subsection{Equation and Text}\index{Examples!Equation and Text}
-
-\begin{example}
-Let $G=\{x\in\mathbb{R}^2:|x|<3\}$ and denoted by: $x^0=(1,1)$; consider the function:
-\begin{equation}
-f(x)=\left\{\begin{aligned} & \mathrm{e}^{|x|} & & \text{si $|x-x^0|\leq 1/2$}\\
-& 0 & & \text{si $|x-x^0|> 1/2$}\end{aligned}\right.
-\end{equation}
-The function $f$ has bounded support, we can take $A=\{x\in\mathbb{R}^2:|x-x^0|\leq 1/2+\epsilon\}$ for all $\epsilon\in\intoo{0}{5/2-\sqrt{2}}$.
-\end{example}
-
-\subsection{Paragraph of Text}\index{Examples!Paragraph of Text}
-
-\begin{example}[Example name]
-\lipsum[2]
-\end{example}
-
-%------------------------------------------------
-
-\section{Exercises}\index{Exercises}
-
-This is an example of an exercise.
-
-\begin{exercise}
-This is a good place to ask a question to test learning progress or further cement ideas into students' minds.
-\end{exercise}
-
-%------------------------------------------------
-
-\section{Problems}\index{Problems}
-
-\begin{problem}
-What is the average airspeed velocity of an unladen swallow?
-\end{problem}
-
-%------------------------------------------------
-
-\section{Vocabulary}\index{Vocabulary}
-
-Define a word to improve a students' vocabulary.
-
-\begin{vocabulary}[Word]
-Definition of word.
-\end{vocabulary}
-
-%----------------------------------------------------------------------------------------
-%	PART
-%----------------------------------------------------------------------------------------
-
-\part{Part Two}
-
-%----------------------------------------------------------------------------------------
-%	CHAPTER 3
-%----------------------------------------------------------------------------------------
-
-\chapter{Presenting Information}
-
-\section{Table}\index{Table}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\label{tab:example} % Unique label used for referencing the table in-text
-%\addcontentsline{toc}{table}{Table \ref{tab:example}} % Uncomment to add the table to the table of contents
-\end{table}
-
-Referencing Table \ref{tab:example} in-text automatically.
-
-%------------------------------------------------
-
-\section{Figure}\index{Figure}
-
-\begin{figure}[h]
-\centering\includegraphics[scale=0.5]{placeholder.jpg}
-\caption{Figure caption}
-\label{fig:placeholder} % Unique label used for referencing the figure in-text
-%\addcontentsline{toc}{figure}{Figure \ref{fig:placeholder}} % Uncomment to add the figure to the table of contents
-\end{figure}
-
-Referencing Figure \ref{fig:placeholder} in-text automatically.
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -1349,20 +1177,7 @@ Referencing Figure \ref{fig:placeholder} in-text automatically.
 \chapter*{Bibliografie}
 \addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliografie}} % Add a Bibliography heading to the table of contents
 
-%------------------------------------------------
-
-\section*{Artikels}
-\addcontentsline{toc}{section}{Artikels}
-\printbibliography[heading=bibempty,type=article]
-
-%------------------------------------------------
-
-\section*{Boeken}
-\addcontentsline{toc}{section}{Boeken}
-\printbibliography[heading=bibempty,type=book]
-
-\section*{Websites}
-\printbibliography[heading=bibempty,type=misc]
+\printbibliography[heading=bibempty]
 
 %----------------------------------------------------------------------------------------
 %	INDEX
