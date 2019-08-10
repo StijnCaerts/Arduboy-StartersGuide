@@ -137,9 +137,11 @@ Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de pr
 
 \section{Syntax}
 \subsection{Puntkomma}
+\index{Puntkomma}
 Achter elke instructie wordt in \Cpp{} een puntkomma \mintinline{cpp}{;} geplaatst. Deze puntkomma vertelt de compiler dat op die plaats een instructie eindigt. Als je een puntkomma vergeet te plaatsen, is het programma niet correct en zal je het programma niet kunnen compileren. De compiler zal dan een foutmelding geven.
 
 \subsection{Accolades}
+\index{Accolade}
 Accolades \mintinline{cpp}{{}} worden gebruikt om een blok code aan te duiden. De accolades moeten gebalanceerd voorkomen in de code, wat betekent dat voor elke openende accolade \texttt{\{} er een bijhorende sluitende accolade \texttt{\}} moet zijn. Het gebruik van accolades wordt later geïllustreerd bij de controlestructuren (if-then-else, for, ..), functies en klassen.
 
 \subsection{Commentaar}
@@ -391,9 +393,11 @@ Logische operatoren worden gebruikt om meerdere Booleaanse waarden te combineren
 
 
 \chapter{Controlestructuren}
+\index{Controlestructuren}
 Controlestructuren bepalen de loop van het programma. Zo is het mogelijk om stukken code enkel in specifieke gevallen uit te voeren, of om een blok code meerdere keren te herhalen.
 % if-then-else, switch, for, while, (break, continue)
 \section{If-then-else}
+\index{Controlestructuren!if-then-else}
 De eenvoudigste controlestructuur is het \emph{if}-statement. Dit kan verder uitgebreid worden met een \emph{else}-blok voor verdere controle over de uitvoeringsvolgorde.
 
 \subsection{If-then}
@@ -474,6 +478,7 @@ if (x < 10) {
 \end{example}
 
 \section{Switch}
+\index{Controlestructuren!switch}
 Als je een expressie wil testen op meerdere waardes, kan je in plaats van geneste if-statements ook gebruik maken van een \emph{switch}-statement.
 
 \begin{definition}[Switch]
@@ -537,6 +542,7 @@ switch (dag) {
 \end{exercise}
 
 \section{While-lus}
+\index{Controlestructuren!while}
 Als je een stuk code meerdere keren achter elkaar wil laten uitvoeren, kan je gebruik maken van een lus. De \texttt{while}-lus bevat een conditie en een body met instructies. Zolang de conditie waar is, worden de instructies in de body herhaald uitgevoerd.
 
 \begin{definition}[While]
@@ -563,6 +569,7 @@ while (vv <= 24) {
 \end{example}
 
 \section{For-lus}
+\index{Controlestructuren!for}
 Vaak zullen lussen voorkomen waarbij het aantal herhalingen vooraf vastligt. Deze lussen hebben dan volgende vorm.
 
 \begin{example}
@@ -684,11 +691,11 @@ int resultaat = minimum(x, y);
 	\end{minted}
 \end{example}
 
-
-\chapter{Arrays en lijsten \textsc{\footnotesize(Advanced)}}
+% TODO advanced chapters
+%\chapter{Arrays en lijsten \textsc{\footnotesize(Advanced)}}
 % https://www.dinkum.nl/software/cplusplus/doc/arrays/
 % https://github.com/ivanseidel/LinkedList
-\chapter{Klassen en objecten \textsc{\footnotesize(Advanced)}}
+%\chapter{Klassen en objecten \textsc{\footnotesize(Advanced)}}
 % https://www.dinkum.nl/software/cplusplus/doc/OO/classes.html
 % Geheugenbeheer
 % https://stackoverflow.com/questions/6337294/creating-an-object-with-or-without-new
@@ -698,6 +705,7 @@ int resultaat = minimum(x, y);
 \chapter{Arduino}
 \index{Arduino}
 \section{Programmastructuur}
+\index{Programmastructuur}
 Elk Arduino-programma heeft dezelfde structuur. De belangrijkste kenmerken die steeds terugkeren zijn de globale variabelen, de \texttt{setup()} procedure en de \texttt{loop()} procedure. In de volgende secties bespreken we deze in meer detail.
 
 \begin{definition}[Arduino programmastructuur]
@@ -731,6 +739,7 @@ De \texttt{setup()} procedure wordt éénmaal uitgevoerd bij het opstarten van h
 De \texttt{loop()} procedure doet precies wat de naam doet vermoeden. De code in deze procedure wordt steeds opnieuw uitgevoerd. Hier wordt de eigenlijk code van het Arduino-programma geschreven. De herhaling blijft duren tot de stroom van de Arduino wordt losgekoppeld of op de reset-knop wordt geduwd.
 
 \section{Importeren van libraries}
+\index{Library}
 Bij het programmeren voor Arduino is het veel voorkomend om gebruik te maken van \emph{libraries}. Libraries bevatten functies die door andere ontwikkelaars zijn geschreven. Ze hebben als doel om de complexiteit van jouw code te verlagen door operaties te implementeren op een lager niveau. Hierdoor moet je bijvoorbeeld niet handmatig alle communicatie met een display programmeren, maar gebruik je hiervoor de functionaliteit van de library.\\
 
 \noindent
@@ -750,12 +759,14 @@ Voor het schrijven van Arduino programma's maken we gebruik van de Arduino IDE. 
 \end{figure}
 
 \chapter{Arduboy}
+\index{Arduboy}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=13.4cm]{ArduboyGame.png}
 \end{figure}
 
 \section{Instellingen}
+\label{sec:arduboy-instellingen}
 % Arduino Leonardo
 % Importeren library
 
@@ -787,6 +798,7 @@ Via deze manier kan je ook andere libraries installeren indien je dat wenst.
 Om de IDE te laten weten dat je gaat programmeren voor de Arduboy, moet je het board in de IDE aanpassen. Ga naar \textbf{Hulpmiddelen} > \textbf{Board} en kies \textbf{Arduboy} in deze lijst.
 
 \section{Programmastructuur}
+\index{Programmastructuur}
 
 \begin{minted}{cpp}
 #include <Arduboy2.h>
@@ -811,13 +823,14 @@ void loop() {
 Bovenstaand codefragment geeft een template van waar je kan starten om een Arduboy game te programmeren. Op de eerste lijn wordt de Arduboy2 library ingeladen. Daarna wordt er een \texttt{Arduboy2}-object aangemaakt. Dit object wordt gebruikt om de functionaliteit van de library op te roepen. In de \texttt{setup()} procedure wordt de functionaliteit van de Arduboy geïnitialiseerd. 
 
 \section{De Arduboy2 library}
+\index{Library}
 Hier geven we een overzicht van de belangrijkste functies in de Arduboy2 library~\cite{arduboy:lib2-doc}. Deze functies kunnen op deze manier gebruikt worden:
 
 \begin{center}
 	\texttt{arduboy.functienaam();}
 \end{center}
 \noindent
-Optionele argumenten voor de functies staan \emph{schuingedrukt}.
+Optionele parameters voor de functies staan \emph{schuingedrukt}.
 
 \subsection{Init}
 Deze functies worden gebruikt om de functionaliteit van de Arduboy te initialiseren.
@@ -833,7 +846,7 @@ Deze functies worden gebruikt om de functionaliteit van de Arduboy te initialise
 \subsection{Display}
 Deze functies hebben betrekking tot het scherm van de Arduboy.
 
-\begin{libf}[Display]
+\begin{libf}[\textsc{Display}]
 	Er zijn de volgende handige constanten voor de breedte en de hoogte van het scherm. Daarnaast zijn er ook constanten voor de kleuren van het scherm.
 	\begin{multicols}{2}
 		\begin{itemize}
@@ -956,7 +969,7 @@ Deze functies worden gebruikt om zelf vormen te tekenen op het scherm van de Ard
 	\textbf{Parameters}
 	\begin{itemize}
 		\item \texttt{int x}: x-coördinaat van het linkse uiteinde
-		\item \texttt{int y}: y-coördinaat van het rechtse uiteinde
+		\item \texttt{int y}: y-coördinaat van het linkse uiteinde
 		\item \texttt{int w}: lengte
 		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
@@ -1073,7 +1086,7 @@ Deze functies worden gebruikt om tekst weer te geven op het scherm van de Ardubo
 \subsection{Buttons}
 Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
 
-\begin{libf}[Buttons]
+\begin{libf}[\textsc{Buttons}]
 	Voor de knoppen op de Arduboy zijn de volgende constanten gedefinieerd.
 	\begin{multicols}{3}
 		\begin{itemize}
@@ -1164,8 +1177,26 @@ Via deze functies kan je de RGB LED van de Arduboy aansturen.
 
 \newpage
 \section{Emulator}
-\section{Programma op Arduboy plaatsen}
+\index{Emulator}
+Als je een game aan het programmeren bent, wil je natuurlijk ook kunnen testen of deze werkt op de manier dat jij wil. Daarom bestaan er emulators voor de Arduboy.
 
+\subsection{ProjectABE}
+\href{https://felipemanga.github.io/ProjectABE/}{ProjectABE (\texttt{https://felipemanga.github.io/ProjectABE/})} is een online emulator voor de Arduboy.
+Je kan je eigen game testen door op het startscherm onder \textbf{My Projects} > \textbf{New Game} te klikken. In het volgende scherm zie je de emulator, zoals in Figuur~\ref{fig:projectabe}.
+\begin{wrapfigure}{r}{5.5cm}
+	\centering
+	\includegraphics[width=5cm]{assets/ProjectABE}
+	\caption{Project ABE}
+	\label{fig:projectabe}
+\end{wrapfigure}
+% export binary
+In de Arduino IDE klik je vervolgens op \textbf{Schets} > \textbf{Exporteer gecompileerd Binair bestand}. Hierdoor zal er een bestand met extensie \texttt{.hex} aangemaakt worden in dezelfde map als je code. Dit bestand met extensie \texttt{.hex} sleep je dan naar de emulator. De emulator zal dan meteen jouw code uitvoeren.\\
+Je kan de emulator bedienen met het toetsenbord of door te klikken op de knoppen op het scherm.
+
+\section{Programma op Arduboy plaatsen}
+Voor je het programma op de Arduboy plaatst, controleer je best of zeker het juiste board staat geselecteerd (zie Sectie~\ref{sec:arduboy-instellingen}). Daarna zet je de Arduboy aan en verbind je hem met de computer via de USB-kabel. Vervolgens selecteer je de juiste poort via \textbf{Hulpmiddelen} > \textbf{Poort} en kies dan de optie waar Arduino bij staat.\\
+Nu ben je volledig klaar om het programma op de Arduboy te plaatsen. Nu moet je enkel nog op het pijltje (\textbf{Uploaden}) klikken en even wachten. Als alles goed gaat staat je programma nu op de Arduboy.\\ \\
+\emph{Veel gameplezier!}
 
 
 %----------------------------------------------------------------------------------------
