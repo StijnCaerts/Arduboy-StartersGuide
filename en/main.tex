@@ -16,7 +16,7 @@
 %
 % Compiling this template:
 % This template uses biber for its bibliography and makeindex for its index.
-% When you first open the template, compile it from the command line with the 
+% When you first open the template, compile it from the command line with the
 % commands below to make sure your LaTeX distribution is configured correctly:
 %
 % 1) pdflatex main
@@ -25,7 +25,7 @@
 % 4) pdflatex main x 2
 %
 % After this, when you wish to update the bibliography/index use the appropriate
-% command above and make sure to compile with pdflatex several times 
+% command above and make sure to compile with pdflatex several times
 % afterwards to propagate your changes to the document.
 %
 % This template also uses a number of packages which may need to be
@@ -90,10 +90,12 @@
 \noindent Copyright \copyright\ 2019 Stijn Caerts\\ % Copyright notice
 
 \noindent \textsc{Jeugd, Cultuur en Wetenschap vzw}\\ % Publisher
+\noindent \textsc{Youth, Culture and Science Foundation}\\ % Publisher
 
 \noindent \textsc{\href{https://stijn.caerts.be/}{stijn.caerts.be}} -- \textsc{\href{https://www.jeugdcultuurenwetenschap.be/}{www.jeugdcultuurenwetenschap.be}}\\ % URL
 
-\noindent Licensed under the \href{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License} (the "License"). You may not use this document except in compliance with the License. You may obtain a copy of the License at \url{https://creativecommons.org/licenses/by-nc-sa/4.0/}.\\
+\noindent Licensed under the \href{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License} (the "License"). You may not use this document except in compliance with the License. You may obtain a copy of the License at:\\
+\url{https://creativecommons.org/licenses/by-nc-sa/4.0/}.\\
 
 \noindent \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{\ccbyncsaeu}
 
@@ -127,76 +129,98 @@
 \chapter{Introduction}
 \section{What is C++?}
 % https://www.tutorialspoint.com/cplusplus
-Programma's voor \textbf{Arduino} en \textbf{Arduboy} worden geschreven in de programmeertaal \Cpp\index{C++@\Cpp}. Het is niet nodig om de hele programmeertaal te kennen en begrijpen voor je aan de slag kan gaan met programmeren. Daarom geven we hier een beknopt overzicht van de belangrijkste concepten die je nodig hebt om van start te gaan.\\
+\Cpp{} is an object-oriented, general-purpose programming language.  Programs for \textbf{Arduino} and the \textbf{Arduboy} are typically written in  \Cpp\index{C++@\Cpp}. You do not need to know and understand the entire programming language before you can get started with programming. That is why we provide a brief overview of the most important concepts that you need to get started.\\
 
-\noindent In de volgende hoofdstukken komen variabelen en types, controlestructuren (if-then-else, for, while) en functies en procedures aan bod. Tot slot zijn er nog twee hoofdstukken die dieper ingaan op de mogelijkheden van \Cpp, namelijk arrays en lijsten, en klassen en objecten.\\
+\noindent The following chapters deal with variables, data types, control structures (if-then-else, for, while), functions and procedures. Finally, two additional chapters elaborate on the possibilities of \Cpp, namely arrays and lists, and classes and objects.\\
 
-\noindent Voor een interactieve en uitgebreidere introductie tot \Cpp, kan je terecht bij W3Schools (\url{https://www.w3schools.com/cpp/}).
+\noindent For an interactive and more extensive introduction to \Cpp, you can go to W3Schools (\url{https://www.w3schools.com/cpp/}).
 
 \nocite{w3schools:cpp, tutorialspoint:cpp}
 
 \section{Syntax}
-\subsection{Semicolon}
-\index{Puntkomma}
-Achter elke instructie wordt in \Cpp{} een puntkomma \mintinline{cpp}{;} geplaatst. Deze puntkomma vertelt de compiler dat op die plaats een instructie eindigt. Als je een puntkomma vergeet te plaatsen, is het programma niet correct en zal je het programma niet kunnen compileren. De compiler zal dan een foutmelding geven.
+\subsection{Semicolons}
+\index{Semicolons}
+A semicolon \mintinline{cpp}{;} is placed after every instruction in \Cpp{}. This semicolon tells the compiler that the instruction has ended. If you forget to place a semicolon, the program is not correct and will not compile. The compiler will show an error message.
 
-\subsection{Curly brackets}
-\index{Accolade}
-Accolades \mintinline{cpp}{{}} worden gebruikt om een blok code aan te duiden. De accolades moeten gebalanceerd voorkomen in de code, wat betekent dat voor elke openende accolade \texttt{\{} er een bijhorende sluitende accolade \texttt{\}} moet zijn. Het gebruik van accolades wordt later geïllustreerd bij de controlestructuren (if-then-else, for, ..), functies en klassen.
+\begin{example}
+	\phantom{ }
+	Make note of the \mintinline{cpp}{;} at the end of each line.
+	\begin{minted}{cpp}
+int a = 42; // ; here
+int b = 10; // ; another here
+	\end{minted}
+\end{example}
 
-\subsection{Comments}
-% commentaar in C++
-% // of /* */
-Om de leesbaarheid van je code te verhogen, is het nuttig om commentaar toe te voegen. In deze commentaar\index{Commentaar} beschrijf je wat dit deel van de code juist doet. Hierdoor is het duidelijk wat je juist hebt geprogrammeerd, ook als je later opnieuw je code bekijkt.\\
+\pagebreak
 
-\noindent In \Cpp{} zijn er twee verschillende manieren om commentaar toe te voegen.\\
-Commentaar op één lijn wordt aangeduid met \mintinline{cpp}{//}. Alle tekst na \mintinline{cpp}{//} tot het einde van de lijn wordt beschouwd als commentaar en zal bijgevolg niet uitgevoerd worden. 
+\subsection{Curly Braces}
+\index{Braces}
+Curly braces \mintinline{cpp}{{}} (also called curly brackets) are used to indicate blocks of code. The braces must be balanced; for every opening brace \texttt{\{} there must be a matching closing brace \texttt{\}}. The use of braces is further illustrated later with control structures (if-then-else, for, ..), functions and classes.
 
-\begin{example}[Commentaarlijn]
+\begin{example}
 	\phantom{ }
 	\begin{minted}{cpp}
-// Dit is een lijn commentaar
+while(keepRunning)
+{
+  // this is a block of code
+  // note the { to start this block
+  // and the } to end it
+}
+	\end{minted}
+\end{example}
+
+\subsection{Comments}
+% comments in C++
+% // of /* */
+To increase the readability of your code, it is sometimes useful to add comments. In these comments\index{Comment} you can describe what your code does and why. Comments can help remind you of important knowledge when viewing your code again in the future.\\
+
+\noindent In \Cpp{} there are two different ways to add comments.\\ Comments on a single line are indicated by \mintinline{cpp}{//}. All text after the \mintinline{cpp}{//} (until the end of the line) is considered a comment and will not be executed.
+
+\begin{example}[A Comment]
+	\phantom{ }
+	\begin{minted}{cpp}
+// This line is a comment
 int a = 42;
 	\end{minted}
 \end{example}
 
-\noindent Commentaar over meerdere lijnen start met \texttt{/*} en eindigt met \texttt{*/}. Alle tekst tussen \texttt{/*} en \texttt{*/} wordt door de compiler genegeerd.
+\noindent Comments on multiple lines start with \texttt{/*} and end with \texttt{*/}. All text between \texttt{/*} and \texttt{*/} is ignored by the compiler.
 
-\begin{example}[Commentaar over meerdere lijnen]
+\begin{example}[Multi-line comments]
 	\phantom{ }
 	\begin{minted}{cpp}
 /*
-  Deze commentaar neemt
-  meerdere lijnen in beslag.
+  This is a comment that is so very long
+  that it really must span multiple lines.
 */
 int a = 42;
 	\end{minted}
 \end{example}
 
-\chapter{Variables and types}
-\index{Variabele}
+\chapter{Variables and Types}
+\index{Variable}
 \index{Datatype}
 \index{Type|seealso{Datatype}}
-Variabelen worden gebruikt om informatie of gegevens bij te houden in het programma. Een variabele is een plaats in het geheugen, met een zelfgekozen naam, waar gegevens in opgeslagen kunnen worden. In \Cpp{} heeft elke variabele een type. Een type komt overeen met het soort van gegevens die opgeslagen kunnen worden in zo'n variabele.
+Variables are used to keep track of information or data inside a program. A variable is a place in memory, with a self-chosen name, where data can be stored. In \Cpp{}, each variable has a type. A type corresponds to the type of data that can be stored in such a variable.
 
-\section{Data types}
+\section{Data Types}
 \label{section:datatypes}
 % https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm
 % strings https://www.tutorialspoint.com/cplusplus/cpp_strings
 
-Op basis van het datatype van een variabele wordt er geheugen gereserveerd om informatie in op te slaan. In \Cpp{} zijn de volgende primitieve datatypes gedefinieerd:
+Based on the data type of a variable, memory is reserved for storing information. The following primitive data types are defined in \Cpp{}:\\
 
-\begin{definition}[Primitieve datatypes]
-	\label{definition:primitieve-datatypes}
+\begin{definition}[Primitive Data Types]
+	\label{definition:primitive-data-types}
 	\phantom{ } \\
 	\begin{minipage}{\columnwidth}
 		\vspace{0.1cm}
 		\begin{tabular}{rl}
-			\textbf{bool} & Booleaanse waarde: \texttt{true} of \texttt{false} \\
-			\textbf{char} & Karakter \\
-			\textbf{int} & Geheel getal \\
-			\textbf{float} & Kommagetal (met enkele precisie) \\
-			\textbf{double} & Kommagetal (met dubbele precisie)
+			\textbf{bool} & Boolean value: \texttt{true} or \texttt{false} \\
+			\textbf{char} & Character \\
+			\textbf{int} & Integer \\
+			\textbf{float} & Floating-point (single-precision) \\
+			\textbf{double} & Floating-point (double-precision)
 		\end{tabular}
 		\vspace{0.1cm}
 	\end{minipage}
@@ -208,57 +232,59 @@ Op basis van het datatype van een variabele wordt er geheugen gereserveerd om in
 \index{Datatype!float}
 \index{Datatype!double}
 
-\index{Booleaanse waarde|seealso{Datatype, bool}}
+\index{Boolean values|seealso{Datatype, bool}}
 
-\noindent Deze types worden gebruikt bij variabelen, maar ook bij functies. Deze primitieve datatypes kunnen ook gebruikt worden om complexere types samen te stellen, zoals bijvoorbeeld bij arrays en klassen.
+\noindent These types are used with variables, but also with functions. These primitive data types can also be used to compose more complex types, such as  arrays and classes.
 
 \begin{remark}
-	Het type van een variabele is belangrijk voor de compiler omdat het type bepaald hoeveel geheugen er gereserveerd moet worden voor de variabele. Voor het opslaan van een \texttt{float}-variabele zijn er bijvoorbeeld 32 bits nodig, terwijl er voor de opslag van een kommagetal met dubbele precisie (\texttt{double}) 64 bits nodig zijn.
+    The type of a variable is important for the compiler because the type determines how much memory must be reserved for the variable. For example, 32 bits are required to store a \texttt{float} variable, while 64 bits are required to store a double-precision (\texttt{double}) decimal number.
 \end{remark}
 
 \section{Variables}
-Een variabele kan gezien worden als een opslagplaats waaraan een naam verbonden is. In deze opslagplaats kan een waarde geplaatst worden.
-\subsection{Declare}
-\index{Variabele!Declareren}
+A variable can be thought of as a storage location with a name is attached. A value can then be placed at this storage location.
+\subsection{Declaration}
+\index{Variable!Declaration}
 % type naam_variabele;
-Alvorens informatie kan opgeslagen worden in een variabele, moet de variabele eerst \emph{gedefinieerd} of \emph{gedeclareerd} worden. De declaratie van een variabele vertelt de compiler dat er plaats in het geheugen gereserveerd moet worden om gegevens van het gegeven datatype in op te slaan.\\
+Before information can be stored in a variable, the variable must first be \emph{defined} or \emph{declared}. The declaration of a variable tells the compiler that space must be reserved in memory to store data of the given data type.\\
 
-\noindent Een nieuwe variabele declareren doe je met een instructie van deze vorm: 
+\noindent You can declare a new variable with an instruction of this form:
+
 \begin{center}
-	\texttt{type naam\_variabele;}
+	\texttt{type name\_of\_variable;}
 \end{center}
 
-\begin{example}[Declareren van een \emph{integer} variabele]
+\begin{example}[Declare an \emph{integer} variable]
 	\phantom{ }
 	\begin{minted}{cpp}
-// Declareer een nieuwe variabele van het type int met naam a
+// Declare a new integer variable named a
 int a;
 	\end{minted}
 \end{example}
 
-\noindent Je kan bij het definiëren van een nieuwe variabele er ook meteen een waarde aan toekennen.
+\noindent When defining a new variable you can also immediately assign a value to it.\\
 
-\begin{example}[Declareren van een \emph{integer} variabele en een waarde toekennen]
+\begin{example}[Declare an \emph{integer} variable and assign it a value]
 	\phantom{ }
 	\begin{minted}{cpp}
 /*
-  Declareer een nieuwe variabele van het type int met naam a, 
-  en ken de waarde 42 toe
+  Declare a new variable of type int with name a,
+  and assign the value 42
 */
 int a = 42;
 	\end{minted}
 \end{example}
 
-\noindent Bij het kiezen van een variabelenaam moet je met de volgende regels rekening houden:
+\noindent  When choosing a variable name you must take the following rules into account:\\
+
 \begin{itemize}
-	\item namen moeten beginnen met een letter of een laag streepje (\_);
-	\item namen kunnen letters, cijfers en lage streepjes bevatten;
-	\item namen zijn hoofdlettergevoelig;
-	\item spaties of speciale karakters zijn niet toegelaten;
-	\item \Cpp{}-keywords (zoals \texttt{int}, \texttt{if}, ...) kunnen niet gebruikt worden als variabelenaam.
+	\item names must begin with a letter or a hyphen (\_);
+	\item names may contain letters, numbers and low dashes;
+	\item names are case-sensitive;
+	\item spaces and special characters are not allowed;
+	\item \Cpp{} keywords (such as \texttt{int}, \texttt{if}, ...) cannot be used as a name.
 \end{itemize}
 
-\begin{example}[Declareren en initialisatie van verschillende datatypes]
+\begin{example}[Declaring and initializing different data types]
 	\phantom{ }
 	\begin{minted}{cpp}
 bool b = true;
@@ -270,84 +296,88 @@ double d = 3.14159265;
 \end{example}
 
 \subsection{Scope}
-\index{Variabele!Scope}
-De \emph{scope} van een variabele is de plaats in het programma waar je een gedefinieerde variabele kan gebruiken. Je kan dit ook beschouwen als de levensduur van de variabele.\\
+\index{Variable!Scope}
+The \emph{scope} of a variable is the place in the program where you can use a defined variable. You can also consider this as the lifetime of the variable.\\
 
 \noindent
-De scope van een variabele wordt bepaald door waar de variabele werd gedeclareerd. Dit kunnen we opdelen in 3 verschillende soorten plaatsen.
+The scope of a variable is determined by where the variable was declared. We can divide this into 3 different types of places.\\
 
-\index{Variabele!Globaal}
-\index{Variabele!Lokaal}
-\index{Variabele!Parameter}
+\index{Variable!Global}
+\index{Variable!Local}
+\index{Variable!Parameter}
 \begin{enumerate}
-	\item in een functie of blok: \textbf{lokale variabelen},
-	\item in de definitie van een functie: \textbf{parameters},
-	\item buiten alle functies: \textbf{globale variabelen}.
+	\item in a function or block: \textbf{local variable},
+	\item in the definition of a function: \textbf{parameters},
+	\item outside all functions: \textbf{global variable}.
 \end{enumerate}
 
 \noindent
-In het algemeen kan gesteld worden dat de scope van de variabelen beperkt is tot het blok, aangeduid met accolades \texttt{\{\}}, waarin de variabele gedefinieerd is.
+In general the scope of a variable is limited to the block (indicated by braces \texttt {\{\}}) in which the variable is defined.
 
-\begin{example}[Scope van variabelen]
+\begin{example}[Variable scope]
 	\phantom{ }
 	\begin{minted}{cpp}
-// Globale variabele g
+// global variable g
 int g = 12;
 
+int double(int x) {
+	// x is a parameter here
+	return x * 2;
+}
+// x cannot be used here, outside of the double function
+
 void setup() {
-  // Lokale variabelen a en b
+  // local variables a and b
   int a = 42;
-  
-  /*
-    Globale variabelen kunnen na declaratie 
-    overal gebruikt worden
-  */
+
+  // global variables can be used anywhere after being declared
   int b = a + g;
-  
-  // Na declaratie moet het type van variabelen niet gespecifieerd worden
+
+  /*
+    after declaration, the type of a variable does not have to
+    be specified to use that variable
+  */
   g = b;
 }
-
-// Variabelen a en b kunnen buiten de functie setup() niet gebruikt worden
-
+// variables a and b cannot be used outside the setup() function
 	\end{minted}
 \end{example}
 
 \subsection{Operators}
-Om de waarde in de variabelen aan te passen, maken we gebruik van \emph{operatoren}. Hieronder geven we een overzicht van de belangrijkste operatoren in \Cpp.
+To alter the value of variables, we can use \emph{operators}. Below is an overview of the most important operators in \Cpp.
 
-\index{Operatoren}
-\subsubsection{Arithmetic operators}
-\index{Operatoren!Rekenkundig}
+\index{Operators}
+\subsubsection{Arithmetic Operators}
+\index{Operators!Arithmetic}
 
-Rekenkundige operatoren worden gebruikt om veelgebruikte wiskundige operaties uit te voeren.
-In deze voorbeelden gebruiken we de variabelen $ A = 10 $ en $ B = 3 $.
+Arithmetic operators are used to perform commonly used mathematical operations.
+In these examples we use the variables $ A = 10 $ and $ B = 3 $
 
 \begin{center}
 	\begin{tabular}{c l l}
 		\toprule
-		\textbf{Operator} & \textbf{Beschrijving}                     & \textbf{Voorbeeld}                                              \\ \midrule
-		   \texttt{+}     & Optelling                                 & \mintinline{cpp}{A + B} $\rightarrow 13$                        \\
-		   \texttt{-}     & Vermindering                              & \mintinline{cpp}{A - B} $\rightarrow 7$                         \\
-		   \texttt{*}     & Vermenigvuldiging                         & \mintinline{cpp}{A * B} $\rightarrow 30$                        \\
-		   \texttt{/}     & Deling                                    & \mintinline{cpp}{A / B} $\rightarrow 3$                         \\
-		   \texttt{\%}    & Modulus (rest na deling)                  & \mintinline{cpp}{A % B} $\rightarrow 1$                         \\
-		   \texttt{++}    & Verhoogt de waarde van de variabele met 1 & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
-		  \texttt{-{}-}   & Verlaagt de waarde van de variabele met 1 & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
+		\textbf{Operator} & \textbf{Description}                     & \textbf{Example}                                              \\ \midrule
+		   \texttt{+}     & Addition                                 & \mintinline{cpp}{A + B} $\rightarrow 13$                        \\
+		   \texttt{-}     & Subtraction                              & \mintinline{cpp}{A - B} $\rightarrow 7$                         \\
+		   \texttt{*}     & Multiplication                           & \mintinline{cpp}{A * B} $\rightarrow 30$                        \\
+		   \texttt{/}     & Division                                 & \mintinline{cpp}{A / B} $\rightarrow 3$                         \\
+		   \texttt{\%}    & Modulus (remainder after division)       & \mintinline{cpp}{A % B} $\rightarrow 1$                         \\
+		   \texttt{++}    & Increase the value by 1                  & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
+		  \texttt{-{}-}   & Decrease the value by 1                  & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
 	\end{tabular}
 \end{center}
 
 \pagebreak
 
-\subsubsection{Assignment operators}
-\index{Operatoren!Toewijzend}
+\subsubsection{Assigning Operators}
+\index{Operators!Assigning}
 
-De operator voor de toewijzing van een waarde aan een variabele is het gelijkheidsteken (\texttt{=}). Naast deze toewijzingsoperator bestaan er nog andere varianten, die kortere notaties zijn voor een rekenkundige operatie gevolgd door een toewijzing.
+The operator for assigning a value to a variable is the equal sign (\texttt{=}). In addition to this assignment operator, there are other variants, which are shorter notations for common arithmetic operations followed by an assignment.
 
 \begin{center}
 	\begin{tabular}{c c l}
 		\toprule
-		\textbf{Operator} & \textbf{Voorbeeld}                     & \textbf{Equivalent}           \\ \midrule
+		\textbf{Operator} & \textbf{Example}                     & \textbf{Equivalent}           \\ \midrule
 		\texttt{=} & \mintinline{cpp}{A = 12} & \mintinline{cpp}{A = 12}\\
 		\texttt{+=} & \mintinline{cpp}{A += 2} & \mintinline{cpp}{A = A + 2} \\
 		\texttt{-=} & \mintinline{cpp}{A -= 3} & \mintinline{cpp}{A = A - 3} \\
@@ -357,59 +387,59 @@ De operator voor de toewijzing van een waarde aan een variabele is het gelijkhei
 \end{center}
 
 
-\subsubsection{Comparison operators}
-\index{Operatoren!Vergelijkend}
-Vergelijkende operatoren worden gebruikt om twee waardes met elkaar te vergelijken. Het resultaat van deze operatie is een Booleaanse waarde, \texttt{true} of \texttt{false}.
+\subsubsection{Comparison Operators}
+\index{Operators!Comparison}
+Comparison operators are used to compare two values. The result of the comparison is a Boolean value, \texttt{true} or \texttt{false}.
 
 \begin{center}
 	\begin{tabular}{c l l}
 		\toprule
-		\textbf{Operator} & \textbf{Beschrijving}     & \textbf{Voorbeeld}                                     \\ \midrule
-		   \texttt{==}    & Gelijk aan                & \mintinline{cpp}{10 == 3} $\rightarrow$ \texttt{false} \\
-		   \texttt{!=}    & Niet gelijk aan           & \mintinline{cpp}{10 != 3} $\rightarrow$ \texttt{true}  \\
-		   \texttt{>}     & Groter dan                & \mintinline{cpp}{10 > 10} $\rightarrow$ \texttt{false} \\
-		   \texttt{<}     & Kleiner dan               & \mintinline{cpp}{5 < 10} $\rightarrow$ \texttt{true}   \\
-		   \texttt{>=}    & Groter dan of gelijk aan  & \mintinline{cpp}{10 >= 10} $\rightarrow$ \texttt{true} \\
-		   \texttt{<=}    & Kleiner dan of gelijk aan & \mintinline{cpp}{5 <= 10} $\rightarrow$ \texttt{true}  \\ \bottomrule
+		\textbf{Operator} & \textbf{Description}     & \textbf{Example}                                     \\ \midrule
+		   \texttt{==}    & Equal                     & \mintinline{cpp}{10 == 3} $\rightarrow$ \texttt{false} \\
+		   \texttt{!=}    & Not equal                 & \mintinline{cpp}{10 != 3} $\rightarrow$ \texttt{true}  \\
+		   \texttt{>}     & Greater than             & \mintinline{cpp}{10 > 10} $\rightarrow$ \texttt{false} \\
+		   \texttt{<}     & Less than                 & \mintinline{cpp}{5 < 10} $\rightarrow$ \texttt{true}   \\
+		   \texttt{>=}    & Greater than or equal to  & \mintinline{cpp}{10 >= 10} $\rightarrow$ \texttt{true} \\
+		   \texttt{<=}    & Less than or equal to     & \mintinline{cpp}{5 <= 10} $\rightarrow$ \texttt{true}  \\ \bottomrule
 	\end{tabular}
 \end{center}
 
-\subsubsection{Logical operators}
-\index{Operatoren!Logisch}
-Logische operatoren worden gebruikt om meerdere Booleaanse waarden te combineren in een formule tot één waarheidswaarde.
+\subsubsection{Logical Operators}
+\index{Operators!Logical}
+Logical operators are used to combine multiple Boolean values in a formula into one truth value.
 
 \begin{center}
 	\begin{tabular}{c l l}
 		\toprule
-		\textbf{Operator} & \textbf{Beschrijving} & \textbf{Voorbeeld} \\ \midrule
-		\texttt{\&\&} & Logische conjunctie (\textbf{AND}) & \mintinline{cpp}{(true && false)} $\rightarrow$ \texttt{false} \\
-		\texttt{||} & Logische disjunctie (\textbf{OR}) & \mintinline{cpp}{(true || false)} $\rightarrow$ \texttt{true} \\
-		\texttt{!} & Logische negatie (\textbf{NOT}) & \mintinline{cpp}{! true} $\rightarrow$ \texttt{false} \\
+		\textbf{Operator} & \textbf{Description} & \textbf{Example} \\ \midrule
+		\texttt{\&\&} & Logical and (\textbf{AND}) & \mintinline{cpp}{(true && false)} $\rightarrow$ \texttt{false} \\
+		\texttt{||} & Logical or (\textbf{OR}) & \mintinline{cpp}{(true || false)} $\rightarrow$ \texttt{true} \\
+		\texttt{!} & Logical negation (\textbf{NOT}) & \mintinline{cpp}{! true} $\rightarrow$ \texttt{false} \\
 		\bottomrule
 	\end{tabular}
 \end{center}
 
-\noindent Voor meer voorbeelden van het gebruik van logische operatoren, kan je een kijkje nemen naar waarheidstabellen~\cite{wiki:Waarheidstabel}.
+\noindent For more examples of using logical operators, you can take a look at truth tables~\cite{wiki:Truth table}.
 
 
-\chapter{Control flow structures}
-\index{Controlestructuren}
-Controlestructuren bepalen de loop van het programma. Zo is het mogelijk om stukken code enkel in specifieke gevallen uit te voeren, of om een blok code meerdere keren te herhalen.
+\chapter{Control Structures}
+\index{Control Structures}
+Control structures determine the course of a program. For example, it is possible to execute pieces of code only in certain cases, or to repeat a block of code many times.
 % if-then-else, switch, for, while, (break, continue)
 \section{If-then-else}
-\index{Controlestructuren!if-then-else}
-De eenvoudigste controlestructuur is het \emph{if}-statement. Dit kan verder uitgebreid worden met een \emph{else}-blok voor verdere controle over de uitvoeringsvolgorde.
+\index{Control Structures!if-then-else}
+The simplest control structure is the \emph{if} statement. This can be further expanded with an \emph{else} block for further control over the execution order.
 
 \subsection{If-then}
-Het if-statement wordt gebruikt om code uit te voeren die bedoeld is voor specifieke gevallen. Enkel wanneer aan de opgegeven conditie voldaan is, zullen de instructies in de body van het if-statement uitgevoerd worden. Als er niet aan de conditie voldaan wordt, zullen de instructies in de body overgeslagen worden.
+The if statement is used to execute code that is intended for specific cases. Only when the specified condition is met, will the instructions in the body of the if statement be executed. If the condition is not met, the instructions in the body will be skipped.\\
 
 \begin{definition}[If]
 	\phantom{ }
 	\begin{minted}{cpp}
-  if (conditie) {
+  if (condition) {
     /*
-      instructies tussen deze accolades worden enkel 
-      uitgevoerd als de conditie tot true evalueert
+      instructions between these braces are only
+      performed if the condition evaluates to true
     */
   }
 	\end{minted}
@@ -419,20 +449,20 @@ Het if-statement wordt gebruikt om code uit te voeren die bedoeld is voor specif
 \pagebreak
 
 \subsection{Else}
-Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies in dit blok zullen enkel uitgevoerd worden als aan de conditie van het if-statement \textbf{niet} voldaan is. De code ziet er dan uit als volgt.
+After an if statement, an else block can optionally be placed. The instructions in this block will only be executed if the condition of the if statement is \textbf{not} met. The code then looks like this.\\
 
 \begin{definition}[If-then-else]
 	\phantom{ }
 	\begin{minted}{cpp}
-  if (conditie) {
+  if (condition) {
     /*
-      instructies in dit blok worden uitgevoerd 
-      als de conditie evalueert tot true
+      instructions in this block are executed
+      if the condition evaluates to true
     */
   } else {
     /*
-    instructies in dit blok worden uitgevoerd 
-    als de conditie evalueert tot false
+    instructions in this block are executed
+    if the condition evaluates to false
     */
   }
 	\end{minted}
@@ -440,9 +470,9 @@ Na een if-statement kan optioneel een else-blok geplaatst worden. De instructies
 \end{definition}
 
 \subsection{Nested if-statements}
-Als er meerdere condities zijn waarop getest moet worden, kan je gebruik maken van een genest if-statement. Hierbij plaats je in de else-blok een nieuw if-statement waarbij je de volgende conditie test. Dit ziet er uit als volgt.
+When there are several conditions that require testing, you can use a nested if statement. Place a new if statement inside the else block where you test the following condition. This looks like this.
 
-\begin{example}[Geneste if-statements]
+\begin{example}[Nested if-statements]
 	\phantom{ }
 	\begin{minted}{cpp}
 int x = 42;
@@ -460,7 +490,7 @@ if (x < 10) {
 \end{example}
 
 \noindent
-Omdat deze geneste if-statements snel onoverzichtelijk worden, kan deze code vereenvoudigd worden als volgt.
+Because nested if statements quickly become unclear, this code can be simplified as follows.
 
 \begin{example}[Else-if]
 	\phantom{ }
@@ -478,58 +508,56 @@ if (x < 10) {
 \end{example}
 
 \section{Switch}
-\index{Controlestructuren!switch}
-Als je een expressie wil testen op meerdere waardes, kan je in plaats van geneste if-statements ook gebruik maken van een \emph{switch}-statement.
+\index{Control Structures!switch}
+If you want to test an expression against multiple values, you can also use a \emph{switch} statement instead of nested if statements.\\
 
 \begin{definition}[Switch]
 	\phantom{ }
 	\begin{minted}{cpp}
-  switch (expressie) {
+  switch (expression) {
     case x:
-      // instructies
+      // instructions
       break;
     case y:
-      // instructies
+      // instructions
       break;
     default:
-      // instructies
+      // instructions
   }
 	\end{minted}
 \end{definition}
 
 \noindent
-Hierbij wordt de expressie in de \texttt{switch} één keer geëvalueerd. Vervolgens wordt de waarde ervan vergeleken met de waarde in elke \texttt{case}. Als de waarden overeenkomen, dan wordt het bijhorende blok van instructies uitgevoerd. 
+Here the expression in the \texttt{switch} is evaluated once. Its value is then compared with the value in each \texttt{case}. If the values match, the corresponding block of instructions is executed.
 
-Het \texttt{break}-statement zorgt ervoor dat, na een overeenkomstige \texttt{case} is gevonden, er niet nog op matches met andere \texttt{case}s gezocht moet worden. Het \texttt{default} keyword kan dan gebruikt worden om instructies uit te voeren in het geval dat er geen overeenkomstige \texttt{case} wordt gevonden.
+The \texttt{break} statement ensures that, after a matching \texttt{case} has been found, matches with other \texttt{case}s should not be searched for. The \texttt{default} keyword can then be used to execute instructions when no matching \texttt{case} is found.
 
-\begin{example}[Switch -- dagen van de week]
+\begin{example}[Switch -- days of the week]
 	\label{example:switch}
 	\phantom{ }
 	\begin{minted}{cpp}
-int dag = 5;
+int day = 5;
 char c;
 
-switch (dag) {
+switch (day) {
   case 1:
     c = 'M';
     break;
   case 2:
-    c = 'D';
+    c = 'T';
     break;
   case 3:
     c = 'W';
     break;
   case 4:
-    c = 'd';
+    c = 'T';
     break;
   case 5:
-    c = 'V';
+    c = 'F';
     break;
-  case 6:
-    c = 'Z';
-    break;
+  case 6: // same as case 7
   case 7:
-    c = 'z';
+    c = 'S';
     break;
   default:
     c = 'X';
@@ -537,27 +565,28 @@ switch (dag) {
 	\end{minted}
 \end{example}
 
-\begin{exercise}[Switch -- dagen van de week]
-	Welk karakter is er na het uitvoeren van bovenstaande code (Voorbeeld~\ref{example:switch}) opgeslagen in variabele \texttt{c}?
+\begin{exercise}[Switch -- days of the week]
+    After executing the above code (Example~\ref{example:switch}), what character is stored in variable \texttt{c}?
 \end{exercise}
 
-\section{While loop}
-\index{Controlestructuren!while}
-Als je een stuk code meerdere keren achter elkaar wil laten uitvoeren, kan je gebruik maken van een lus. De \texttt{while}-lus bevat een conditie en een body met instructies. Zolang de conditie waar is, worden de instructies in de body herhaald uitgevoerd.
+\section{While Loop}
+\index{Control Structures!while}
+If you want to execute a piece of code multiple times in a row, you can use a loop. The \texttt{while} loop contains a condition and a body with instructions. As long as the condition is true, the instructions in the body are repeatedly executed.
 
 \begin{definition}[While]
 	\phantom{ }
 	\begin{minted}{cpp}
-  while (conditie) {
-    // body van de lus
-    instructie;
+  while (condition) {
+    // body of the loop
+
+    // instructions
   }
 	\end{minted}
 	\vspace{0cm}
 \end{definition}
 
 \begin{example}[While]
-	Deze code berekent het kleinste veelvoud \texttt{vv} van het getal \texttt{x} dat groter is dan 24.
+    This code calculates the smallest multiple \texttt{vv} of the number \texttt{x} that is greater than 24.
 	\begin{minted}{cpp}
 int x = 3;
 int vv = 0;
@@ -568,98 +597,102 @@ while (vv <= 24) {
 	\end{minted}
 \end{example}
 
-\section{For loop}
-\index{Controlestructuren!for}
-Vaak zullen lussen voorkomen waarbij het aantal herhalingen vooraf vastligt. Deze lussen hebben dan volgende vorm.
+\section{For Loop}
+\index{Control Structures!for}
+Often loops occur where the number of repetitions is known in advance. These loops then have the following shape.
 
 \begin{example}
 	\label{example:while-for}
 	\phantom{ }
+    A loop with only 10 repetitions.
 	\begin{minted}{cpp}
 int i = 0;
 
 while (i < 10) {
-  // instructies
-  
+  // instructions
+
   i++;
 }
 	\end{minted}
 \end{example}
+
 \noindent
-Hierbij wordt voor het begin van de lus dan eerst de variabele \texttt{i} gedeclareerd, die in de lus gebruikt wordt om het aantal iteraties (herhalingen) te tellen. Hiervoor wordt op het einde van elke iteratie de waarde van \texttt{i} opgehoogd (\texttt{i++}). Dit soort lussen kan eenvoudiger worden geschreven met een \texttt{for}-lus.
+Before the start of the loop, the variable \texttt{i} is declared, then used inside the loop to count the number of iterations (repetitions). The value of \texttt{i} is incremented at the end of each iteration (\texttt{i++}). This type of loop can be written more easily as a \texttt{for} loop.
 
 \begin{definition}[For]
 	\phantom{ }
 	\begin{minted}{cpp}
-  for (statement1; statement2; statement3) {
-    // body, bevat een blok code dat telkens herhaald wordt
-  }
+for (initialization; condition; increment/decrement) {
+  // body, contains a block of code that is repeated each time
+}
 	\end{minted}
-	Waarbij:
+	At which:
 	\begin{description}
-		\item[statement1] één maal uitgevoerd wordt voor het begin van de lus. Vaak is dit de declaratie van een \emph{loop-variabele}, bijvoorbeeld \texttt{int i = 0}.
-		\item[statement2] de conditie van de lus voorstelt.
-		\item[statement3] telkens na een iteratie van de lus wordt uitgevoerd. Vaak is dit een manipulatie van de loop-variabele, zoals \texttt{i++}.
+        \item[initialization] is executed once before the start of the loop. Often this is the declaration of a \emph{loop variable}, for example \texttt{int i = 0}.
+		\item[condition] represents the condition of the loop.
+		\item[increment/decrement] is executed every time after iteration of the loop. Often this is a manipulation of the loop variable, such as \texttt{i++}.
 	\end{description}
 \end{definition}
 \noindent
-De code uit Voorbeeld \ref{example:while-for} kan dus als volgt geschreven worden met een \texttt{for}-lus.
+The code from Example \ref{example:while-for} can therefore be written using a \texttt{for} loop as follows.
 
 \begin{example}
 	\phantom{ }
 	\begin{minted}{cpp}
 for (int i = 0; i < 10; i++) {
-  // instructies
+  // instructions
 }
 	\end{minted}
 \end{example}
 
-\chapter{Functions and procedures}
-\index{Functie}
+\chapter{Functions and Procedures}
+\index{Function}
 \index{Procedure}
-Functies en procedures zijn blokken code die je op verschillende plaatsen in je code kan gebruiken. In plaats van telkens dezelfde code neer te schrijven, kan je beter de gemeenschappelijke code in een functie plaatsen. Dit verhoogt ook de leesbaarheid van de code.
+Functions and procedures are blocks of code that you can reuse in various places throughout your code. Instead of writing the same code over and over, it is better to place the common code in a function. This also increases the readability of the code.
 
-\section{Defining functions}
+\section{Function Definition}
+% TODO: find english link
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
-De definitie van een functie is opgebouwd zoals hieronder beschreven.
-\begin{definition}[Functie]
+The definition of a function is structured as described below.
+\begin{definition}[Function]
 	\phantom{ }
 	\begin{minted}{cpp}
-  type functienaam(argumenten) {
-    // hier komt de gemeenschappelijke code
-    
-    return resultaat;
+  type function_name(arguments) {
+    // here comes the common code
+
+    return result;
   }
 	\end{minted}
 	\vspace{0cm}
 \end{definition}
 \noindent
-De definitie van een functie bestaat uit de hoofding en de body. In de hoofding wordt eerst het type van de functie genoteerd. Hierna volgt de naam van de functie, en tot slot worden de argumenten van de functie tussen de haakjes geplaatst. Daarna volgt de body van de functie binnen de accolades.
+The definition of a function consists of the heading and the body. The type of function is first noted in the header. This is followed by the name of the function, and finally the arguments of the function are placed in brackets. This is followed by the body of the function within the braces.
 
 \subsection{Type}
-Het type van de functie, is het type van de waarde die de functie teruggeeft. Een functie wordt vanuit de code aangeroepen, waarna de code in de body van de functie wordt uitgevoerd. Het resultaat van deze berekeningen wordt vervolgens teruggegeven aan de plaats waarop deze functie-aanroep plaatsvond. Daar kan het resultaat dan verder gebruikt worden.
+The type of the function is the type of value that the function returns. A function is called from the code, after which the code is executed in the body of the function. The result of these calculations is then returned to the place where this function call took place. The result can then be used there.
 
-De primitieve datatypes uit Definitie \ref{definition:primitieve-datatypes} kunnen gebruikt worden als type van een functie. Het is ook mogelijk dat een functie geen resultaat heeft. Zo'n functie noemen we een procedure. Als \emph{return type} gebruiken we dan \texttt{void}, het lege type.
+The primitive data types from Definition \ref{definition:primitive-data-types} can be used as a type of a function. It is also possible that a function returns no result. We call such a function a procedure. The \emph{return type} for procedures is \texttt{void}, the empty type.
+
 
 
 \subsection{Arguments}
-\index{Parameter|seealso{Variabele, Parameter}}
-\index{Argument|seealso{Parameter}}
-\index{Variabele!Parameter}
-Via de \emph{argumenten} of \emph{parameters} kan informatie doorgegeven aan de functie. Deze parameters gedragen zich als variabelen binnen in de body van de functie. De verschillende parameters worden in de hoofding van elkaar gescheiden met een komma.
+\index{Parameter|seealso{Variable, Parameter}}
+\index{Arguments|seealso{Parameter}}
+\index{Variable!Parameter}
+Information can be passed into the function via the \emph{arguments} or \emph{parameters}. These parameters behave as variables within the body of the function. Multiple parameters are separated from each other in the header using a comma.
 
-\begin{example}[Functie -- optelling]
+\begin{example}[Function -- addition]
 	\phantom{ }
 	\begin{minted}{cpp}
-int optelling(int a, int b, int c) {
-  int som = a + b + c;
-  return som;
+int addemup(int a, int b, int c) {
+  int sum = a + b + c;
+  return sum;
 }
 	\end{minted}
 \end{example}
 
-\begin{example}[Functie -- minimum]
-	\label{example:functie-minimum}
+\begin{example}[Function -- minimum]
+	\label{example:function-minimum}
 	\phantom{ }
 	\begin{minted}{cpp}
 int minimum(int a, int b) {
@@ -672,22 +705,23 @@ int minimum(int a, int b) {
 	\end{minted}
 \end{example}
 
-\section{Calling functions}
-Nadat een functie is gedefinieerd, kan deze functie aangeroepen worden op andere plaatsen in de code. Het aanroepen van een functie doe je als volgt:
+\section{Calling Functions}
+Once a function has been defined, this function can be called from other places in the code. Call a function as follows:
 
 \begin{center}
-	\texttt{functienaam(argumenten);}
+	\texttt{function\_name(argument);}
 \end{center}
 \noindent
-De functie \texttt{minimum()} uit Voorbeeld \ref{example:functie-minimum} kan dus op de volgende manier aangeroepen worden. 
+The function \texttt{minimum()} from Example \ref{example:function-minimum} can therefore be called as follows.
 
-\begin{example}[Aanroepen van de functie \emph{minimum()}]
+\begin{example}[Calling the function \emph{minimum()}]
 	\phantom{ }
 	\begin{minted}{cpp}
 int x = 42;
 int y = 13;
 
-int resultaat = minimum(x, y);
+int result = minimum(x, y);
+// result will equal 13
 	\end{minted}
 \end{example}
 
@@ -704,53 +738,53 @@ int resultaat = minimum(x, y);
 
 \chapter{Arduino}
 \index{Arduino}
-\section{Program structure}
-\index{Programmastructuur}
-Elk Arduino-programma heeft dezelfde structuur. De belangrijkste kenmerken die steeds terugkeren zijn de globale variabelen, de \texttt{setup()} procedure en de \texttt{loop()} procedure. In de volgende secties bespreken we deze in meer detail.
+\section{Program Structure}
+\index{Program Structure}
+Every Arduino program has the same structure. The most important features are the global variables, the \texttt{setup()} procedure and the \texttt{loop()} procedure. We discuss these in more detail in the following sections.
 
-\begin{definition}[Arduino programmastructuur]
+\begin{definition}[Arduino Program Structure]
 	\phantom{}
 	\begin{minted}{cpp}
-  // Declaratie van globale variabelen
-  
+  // Declaration of global variables
+
   void setup() {
-    
+
   }
-  
+
   void loop() {
-  
+
   }
 	\end{minted}
 	\vspace{0cm}
 \end{definition}
 
-\subsection{Global variables}
-\index{Variabele!Globaal}
-Bovenaan het Arduino-programma worden de globale variabelen gedeclareerd. Deze globale variabelen kunnen daarna overal in het programma gebruikt worden, zowel in de \texttt{setup()} en \texttt{loop()} functie.
+\subsection{Global Variables}
+\index{Variable!Global}
+Any global variables are declared at the top of the Arduino program. These global variables can then be used anywhere in the program, both in the \texttt{setup()} and \texttt{loop()} function.
 
 \subsection{The \texttt{setup()} procedure}
-De \texttt{setup()} procedure wordt éénmaal uitgevoerd bij het opstarten van het programma.
+The \texttt{setup()} procedure is executed once when the program starts.
 
 \begin{remark}
-	In de \texttt{setup()} procedure ga je waarschijnlijk de waardes van verscheidene variabelen initialiseren. Het is belangrijk dat je deze variabelen declareert \textbf{buiten} de \texttt{setup()} functie. Anders zijn deze variabelen lokaal, en kunnen ze niet buiten de scope van de \texttt{setup()} functie gebruikt worden.
+    In the \texttt{setup()} procedure you are probably going to initialize the values of various variables. It is important that you declare these variables \textbf{outside} the \texttt{setup()} function. Otherwise these variables are local and cannot be used outside the scope of the \texttt{setup()} function.
 \end{remark}
 
 \subsection{The \texttt{loop()} procedure}
-De \texttt{loop()} procedure doet precies wat de naam doet vermoeden. De code in deze procedure wordt steeds opnieuw uitgevoerd. Hier wordt de eigenlijk code van het Arduino-programma geschreven. De herhaling blijft duren tot de stroom van de Arduino wordt losgekoppeld of op de reset-knop wordt geduwd.
+The \texttt{loop()} procedure does exactly what the name suggests. The code in this procedure is executed over and over again. The actual code of the Arduino program is written here. This repetition continues until the Arduino is powered off or the reset button is pressed.
 
-\section{Importing libraries}
+\section{Using Libraries}
 \index{Library}
-Bij het programmeren voor Arduino is het veel voorkomend om gebruik te maken van \emph{libraries}. Libraries bevatten functies die door andere ontwikkelaars zijn geschreven. Ze hebben als doel om de complexiteit van jouw code te verlagen door operaties te implementeren op een lager niveau. Hierdoor moet je bijvoorbeeld niet handmatig alle communicatie met een display programmeren, maar gebruik je hiervoor de functionaliteit van de library.\\
+When programming for Arduino, it is very common to use \emph{libraries}. Libraries contain functions written by other developers. They aim to reduce the complexity of your code by implementing operations at a lower level. This means that you do not have to program all communication with a display manually, for example, but use the functionality of the library for this.\\
 
 \noindent
-Het importeren van een library in je code doe je op de volgende manier:
+You use a library in your code in the following way:
 \begin{center}
 	\mintinline{cpp}{#include <Library.h>}
 \end{center}
 
 \section{Arduino IDE}
 \index{IDE}
-Voor het schrijven van Arduino programma's maken we gebruik van de Arduino IDE. Dit programma is een \emph{Integrated Development Environment}, wat betekent dat het alle tools bevat om programma's te schrijven, compileren en op te laden naar de Arduino. De Arduino IDE kan gratis gedownload worden vanaf de Arduino website\footnote{\url{https://www.arduino.cc/en/Main/Software}}.
+The Arduino IDE is an easy way to get started writing Arduino programs. This program is an \emph {Integrated Development Environment}, which means that it contains all the tools to write, compile and upload programs to an Arduino. The Arduino IDE can be downloaded for free from the Arduino website \footnote{\url{https://www.arduino.cc/en/Main/Software}}.
 
 \begin{figure}[!h]
 	\centering
@@ -766,41 +800,48 @@ Voor het schrijven van Arduino programma's maken we gebruik van de Arduino IDE. 
 	\includegraphics[width=13.4cm]{ArduboyGame.png}
 \end{figure}
 
-\section{Settings}
+\section{Preparation}
 \label{sec:arduboy-instellingen}
 % Arduino Leonardo
 % Importeren library
 
-Voor we aan de slag kunnen gaan met het programmeren van spelletjes voor de Arduboy, moeten we eerst enkele instellingen aanpassen in de Arduino IDE. Voor een handleiding met screenshots kan je terecht bij de Arduboy Community~\cite{arduboy:tuto1}.
+Before we can get started with programming games for the Arduboy, we first have to adjust some settings in the Arduino IDE. For a manual with screenshots you can go to the Arduboy Community~\cite{arduboy:tuto1}.
 
 \subsection{Installing the Arduboy2 library}
-De \emph{Arduboy2} library bevat een handige interface die er voor zorgt dat we gemakkelijk alle functies van het apparaat kunnen aanspreken. Zo kunnen we ons volledig focussen op het ontwerpen en programmeren van het spel zelf. \\
+The \emph{Arduboy2} library contains a handy interface that ensures that we can easily access all functions of the device. This way we can fully focus on designing and programming the game itself.\\
 
 \noindent
-Alvorens we deze library kunnen gebruiken, moet ze eerst geïnstalleerd worden in de IDE. Dit doe je als volgt:
+Before we can use this library, it must first be installed in the IDE. You do this as follows:\\
 
 \begin{enumerate}
-	\item Klik op \textbf{Hulpmiddelen} > \textbf{Bibliotheken beheren...}
-	\item In het venster \emph{Bibliotheek Beheer} zoek je naar de library \textbf{Arduboy2}
-	\item Installeer de laatste versie door de \textbf{Arduboy2} library aan te duiden en op \textbf{Installeren} te klikken
+	\item Click \textbf{Tools} > \textbf{Manage Libraries...}
+	\item In the \emph{Library Manager} window search for the library \textbf{Arduboy2}
+	\item Choose the latest version then click \textbf{Install}
 \end{enumerate}
-Via deze manier kan je ook andere libraries installeren indien je dat wenst.
+
+This way easily install other libraries using this same process if you wish.
 
 \subsection{Installing the Arduboy as an Arduino board}
 \index{Board}
 \begin{enumerate}
-	\item Ga naar \textbf{Bestand} > \textbf{Voorkeuren}
-	\item In het scherm \emph{Voorkeuren} geef je bij \textbf{Additionele Board Beheer URLs} de volgende URL in: \url{https://arduboy.github.io/board-support/package_arduboy_index.json}
-	\item Klik op OK om het venster \emph{Voorkeuren} te sluiten
-	\item Ga naar \textbf{Hulpmiddelen} > \textbf{Board} > \textbf{Board Beheer...}
+	\item Go to \textbf{File} > \textbf{Preferences}
+	\item In the \emph{Preferences} screen, enter the following URL at \textbf{Additional Boards Manager URLs}: \url{https://arduboy.github.io/board-support/package_arduboy_index.json}
+	\item Click OK to close the \emph{Preferences} window
+	\item Go to \textbf{Tools} > \textbf{Board} > \textbf{Boards Manager...}
 	\item Zoek naar \textbf{Arduboy} en klik op \textbf{Installeren}
 \end{enumerate}
 
-\subsection{Selecting the board}
-Om de IDE te laten weten dat je gaat programmeren voor de Arduboy, moet je het board in de IDE aanpassen. Ga naar \textbf{Hulpmiddelen} > \textbf{Board} en kies \textbf{Arduboy} in deze lijst.
+\subsection{Board Selection}
+To let the IDE know that you are programming for the Arduboy, you must select the board in the IDE.
 
-\section{Program structure}
-\index{Programmastructuur}
+\begin{enumerate}
+	\item Go to \textbf{Tools} > \textbf{Board}
+	\item Choose \textbf{Arduboy} from the list.
+\end{enumerate}
+
+
+\section{Program Structure}
+\index{Program Structure}
 
 \begin{minted}{cpp}
 #include <Arduboy2.h>
@@ -816,40 +857,40 @@ void loop() {
     arduboy.clear();
 
     // GAME LOGIC
-    
-    arduboy.display();   
+
+    arduboy.display();
   }
 }
 \end{minted}
 \noindent
-Bovenstaand codefragment geeft een template van waar je kan starten om een Arduboy game te programmeren. Op de eerste lijn wordt de Arduboy2 library ingeladen. Daarna wordt er een \texttt{Arduboy2}-object aangemaakt. Dit object wordt gebruikt om de functionaliteit van de library op te roepen. In de \texttt{setup()} procedure wordt de functionaliteit van de Arduboy geïnitialiseerd. 
+The code fragment above gives a template from which you can start to program an Arduboy game. The Arduboy2 library is included on the first line. A \texttt{Arduboy2} object is then created. This object is used to invoke the functionality of the library. Finally, during \texttt{setup()}, the functionality of the Arduboy is initialized.
 
-\section{The Arduboy2 library}
+\section{The Arduboy2 Library}
 \index{Library}
-Hier geven we een overzicht van de belangrijkste functies in de Arduboy2 library~\cite{arduboy:lib2-doc}. Deze functies kunnen op deze manier gebruikt worden:
+Here we provide an overview of the most important functions in the Arduboy2 library~\cite{arduboy:lib2-doc}. These functions can be used in this way:
 
 \begin{center}
-	\texttt{arduboy.functienaam();}
+	\texttt{arduboy.function\_name();}
 \end{center}
 \noindent
-Optionele parameters voor de functies staan \emph{schuingedrukt}.
+Optional parameters for the functions are \emph{italic}.
 
-\subsection{Init}
-Deze functies worden gebruikt om de functionaliteit van de Arduboy te initialiseren.
+\subsection{Startup}
+These functions are used to properly initialize the Arduboy.
 
 \begin{libf}[begin()]
-	Initialiseer de hardware, het logo weergeven, etc. Deze functie moet één keer opgeroepen worden in de \texttt{setup()} procedure.
+	Initialize the hardware, display the logo, etc. This function must be called once in the \texttt{setup()} procedure.
 \end{libf}
 
 \begin{libf}[initRandomSeed()]
-	Kies een random waarde als \emph{seed} voor de random number generator. Deze methode is het meest effectief wanneer ze na een (semi-)random tijd wordt opgeroepen.
+    Choose a random value as \emph{seed} for the random number generator. This method is most effective when it is called after a (semi-) random time.
 \end{libf}
 
 \subsection{Display}
-Deze functies hebben betrekking tot het scherm van de Arduboy.
+These functions relate to the screen of the Arduboy.
 
 \begin{libf}[\textsc{Display}]
-	Er zijn de volgende handige constanten voor de breedte en de hoogte van het scherm. Daarnaast zijn er ook constanten voor de kleuren van het scherm.
+	There are the following handy constants for the width and height of the screen. In addition, there are also constants for the colors of the screen.
 	\begin{multicols}{2}
 		\begin{itemize}
 			\item \texttt{WIDTH}
@@ -861,235 +902,236 @@ Deze functies hebben betrekking tot het scherm van de Arduboy.
 \end{libf}
 
 \begin{libf}[clear()]
-	Wis de display buffer. Het volledige scherm wordt op zwart gezet.
+	Clear the display buffer. The entire screen is set to black.
 \end{libf}
 
 \begin{libf}[display()]
-	Plaats de inhoud van de display buffer op het scherm.
+	Paint the contents of the display buffer to the screen.
 \end{libf}
 
 \begin{libf}[setFrameRate(fps)]
-	Stel de frame-rate in.\\ \\
+	Sets the desired frame rate.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int fps}: de gewenste frame-rate in frames per seconde
+		\item \texttt{int fps}: desired frame-rate in frames per second
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[nextFrame()]
-	Geeft aan of het tijd is om het volgende frame weer te geven.\\ \\
+	Indicates when it is time to display the next frame.\\ \\
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als het tijd is voor het volgende frame, anders \texttt{false}
+		\item \texttt{bool}: \texttt{true} when it's time for the next frame, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
-\subsubsection{Draw}
-Deze functies worden gebruikt om zelf vormen te tekenen op het scherm van de Arduboy.
+\subsubsection{Drawing}
+These functions are used to draw shapes on the screen of the Arduboy.
 
 \begin{libf}[drawPixel(x, y, \emph{color=WHITE})]
-	Kleur een enkele pixel in de opgegeven kleur.\\ \\
+	Draws a single pixel in the specified color.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de pixel
-		\item \texttt{int y}: y-coördinaat van de pixel
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the pixel
+		\item \texttt{int y}: y coordinate of the pixel
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} or \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawCircle(x, y, r, \emph{color=WHITE})]
-	Teken een cirkel.\\ \\
+	Draws a circle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van het middelpunt van de cirkel
-		\item \texttt{int y}: y-coördinaat van het middelpunt van de cirkel
-		\item \texttt{int r}: straal van de cirkel
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the center of the circle
+		\item \texttt{int y}: y coordinate of the center of the circle
+		\item \texttt{int r}: radius of the circle
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawRect(x, y, w, h, \emph{color=WHITE})]
-	Teken een rechthoek.\\ \\
+	Draws a rectangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
-		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
-		\item \texttt{int w}: breedte
-		\item \texttt{int h}: hoogte
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the top left corner
+		\item \texttt{int y}: y coordinate of the top left corner
+		\item \texttt{int w}: width
+		\item \texttt{int h}: height
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawRoundRect(x, y, w, h, r, \emph{color=WHITE})]
-	Teken een rechthoek met afgeronde hoeken.\\ \\
+	Draws a rectangle with rounded corners.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
-		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
-		\item \texttt{int w}: breedte
-		\item \texttt{int h}: hoogte
-		\item \texttt{int r}: straal van de afronding
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the top left corner
+		\item \texttt{int y}: y coordinate of the top left corner
+		\item \texttt{int w}: width
+		\item \texttt{int h}: height
+		\item \texttt{int r}: radius of the rounding
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
-	Teken een driehoek.\\ \\
+	Draws a triangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x0, int x1, int x2}: x-coördinaten van de hoeken
-		\item \texttt{int y0, int y1, int y2}: y-coördinaten van de hoeken
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x0, int x1, int x2}: x coordinates of the angles
+		\item \texttt{int y0, int y1, int y2}: y coordinates of the angles
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \newpage
 
 \begin{libf}[drawLine(x0, y0, x1, y1, \emph{color=WHITE})]
-	Teken een lijn tussen de opgegeven punten.\\ \\
+	Draws a line between the specified points.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x0, int x1}: x-coördinaten van de punten
-		\item \texttt{int y0, int y1}: y-coördinaten van de punten
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x0, int x1}: x coordinates of the points
+		\item \texttt{int y0, int y1}: y coordinates of the points
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawFastVLine(x, y, h, \emph{color=WHITE})]
-	Teken een verticale lijn.\\ \\
+	Draws a vertical line.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van het bovenste uiteinde
-		\item \texttt{int y}: y-coördinaat van het bovenste uiteinde
-		\item \texttt{int h}: lengte
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the upper end
+		\item \texttt{int y}: y coordinate of the upper end
+		\item \texttt{int h}: height
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[drawFastHLine(x, y, w, \emph{color=WHITE})]
-	Teken een horizontale lijn.\\ \\
+	Draws a horizontal line.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van het linkse uiteinde
-		\item \texttt{int y}: y-coördinaat van het linkse uiteinde
-		\item \texttt{int w}: lengte
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the left end
+		\item \texttt{int y}: y coordinate of the left end
+		\item \texttt{int w}: width
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillCircle(x, y, r, \emph{color=WHITE})]
-	Teken een opgevulde cirkel.\\ \\
+	Draws a filled circle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van het middelpunt van de cirkel
-		\item \texttt{int y}: y-coördinaat van het middelpunt van de cirkel
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the center of the circle
+		\item \texttt{int y}: y coordinate of the center of the circle
+		\item \texttt{int r}: radius of the circle
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillRect(x, y, w, h, \emph{color=WHITE})]
-	Teken een opgevulde rechthoek.\\ \\
+	Draws a filled rectangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
-		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
-		\item \texttt{int w}: breedte
-		\item \texttt{int h}: hoogte
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the top left corner
+		\item \texttt{int y}: y coordinate of the top left corner
+		\item \texttt{int w}: width
+		\item \texttt{int h}: height
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \pagebreak
 
 \begin{libf}[fillRoundRect(x, y, w, h, r, \emph{color=WHITE})]
-	Teken een opgevulde rechthoek met afgeronde hoeken.\\ \\
+	Draws a filled rectangle with rounded corners.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
-		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
-		\item \texttt{int w}: breedte
-		\item \texttt{int h}: hoogte
-		\item \texttt{int r}: straal van de afronding
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the top left corner
+		\item \texttt{int y}: y coordinate of the top left corner
+		\item \texttt{int w}: width
+		\item \texttt{int h}: height
+		\item \texttt{int r}: radius of the rounding
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
-	Teken een opgevulde driehoek.\\ \\
+	Draws a filled triangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x0, int x1, int x2}: x-coördinaten van de hoeken
-		\item \texttt{int y0, int y1, int y2}: y-coördinaten van de hoeken
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x0, int x1, int x2}: x coordinates of the angles
+		\item \texttt{int y0, int y1, int y2}: y coordinates of the angles
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillScreen(\emph{color=WHITE})]
-	Vul het scherm op met de opgegeven kleur.\\ \\
+	Fills the screen with the chosen color.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \subsubsection{Text}
-Deze functies worden gebruikt om tekst weer te geven op het scherm van de Arduboy.
+These functions are used to display text on the screen of the Arduboy.
 
 \begin{libf}[setCursor(x, y)]
-	Stel de locatie van de tekst cursor in.\\ \\
+	Sets the location of the text cursor.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat
-		\item \texttt{int y}: y-coördinaat
+		\item \texttt{int x}: x coordinate
+		\item \texttt{int y}: y coordinate
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextSize(s)]
-	Stel de grootte van de tekstkarakters in.\\ \\
+	Sets the size of the text drawn.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int s}: tekstgrootte ($\geq 1$)
+		\item \texttt{int s}: text size ($\geq 1$)
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextColor(c)]
-	Stel de tekstkleur in.\\ \\
+	Sets the text color.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int c}: kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int c}: color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextBackground(bg)]
-	Stel de achtergrondkleur van de tekst in.\\ \\
+	Sets the text background color.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int bg}: achtergrondkleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int bg}: background color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextWrap(w)]
-	Schakel text wrapping in of uit. Als text wrapping is ingeschakeld wordt de tekst op een nieuwe lijn geplaatst als deze te lang is om op de huidige lijn te passen.\\ \\
+	Enables or disables text wrapping. If text wrapping is enabled, the text will be placed on a new line when it is too long to fit on the current line.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{bool w}: \texttt{true} om text wrapping in te schakelen, \texttt{false} om uit te schakelen
+		\item \texttt{bool w}: \texttt{true} to enable text wrap, \texttt{false} to disable
 	\end{itemize}
 \end{libf}
 
 % https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html
 \begin{libf}[\href{https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html}{print(content)}]
-	Print de opgegeven content op de plaats van de cursor.\\ \\
+	Prints the specified content at the cursor location.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{content}: tekst die weergegeven moet worden
+		\item \texttt{content}: the content to be displayed
 	\end{itemize}
 \end{libf}
 
 \subsection{Buttons}
-Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
+With these functions your program can interact with the buttons of the Arduboy.
 
 \begin{libf}[\textsc{Buttons}]
-	Voor de knoppen op de Arduboy zijn de volgende constanten gedefinieerd.
+	The following constants are defined for the buttons on the Arduboy.
 	\begin{multicols}{3}
 		\begin{itemize}
 			\item \texttt{A\_BUTTON}
@@ -1100,109 +1142,112 @@ Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
 			\item \texttt{DOWN\_BUTTON}
 		\end{itemize}
 	\end{multicols}
-	
-	Buttons kunnen samengevoegd worden in een mask: \texttt{LEFT\_BUTTON + A\_BUTTON}
+
+	Buttons can easily be merged into a mask: \texttt{LEFT\_BUTTON + A\_BUTTON}
 \end{libf}
 
 \begin{libf}[pressed(buttons)]
-	Test of de opgegeven knoppen ingedrukt worden.\\ \\
+	Tests whether the specified buttons are pressed.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden 
+		\item \texttt{int buttons}: bit mask of which buttons to test
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel ingedrukt zijn
+		\item \texttt{bool}: \texttt{true} if all buttons in the specified mask are currently pressed, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[notPressed(buttons)]
-	Test of de opgegeven knoppen \textbf{niet} ingedrukt worden.\\ \\
+	Tests if the specified buttons \textbf{not} are pressed.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden
+		\item \texttt{int buttons}: bit mask of which buttons to test
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel \textbf{niet} ingedrukt zijn
+		\item \texttt{bool}: \texttt{true} if all buttons in the specified mask are currently \textbf{not} pressed, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
 \newpage
 
 \subsection{Physics}
-Deze functies worden gebruikt om interacties tussen verschillende objecten in je game te berekenen.
+These functions are used to calculate interactions between different objects in your game.
 
 \begin{libf}[collide(rect1, rect2)]
-	Controleer of twee rechthoeken elkaar snijden.\\ \\
-	\textbf{Parameters}	
+	Checks if two rectangles intersect.\\ \\
+	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{Rect rect1, Rect rect2}: rechthoeken $\rightarrow$ Rect(int x, int y, int width, int height)
+		\item \texttt{Rect rect1, Rect rect2}: rectangles $\rightarrow$ Rect(int x, int y, int width, int height)
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als de opgegeven rechthoeken overlappen
+		\item \texttt{bool}: \texttt{true} if the rectangles overlap
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[collide(point, rect)]
-	Controleer of een punt binnen een rechthoek ligt.\\ \\
+	Checks if a point is within a rectangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{Point point}: punt $\rightarrow$ Point(int x, int y)
-		\item \texttt{Rect rect}: rechthoek $\rightarrow$ Rect(int x, int y, int width, int height)
+		\item \texttt{Point point}: point $\rightarrow$ Point(int x, int y)
+		\item \texttt{Rect rect}: rectangle $\rightarrow$ Rect(int x, int y, int width, int height)
 	\end{itemize}
 \end{libf}
 
 \subsection{LED}
-Via deze functies kan je de RGB LED van de Arduboy aansturen.
+You can control the RGB LED of the Arduboy via these functions.
 
 \begin{libf}[setRGBled(red, green, blue)]
-	Stel de helderheid van de verschillende kleuren in de RGB LED in. De RGB LED zijn eigenlijk kleine individuele rode, groene en blauwe LEDs die zeer dicht bij elkaar geplaatst zijn. Door de helderheid van de 3 kleuren aan te passen, kan je verschillende kleuren tonen. 	
-	De helderheid van elke LED kan een waarde aannemen van 0 (volledig uit) tot 255 (volledig aan).\\ \\
+	Set the brightness of the different colors in the RGB LED. The RGB LED are actually small individual red, green and blue LEDs that are placed very close together. By adjusting the brightness of the 3 colors, you can show different colors.
+	The brightness of each LED can take a value from 0 (fully off) to 255 (fully on).\\ \\
+
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int red}: rode component
-		\item \texttt{int green}: groene component
-		\item \texttt{int blue}: blauwe component
+		\item \texttt{int red}: red component
+		\item \texttt{int green}: green component
+		\item \texttt{int blue}: blue component
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setRGBled(color, val)]
-	Stel de helderheid van één van de kleuren in, zonder de andere kleuren aan te passen.\\ \\
+	Set the brightness of one of the colors without changing the others.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int color}: naam van de kleur: \texttt{RED\_LED}, \texttt{GREEN\_LED} of \texttt{BLUE\_LED}
-		\item \texttt{int val}: helderheid, waarde tussen 0 en 255
+		\item \texttt{int color}: color to change: \texttt{RED\_LED}, \texttt{GREEN\_LED} of \texttt{BLUE\_LED}
+		\item \texttt{int val}: brightness, value between 0 and 255
 	\end{itemize}
 \end{libf}
 
 \newpage
 \section{Emulator}
 \index{Emulator}
-Als je een game aan het programmeren bent, wil je natuurlijk ook kunnen testen of deze werkt op de manier dat jij wil. Daarom bestaan er emulators voor de Arduboy.
+If you are programming a game, you naturally want to be able to test whether it works the way you want. That is why there are emulators for the Arduboy.
 
 \subsection{ProjectABE}
-\href{https://felipemanga.github.io/ProjectABE/}{ProjectABE (\texttt{https://felipemanga.github.io/ProjectABE/})} is een online emulator voor de Arduboy.
-Je kan je eigen game testen door op het startscherm onder \textbf{My Projects} > \textbf{New Game} te klikken. In het volgende scherm zie je de emulator, zoals in Figuur~\ref{fig:projectabe}.
+\href{https://felipemanga.github.io/ProjectABE/}{ProjectABE (\texttt{https://felipemanga.github.io/ProjectABE/})} is an online emulator for the Arduboy.
+You can test your own game by going to the start screen under \textbf{My Projects} > \textbf{New Game}. In the next screen you see the emulator, as in Figure~\ref{fig:projectabe}.
+
 \begin{wrapfigure}{r}{5.5cm}
 	\centering
-	\includegraphics[width=5cm]{ProjectABE}
+	\includegraphics[width=5cm]{assets/ProjectABE}
 	\caption{Project ABE}
 	\label{fig:projectabe}
 \end{wrapfigure}
-% export binary
-In de Arduino IDE klik je vervolgens op \textbf{Schets} > \textbf{Exporteer gecompileerd Binair bestand}. Hierdoor zal er een bestand met extensie \texttt{.hex} aangemaakt worden in dezelfde map als je code. Dit bestand met extensie \texttt{.hex} sleep je dan naar de emulator. De emulator zal dan meteen jouw code uitvoeren.\\
-Je kan de emulator bedienen met het toetsenbord of door te klikken op de knoppen op het scherm.
 
-\section{Upload program to Arduboy}
-Voor je het programma op de Arduboy plaatst, controleer je best of zeker het juiste board\index{Board} geselecteerd is (zie Sectie~\ref{sec:arduboy-instellingen}). Daarna zet je de Arduboy aan en verbind je hem met de computer via de USB-kabel. Vervolgens selecteer je de juiste poort via \textbf{Hulpmiddelen} > \textbf{Poort} en kies dan de optie waar Arduino bij staat.\\
-Nu ben je volledig klaar om het programma op de Arduboy te plaatsen. Je moet enkel nog op het pijltje (\textbf{Uploaden}) klikken en even wachten. Als alles goed gaat, staat je programma op de Arduboy.
+% export binary
+In the Arduino IDE, click on \textbf{Sketch} > \textbf{Export compiled Binary file}. This will create a file with extension \texttt{.hex} in the same folder as your code. Then drag this file with extension \texttt{.hex} to the emulator. The emulator will immediately execute your code. \\
+You can operate the emulator with the keyboard or by clicking on the buttons on the screen.
+
+\section{Upload to your Arduboy}
+Before placing the program on the Arduboy, make sure that the correct board \index{Board} is selected (see Section~\ref{sec:arduboy-settings}). Then turn on the Arduboy and connect it to the computer via a USB cable. Select the correct port via \textbf{Tools} > \textbf{Port} and then choose the option that shows Arduino. \\
+Now you are completely ready to place the program on the Arduboy. You just have to click on the arrow (\textbf{Upload}) and wait a while. If everything goes well, your program will soon be on the Arduboy.
 
 \vspace{1cm}
 
 \noindent
-\emph{Veel gameplezier!}
+\emph{Have fun!}
 
 
 %----------------------------------------------------------------------------------------
@@ -1211,8 +1256,8 @@ Nu ben je volledig klaar om het programma op de Arduboy te plaatsen. Je moet enk
 
 \chapterimage{jcw_header.pdf}
 
-\chapter*{Bibliography}
-\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}} % Add a Bibliography heading to the table of contents
+\chapter*{Bibliografie}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliografie}} % Add a Bibliography heading to the table of contents
 
 \printbibliography[heading=bibempty]
 
