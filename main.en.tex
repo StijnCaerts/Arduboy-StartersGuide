@@ -1043,94 +1043,94 @@ These functions are used to draw shapes on the screen of the Arduboy.
 \pagebreak
 
 \begin{libf}[fillRoundRect(x, y, w, h, r, \emph{color=WHITE})]
-	Teken een opgevulde rechthoek met afgeronde hoeken.\\ \\
+	Draws a filled rectangle with rounded corners.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat van de linkerbovenhoek
-		\item \texttt{int y}: y-coördinaat van de linkerbovenhoek
-		\item \texttt{int w}: breedte
-		\item \texttt{int h}: hoogte
-		\item \texttt{int r}: straal van de afronding
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x}: x coordinate of the top left corner
+		\item \texttt{int y}: y coordinate of the top left corner
+		\item \texttt{int w}: width
+		\item \texttt{int h}: height
+		\item \texttt{int r}: radius of the rounding
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillTriangle(x0, y0, x1, y1, x2, y2, \emph{color=WHITE})]
-	Teken een opgevulde driehoek.\\ \\
+	Draws a filled triangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x0, int x1, int x2}: x-coördinaten van de hoeken
-		\item \texttt{int y0, int y1, int y2}: y-coördinaten van de hoeken
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int x0, int x1, int x2}: x coordinates of the angles
+		\item \texttt{int y0, int y1, int y2}: y coordinates of the angles
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[fillScreen(\emph{color=WHITE})]
-	Vul het scherm op met de opgegeven kleur.\\ \\
+	Fills the screen with the chosen color.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \subsubsection{Text}
-Deze functies worden gebruikt om tekst weer te geven op het scherm van de Arduboy.
+These functions are used to display text on the screen of the Arduboy.
 
 \begin{libf}[setCursor(x, y)]
-	Stel de locatie van de tekst cursor in.\\ \\
+	Sets the location of the text cursor.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int x}: x-coördinaat
-		\item \texttt{int y}: y-coördinaat
+		\item \texttt{int x}: x coordinate
+		\item \texttt{int y}: y coordinate
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextSize(s)]
-	Stel de grootte van de tekstkarakters in.\\ \\
+	Sets the size of the text drawn.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int s}: tekstgrootte ($\geq 1$)
+		\item \texttt{int s}: text size ($\geq 1$)
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextColor(c)]
-	Stel de tekstkleur in.\\ \\
+	Sets the text color.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int c}: kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int c}: color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextBackground(bg)]
-	Stel de achtergrondkleur van de tekst in.\\ \\
+	Sets the text background color.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{int bg}: achtergrondkleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int bg}: background color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setTextWrap(w)]
-	Schakel text wrapping in of uit. Als text wrapping is ingeschakeld wordt de tekst op een nieuwe lijn geplaatst als deze te lang is om op de huidige lijn te passen.\\ \\
+	Enables or disables text wrapping. If text wrapping is enabled, the text will be placed on a new line when it is too long to fit on the current line.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{bool w}: \texttt{true} om text wrapping in te schakelen, \texttt{false} om uit te schakelen
+		\item \texttt{bool w}: \texttt{true} to enable text wrap, \texttt{false} to disable
 	\end{itemize}
 \end{libf}
 
 % https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html
 \begin{libf}[\href{https://mlxxxp.github.io/documents/Arduino/libraries/Arduboy2/Doxygen/html/classPrint.html}{print(content)}]
-	Print de opgegeven content op de plaats van de cursor.\\ \\
+	Prints the specified content at the cursor location.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
-		\item \texttt{content}: tekst die weergegeven moet worden
+		\item \texttt{content}: the content to be displayed
 	\end{itemize}
 \end{libf}
 
 \subsection{Buttons}
-Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
+With these functions your program can interact with the buttons of the Arduboy.
 
 \begin{libf}[\textsc{Buttons}]
-	Voor de knoppen op de Arduboy zijn de volgende constanten gedefinieerd.
+	The following constants are defined for the buttons on the Arduboy.
 	\begin{multicols}{3}
 		\begin{itemize}
 			\item \texttt{A\_BUTTON}
@@ -1142,108 +1142,111 @@ Met deze functies kan je interacties via de knoppen van de Arduboy programmeren.
 		\end{itemize}
 	\end{multicols}
 
-	Buttons kunnen samengevoegd worden in een mask: \texttt{LEFT\_BUTTON + A\_BUTTON}
+	Buttons can easily be merged into a mask: \texttt{LEFT\_BUTTON + A\_BUTTON}
 \end{libf}
 
 \begin{libf}[pressed(buttons)]
-	Test of de opgegeven knoppen ingedrukt worden.\\ \\
+	Tests whether the specified buttons are pressed.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden
+		\item \texttt{int buttons}: bit mask of which buttons to test
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel ingedrukt zijn
+		\item \texttt{bool}: \texttt{true} if all buttons in the specified mask are currently pressed, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[notPressed(buttons)]
-	Test of de opgegeven knoppen \textbf{niet} ingedrukt worden.\\ \\
+	Tests if the specified buttons \textbf{not} are pressed.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int buttons}: een bit-mask die aangeeft welke knoppen getest moeten worden
+		\item \texttt{int buttons}: bit mask of which buttons to test
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als alle knoppen in het opgegeven mask momenteel \textbf{niet} ingedrukt zijn
+		\item \texttt{bool}: \texttt{true} if all buttons in the specified mask are currently \textbf{not} pressed, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
 \newpage
 
 \subsection{Physics}
-Deze functies worden gebruikt om interacties tussen verschillende objecten in je game te berekenen.
+These functions are used to calculate interactions between different objects in your game.
 
 \begin{libf}[collide(rect1, rect2)]
-	Controleer of twee rechthoeken elkaar snijden.\\ \\
+	Checks if two rectangles intersect.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{Rect rect1, Rect rect2}: rechthoeken $\rightarrow$ Rect(int x, int y, int width, int height)
+		\item \texttt{Rect rect1, Rect rect2}: rectangles $\rightarrow$ Rect(int x, int y, int width, int height)
 	\end{itemize}
 	\textbf{Returns}
 	\begin{itemize}
-		\item \texttt{bool}: \texttt{true} als de opgegeven rechthoeken overlappen
+		\item \texttt{bool}: \texttt{true} if the rectangles overlap
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[collide(point, rect)]
-	Controleer of een punt binnen een rechthoek ligt.\\ \\
+	Checks if a point is within a rectangle.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{Point point}: punt $\rightarrow$ Point(int x, int y)
-		\item \texttt{Rect rect}: rechthoek $\rightarrow$ Rect(int x, int y, int width, int height)
+		\item \texttt{Point point}: point $\rightarrow$ Point(int x, int y)
+		\item \texttt{Rect rect}: rectangle $\rightarrow$ Rect(int x, int y, int width, int height)
 	\end{itemize}
 \end{libf}
 
 \subsection{LED}
-Via deze functies kan je de RGB LED van de Arduboy aansturen.
+You can control the RGB LED of the Arduboy via these functions.
 
 \begin{libf}[setRGBled(red, green, blue)]
-	Stel de helderheid van de verschillende kleuren in de RGB LED in. De RGB LED zijn eigenlijk kleine individuele rode, groene en blauwe LEDs die zeer dicht bij elkaar geplaatst zijn. Door de helderheid van de 3 kleuren aan te passen, kan je verschillende kleuren tonen.
-	De helderheid van elke LED kan een waarde aannemen van 0 (volledig uit) tot 255 (volledig aan).\\ \\
+	Set the brightness of the different colors in the RGB LED. The RGB LED are actually small individual red, green and blue LEDs that are placed very close together. By adjusting the brightness of the 3 colors, you can show different colors.
+	The brightness of each LED can take a value from 0 (fully off) to 255 (fully on).\\ \\
+
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int red}: rode component
-		\item \texttt{int green}: groene component
-		\item \texttt{int blue}: blauwe component
+		\item \texttt{int red}: red component
+		\item \texttt{int green}: green component
+		\item \texttt{int blue}: blue component
 	\end{itemize}
 \end{libf}
 
 \begin{libf}[setRGBled(color, val)]
-	Stel de helderheid van één van de kleuren in, zonder de andere kleuren aan te passen.\\ \\
+	Set the brightness of one of the colors without changing the others.\\ \\
 	\textbf{Parameters}
 	\begin{itemize}
-		\item \texttt{int color}: naam van de kleur: \texttt{RED\_LED}, \texttt{GREEN\_LED} of \texttt{BLUE\_LED}
-		\item \texttt{int val}: helderheid, waarde tussen 0 en 255
+		\item \texttt{int color}: color to change: \texttt{RED\_LED}, \texttt{GREEN\_LED} of \texttt{BLUE\_LED}
+		\item \texttt{int val}: brightness, value between 0 and 255
 	\end{itemize}
 \end{libf}
 
 \newpage
 \section{Emulator}
 \index{Emulator}
-Als je een game aan het programmeren bent, wil je natuurlijk ook kunnen testen of deze werkt op de manier dat jij wil. Daarom bestaan er emulators voor de Arduboy.
+If you are programming a game, you naturally want to be able to test whether it works the way you want. That is why there are emulators for the Arduboy.
 
 \subsection{ProjectABE}
-\href{https://felipemanga.github.io/ProjectABE/}{ProjectABE (\texttt{https://felipemanga.github.io/ProjectABE/})} is een online emulator voor de Arduboy.
-Je kan je eigen game testen door op het startscherm onder \textbf{My Projects} > \textbf{New Game} te klikken. In het volgende scherm zie je de emulator, zoals in Figuur~\ref{fig:projectabe}.
+\href{https://felipemanga.github.io/ProjectABE/}{ProjectABE (\texttt{https://felipemanga.github.io/ProjectABE/})} is an online emulator for the Arduboy.
+You can test your own game by going to the start screen under \textbf{My Projects} > \textbf{New Game}. In the next screen you see the emulator, as in Figure~\ref{fig:projectabe}.
+
 \begin{wrapfigure}{r}{5.5cm}
 	\centering
 	\includegraphics[width=5cm]{assets/ProjectABE}
 	\caption{Project ABE}
 	\label{fig:projectabe}
 \end{wrapfigure}
-% export binary
-In de Arduino IDE klik je vervolgens op \textbf{Schets} > \textbf{Exporteer gecompileerd Binair bestand}. Hierdoor zal er een bestand met extensie \texttt{.hex} aangemaakt worden in dezelfde map als je code. Dit bestand met extensie \texttt{.hex} sleep je dan naar de emulator. De emulator zal dan meteen jouw code uitvoeren.\\
-Je kan de emulator bedienen met het toetsenbord of door te klikken op de knoppen op het scherm.
 
-\section{Programma op Arduboy plaatsen}
-Voor je het programma op de Arduboy plaatst, controleer je best of zeker het juiste board\index{Board} geselecteerd is (zie Sectie~\ref{sec:arduboy-instellingen}). Daarna zet je de Arduboy aan en verbind je hem met de computer via de USB-kabel. Vervolgens selecteer je de juiste poort via \textbf{Hulpmiddelen} > \textbf{Poort} en kies dan de optie waar Arduino bij staat.\\
-Nu ben je volledig klaar om het programma op de Arduboy te plaatsen. Je moet enkel nog op het pijltje (\textbf{Uploaden}) klikken en even wachten. Als alles goed gaat, staat je programma op de Arduboy.
+% export binary
+In the Arduino IDE, click on \textbf{Sketch} > \textbf{Export compiled Binary file}. This will create a file with extension \texttt{.hex} in the same folder as your code. Then drag this file with extension \texttt{.hex} to the emulator. The emulator will immediately execute your code. \\
+You can operate the emulator with the keyboard or by clicking on the buttons on the screen.
+
+\section{Upload to your Arduboy}
+Before placing the program on the Arduboy, make sure that the correct board \index{Board} is selected (see Section~\ref{sec:arduboy-settings}). Then turn on the Arduboy and connect it to the computer via a USB cable. Select the correct port via \textbf{Tools} > \textbf{Port} and then choose the option that shows Arduino. \\
+Now you are completely ready to place the program on the Arduboy. You just have to click on the arrow (\textbf{Upload}) and wait a while. If everything goes well, your program will soon be on the Arduboy.
 
 \vspace{1cm}
 
 \noindent
-\emph{Veel gameplezier!}
+\emph{Have fun!}
 
 
 %----------------------------------------------------------------------------------------
