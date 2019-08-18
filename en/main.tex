@@ -343,7 +343,7 @@ void setup() {
 	\end{minted}
 \end{example}
 
-\subsection{Operators}
+\section{Operators}
 To alter the value of variables, we can use \emph{operators}. Below is an overview of the most important operators in \Cpp.
 
 \index{Operators}
@@ -369,10 +369,10 @@ In these examples we use the variables $ A = 10 $ and $ B = 3 $
 
 \pagebreak
 
-\subsubsection{Assigning Operators}
-\index{Operators!Assigning}
+\subsubsection{Assignment Operators}
+\index{Operators!Assignment}
 
-The operator for assigning a value to a variable is the equal sign (\texttt{=}). In addition to this assignment operator, there are other variants, which are shorter notations for common arithmetic operations followed by an assignment.
+The assignment operator (\texttt{=}) assigns a value to a variable. In addition to the assignment operator, there are also compound assignment operators. These are shortcuts for modifying the value of a variable by performing operations on it, then storing the result.
 
 \begin{center}
 	\begin{tabular}{c c l}
@@ -382,6 +382,7 @@ The operator for assigning a value to a variable is the equal sign (\texttt{=}).
 		\texttt{+=} & \mintinline{cpp}{A += 2} & \mintinline{cpp}{A = A + 2} \\
 		\texttt{-=} & \mintinline{cpp}{A -= 3} & \mintinline{cpp}{A = A - 3} \\
 		\texttt{*=} & \mintinline{cpp}{A *= 4} & \mintinline{cpp}{A = A * 4} \\
+		\texttt{/=} & \mintinline{cpp}{A /= 4} & \mintinline{cpp}{A = A / 4} \\
 		\bottomrule
 	\end{tabular}
 \end{center}
@@ -469,18 +470,16 @@ After an if statement, an else block can optionally be placed. The instructions 
 %	\vspace{0cm}
 \end{definition}
 
-\subsection{Nested if-statements}
-When there are several conditions that require testing, you can use a nested if statement. Place a new if statement inside the else block where you test the following condition. This looks like this.
+\subsubsection{Nested if statements}
+When there are several conditions that require testing, you \emph{could} use a nested if statement.
 
-\begin{example}[Nested if-statements]
+\begin{example}[Nested if statements]
 	\phantom{ }
 	\begin{minted}{cpp}
-int x = 42;
-
 if (x < 10) {
   x = x * 2;
 } else {
-  if (x > 50) {
+  if (x > 50) { // nested if
     x = x - 25;
   } else {
     x++;
@@ -489,14 +488,14 @@ if (x < 10) {
 	\end{minted}
 \end{example}
 
+\subsection{Else-if}
+
 \noindent
-Because nested if statements quickly become unclear, this code can be simplified as follows.
+Nested if statements can quickly become unclear. Thankfully, \Cpp{} provides \texttt{else-if}. The above code can and should be simplified as follows.
 
 \begin{example}[Else-if]
 	\phantom{ }
 	\begin{minted}{cpp}
-int x = 42;
-
 if (x < 10) {
   x = x * 2;
 } else if (x > 50) {
@@ -566,6 +565,7 @@ switch (day) {
 \end{example}
 
 \begin{exercise}[Switch -- days of the week]
+    \phantom{ }\\\\
     After executing the above code (Example~\ref{example:switch}), what character is stored in variable \texttt{c}?
 \end{exercise}
 
@@ -653,45 +653,42 @@ Functions and procedures are blocks of code that you can reuse in various places
 \section{Function Definition}
 % TODO: find english link
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
-The definition of a function is structured as described below.
+The definition of a function consists of a header and body. The header begins with the type of function, followed by the name of the function, and finally the argument list inside parentheses. The body of the function follows within curly braces.
+
 \begin{definition}[Function]
 	\phantom{ }
 	\begin{minted}{cpp}
-  type function_name(arguments) {
-    // here comes the common code
-
-    return result;
+  type function_name(argument_list) {
+    // here is the body of the function, with our common code
   }
 	\end{minted}
 	\vspace{0cm}
 \end{definition}
 \noindent
-The definition of a function consists of the heading and the body. The type of function is first noted in the header. This is followed by the name of the function, and finally the arguments of the function are placed in brackets. This is followed by the body of the function within the braces.
 
 \subsection{Type}
 The type of the function is the type of value that the function returns. A function is called from the code, after which the code is executed in the body of the function. The result of these calculations is then returned to the place where this function call took place. The result can then be used there.
 
-The primitive data types from Definition \ref{definition:primitive-data-types} can be used as a type of a function. It is also possible that a function returns no result. We call such a function a procedure. The \emph{return type} for procedures is \texttt{void}, the empty type.
+Any of the primitive data types from Definition \ref{definition:primitive-data-types} can be used as a type of a function.
 
-
+\pagebreak
 
 \subsection{Arguments}
 \index{Parameter|seealso{Variable, Parameter}}
 \index{Arguments|seealso{Parameter}}
 \index{Variable!Parameter}
-Information can be passed into the function via the \emph{arguments} or \emph{parameters}. These parameters behave as variables within the body of the function. Multiple parameters are separated from each other in the header using a comma.
+Information can easily be passed into a function via its \emph{arguments} or \emph{parameters}. These parameters behave as variables within the body of the function. Parameters are separated from each other in the function definition with commas.
 
-\begin{example}[Function -- addition]
+\begin{example}[Three float arguments]
 	\phantom{ }
 	\begin{minted}{cpp}
-int addemup(int a, int b, int c) {
-  int sum = a + b + c;
-  return sum;
+float addemup(float a, float b, float c) {
+  return a + b + c;
 }
 	\end{minted}
 \end{example}
 
-\begin{example}[Function -- minimum]
+\begin{example}[Two integer arguments]
 	\label{example:function-minimum}
 	\phantom{ }
 	\begin{minted}{cpp}
@@ -705,23 +702,36 @@ int minimum(int a, int b) {
 	\end{minted}
 \end{example}
 
+\subsection{Procedures}
+
+It is also possible that a function returns no result. Such a function is called a procedure. The \emph{return type} for procedures is \texttt{void}, the empty type.
+
+\begin{example}[Procedure]
+	\label{example:procedure-bootup}
+	\phantom{ }
+	\begin{minted}{cpp}
+void bootup() {
+  // instructions
+}
+	\end{minted}
+\end{example}
+
 \section{Calling Functions}
-Once a function has been defined, this function can be called from other places in the code. Call a function as follows:
+Once a function has been defined it can easily be called from other places in the code. Functions are called by name, passing them any arguments they require.
 
 \begin{center}
 	\texttt{function\_name(argument);}
 \end{center}
 \noindent
-The function \texttt{minimum()} from Example \ref{example:function-minimum} can therefore be called as follows.
+The functions shown earlier (from Examples \ref{example:function-minimum} and \ref{example:procedure-bootup}) can be called as follows.
 
-\begin{example}[Calling the function \emph{minimum()}]
+\begin{example}[Calling functions]
 	\phantom{ }
 	\begin{minted}{cpp}
-int x = 42;
-int y = 13;
+int x = 42, y = 13;
 
-int result = minimum(x, y);
-// result will equal 13
+bootup();
+int smallest = minimum(x, y);
 	\end{minted}
 \end{example}
 
