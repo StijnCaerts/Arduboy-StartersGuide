@@ -48,7 +48,7 @@
 
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
 
-\input{structure.tex} % Insert the commands.tex file which contains the majority of the structure behind the template
+\input{structure.en.tex} % Insert the commands.tex file which contains the majority of the structure behind the template
 
 \hypersetup{pdftitle={Arduboy Starters Guide},pdfauthor={Stijn Caerts}} % Uncomment and fill out to include PDF metadata for the author and title of the book
 
@@ -93,7 +93,8 @@
 
 \noindent \textsc{\href{https://stijn.caerts.be/}{stijn.caerts.be}} -- \textsc{\href{https://www.jeugdcultuurenwetenschap.be/}{www.jeugdcultuurenwetenschap.be}}\\ % URL
 
-\noindent This work is covered by a \href{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl}{Creative Commons Attribution-Noncommercial-Share Alike 4.0 International License} (the ``License''). This document may only be used in accordance with the License. The full License text is available at \url{https://creativecommons.org/licenses/by-nc-sa/4.0/}.\\
+\noindent This work is covered by a \href{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.nl}{Creative Commons Attribution-Noncommercial-Share Alike 4.0 International License} (the ``License''). This document may only be used in accordance with the License. The full License text is available at:\\
+\url{https://creativecommons.org/licenses/by-nc-sa/4.0/}.\\
 
 \noindent \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{\ccbyncsaeu}
 
@@ -127,9 +128,9 @@
 \chapter{Introduction}
 \section{What is C++?}
 % https://www.tutorialspoint.com/cplusplus
-Programs for \textbf{Arduino} and \textbf{Arduboy} are written in the programming language \Cpp\index{C++@\Cpp}. You do not need to know and understand the entire programming language before you can get started with programming. That is why we provide a brief overview of the most important concepts that you need to get started.\\
+\Cpp{} is an object-oriented, general-purpose programming language.  Programs for \textbf{Arduino} and the \textbf{Arduboy} are typically written in  \Cpp\index{C++@\Cpp}. You do not need to know and understand the entire programming language before you can get started with programming. That is why we provide a brief overview of the most important concepts that you need to get started.\\
 
-\noindent The following chapters deal with variables and types, control structures (if-then-else, for, while) and functions and procedures. Finally, there are two more chapters that elaborate on the possibilities of \Cpp, namely arrays and lists, and classes and objects.\\
+\noindent The following chapters deal with variables, data types, control structures (if-then-else, for, while), functions and procedures. Finally, two additional chapters elaborate on the possibilities of \Cpp, namely arrays and lists, and classes and objects.\\
 
 \noindent For an interactive and more extensive introduction to \Cpp, you can go to W3Schools (\url{https://www.w3schools.com/cpp/}).
 
@@ -138,21 +139,43 @@ Programs for \textbf{Arduino} and \textbf{Arduboy} are written in the programmin
 \section{Syntax}
 \subsection{Semicolons}
 \index{Semicolons}
-A semicolon \mintinline{cpp}{;} is placed after each instruction in \Cpp{}. This semicolon tells the compiler that an instruction ends there. If you forget to place a semicolon, the program is not correct and you will not be able to compile the program. The compiler will then give an error message.
+A semicolon \mintinline{cpp}{;} is placed after every instruction in \Cpp{}. This semicolon tells the compiler that the instruction has ended. If you forget to place a semicolon, the program is not correct and will not compile. The compiler will show an error message.
 
-\subsection{Braces}
+\begin{example}
+	\phantom{ }
+	Make note of the \mintinline{cpp}{;} at the end of each line.
+	\begin{minted}{cpp}
+int a = 42; // ; here
+int b = 10; // ; another here
+	\end{minted}
+\end{example}
+
+\pagebreak
+
+\subsection{Curly Braces}
 \index{Braces}
-Braces \mintinline{cpp}{{}} are used to indicate a block of code. The braces must be balanced in the code, which means that for every opening brace \texttt{\{} there must be a corresponding closing brace \texttt{\}}. The use of braces is later illustrated with the control structures (if-then-else, for, ..), functions and classes.
+Curly braces \mintinline{cpp}{{}} (also called curly brackets) are used to indicate blocks of code. The braces must be balanced; for every opening brace \texttt{\{} there must be a matching closing brace \texttt{\}}. The use of braces is further illustrated later with control structures (if-then-else, for, ..), functions and classes.
+
+\begin{example}
+	\phantom{ }
+	\begin{minted}{cpp}
+while(keepRunning)
+{
+  // this is a block of code
+  // note the { to start this block
+  // and the } to end it
+}
+	\end{minted}
+\end{example}
 
 \subsection{Comments}
 % comments in C++
 % // of /* */
-To increase the readability of your code, it is useful to add comments. In this comment\index{Comment} you describe what this part of the code does. This makes it clear what you have programmed correctly, even if you view your code again later.\\
+To increase the readability of your code, it is sometimes useful to add comments. In these comments\index{Comment} you can describe what your code does and why. Comments can help remind you of important knowledge when viewing your code again in the future.\\
 
-\noindent In \Cpp{} there are two different ways to add comments.\\
-Comments on one line are indicated by \mintinline{cpp}{//}. All text after \mintinline{cpp}{//} up to the end of the line is considered a comment and will therefore not be executed.
+\noindent In \Cpp{} there are two different ways to add comments.\\ Comments on a single line are indicated by \mintinline{cpp}{//}. All text after the \mintinline{cpp}{//} (until the end of the line) is considered a comment and will not be executed.
 
-\begin{example}[Comments]
+\begin{example}[A Comment]
 	\phantom{ }
 	\begin{minted}{cpp}
 // This line is a comment
@@ -166,25 +189,25 @@ int a = 42;
 	\phantom{ }
 	\begin{minted}{cpp}
 /*
-  This is a comment that
-  spans multiple lines.
+  This is a comment that is so very long
+  that it really must span multiple lines.
 */
 int a = 42;
 	\end{minted}
 \end{example}
 
-\chapter{Variables and types}
+\chapter{Variables and Types}
 \index{Variable}
 \index{Datatype}
 \index{Type|seealso{Datatype}}
-Variables are used to keep track of information or data in the program. A variable is a place in memory, with a self-chosen name, where data can be stored. In \Cpp{}, each variable has a type. A type corresponds to the type of data that can be stored in such a variable.
+Variables are used to keep track of information or data inside a program. A variable is a place in memory, with a self-chosen name, where data can be stored. In \Cpp{}, each variable has a type. A type corresponds to the type of data that can be stored in such a variable.
 
-\section{Datatypes}
+\section{Data Types}
 \label{section:datatypes}
 % https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm
 % strings https://www.tutorialspoint.com/cplusplus/cpp_strings
 
-Based on the data type of a variable, memory is reserved for storing information. The following primitive data types are defined in \Cpp{}:
+Based on the data type of a variable, memory is reserved for storing information. The following primitive data types are defined in \Cpp{}:\\
 
 \begin{definition}[Primitive Data Types]
 	\label{definition:primitive-data-types}
@@ -210,18 +233,18 @@ Based on the data type of a variable, memory is reserved for storing information
 
 \index{Boolean values|seealso{Datatype, bool}}
 
-\noindent These types are used with variables, but also with functions. These primitive data types can also be used to compile more complex types, such as for example in arrays and classes.
+\noindent These types are used with variables, but also with functions. These primitive data types can also be used to compose more complex types, such as  arrays and classes.
 
 \begin{remark}
     The type of a variable is important for the compiler because the type determines how much memory must be reserved for the variable. For example, 32 bits are required to store a \texttt{float} variable, while 64 bits are required to store a double-precision (\texttt{double}) decimal number.
 \end{remark}
 
 \section{Variables}
-Een variabele kan gezien worden als een opslagplaats waaraan een naam verbonden is. In deze opslagplaats kan een waarde geplaatst worden.
-\subsection{Declare}
-\index{Variable!Declare}
+A variable can be thought of as a storage location with a name is attached. A value can then be placed at this storage location.
+\subsection{Declaration}
+\index{Variable!Declaration}
 % type naam_variabele;
-Before information can be stored in a variable, the variable must first be \emph{defined} or \emph{declared}. The declaration of a variable tells the compiler that space must be reserved in the memory to store data of the given data type.\\
+Before information can be stored in a variable, the variable must first be \emph{defined} or \emph{declared}. The declaration of a variable tells the compiler that space must be reserved in memory to store data of the given data type.\\
 
 \noindent You can declare a new variable with an instruction of this form:
 
@@ -237,9 +260,9 @@ int a;
 	\end{minted}
 \end{example}
 
-\noindent When defining a new variable you can also immediately assign a value to it.
+\noindent When defining a new variable you can also immediately assign a value to it.\\
 
-\begin{example}[Declare an \emph{integer} variable and assign a value]
+\begin{example}[Declare an \emph{integer} variable and assign it a value]
 	\phantom{ }
 	\begin{minted}{cpp}
 /*
@@ -250,16 +273,17 @@ int a = 42;
 	\end{minted}
 \end{example}
 
-\noindent  When choosing a variable name you must take the following rules into account:
+\noindent  When choosing a variable name you must take the following rules into account:\\
+
 \begin{itemize}
 	\item names must begin with a letter or a hyphen (\_);
 	\item names may contain letters, numbers and low dashes;
 	\item names are case-sensitive;
 	\item spaces and special characters are not allowed;
-	\item \Cpp{}-keywords (such as \texttt{int}, \texttt{if}, ...) cannot be used as a variable name.
+	\item \Cpp{} keywords (such as \texttt{int}, \texttt{if}, ...) cannot be used as a name.
 \end{itemize}
 
-\begin{example}[Declare and initialize different data types]
+\begin{example}[Declaring and initializing different data types]
 	\phantom{ }
 	\begin{minted}{cpp}
 bool b = true;
@@ -275,7 +299,7 @@ double d = 3.14159265;
 The \emph{scope} of a variable is the place in the program where you can use a defined variable. You can also consider this as the lifetime of the variable.\\
 
 \noindent
-The scope of a variable is determined by where the variable was declared. We can divide this into 3 different types of places.
+The scope of a variable is determined by where the variable was declared. We can divide this into 3 different types of places.\\
 
 \index{Variable!Global}
 \index{Variable!Local}
@@ -287,7 +311,7 @@ The scope of a variable is determined by where the variable was declared. We can
 \end{enumerate}
 
 \noindent
-In general it can be said that the scope of the variables is limited to the block, indicated by braces \texttt {\{\}}, in which the variable is defined.
+In general the scope of a variable is limited to the block (indicated by braces \texttt {\{\}}) in which the variable is defined.
 
 \begin{example}[Variable scope]
 	\phantom{ }
@@ -295,27 +319,31 @@ In general it can be said that the scope of the variables is limited to the bloc
 // global variable g
 int g = 12;
 
+int double(int x) {
+	// x is a parameter here
+	return x * 2;
+}
+// x cannot be used here, outside of the double function
+
 void setup() {
   // local variables a and b
   int a = 42;
 
-  /*
-    Globale variabelen kunnen na declaratie
-    overal gebruikt worden
-  */
+  // global variables can be used anywhere after being declared
   int b = a + g;
 
-  // After declaration, the type of variables does not have to be specified
+  /*
+    after declaration, the type of a variable does not have to
+    be specified to use that variable
+  */
   g = b;
 }
-
-// Variables a and b cannot be used outside the setup() function
-
+// variables a and b cannot be used outside the setup() function
 	\end{minted}
 \end{example}
 
 \subsection{Operators}
-To adjust the value in the variables, we use \emph{operators}. Below we provide an overview of the most important operators in \Cpp.
+To alter the value of variables, we can use \emph{operators}. Below is an overview of the most important operators in \Cpp.
 
 \index{Operators}
 \subsubsection{Arithmetic Operators}
@@ -333,17 +361,17 @@ In these examples we use the variables $ A = 10 $ and $ B = 3 $
 		   \texttt{*}     & Multiplication                           & \mintinline{cpp}{A * B} $\rightarrow 30$                        \\
 		   \texttt{/}     & Division                                 & \mintinline{cpp}{A / B} $\rightarrow 3$                         \\
 		   \texttt{\%}    & Modulus (remainder after division)       & \mintinline{cpp}{A % B} $\rightarrow 1$                         \\
-		   \texttt{++}    & Increase the value of a variable by 1    & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
-		  \texttt{-{}-}   & Decrease the value of a variable by 1    & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
+		   \texttt{++}    & Increase the value by 1                  & \mintinline{cpp}{A++} $\Rightarrow$ \texttt{A} $\rightarrow 11$ \\
+		  \texttt{-{}-}   & Decrease the value by 1                  & \mintinline{cpp}{A--} $\Rightarrow$ \texttt{A} $\rightarrow 9$  \\ \bottomrule
 	\end{tabular}
 \end{center}
 
 \pagebreak
 
-\subsubsection{Assigning operators}
+\subsubsection{Assigning Operators}
 \index{Operators!Assigning}
 
-The operator for assigning a value to a variable is the equal sign (\texttt{=}). In addition to this assignment operator, there are other variants, which are shorter notations for an arithmetic operation followed by an assignment.
+The operator for assigning a value to a variable is the equal sign (\texttt{=}). In addition to this assignment operator, there are other variants, which are shorter notations for common arithmetic operations followed by an assignment.
 
 \begin{center}
 	\begin{tabular}{c c l}
@@ -358,24 +386,24 @@ The operator for assigning a value to a variable is the equal sign (\texttt{=}).
 \end{center}
 
 
-\subsubsection{Comparison operators}
+\subsubsection{Comparison Operators}
 \index{Operators!Comparison}
-Comparison operators are used to compare two values. The result of this operation is a Boolean value, \texttt{true} or \texttt{false}.
+Comparison operators are used to compare two values. The result of the comparison is a Boolean value, \texttt{true} or \texttt{false}.
 
 \begin{center}
 	\begin{tabular}{c l l}
 		\toprule
 		\textbf{Operator} & \textbf{Description}     & \textbf{Example}                                     \\ \midrule
-		   \texttt{==}    & Equality                  & \mintinline{cpp}{10 == 3} $\rightarrow$ \texttt{false} \\
+		   \texttt{==}    & Equal                     & \mintinline{cpp}{10 == 3} $\rightarrow$ \texttt{false} \\
 		   \texttt{!=}    & Not equal                 & \mintinline{cpp}{10 != 3} $\rightarrow$ \texttt{true}  \\
-		   \texttt{>}     & Greather than             & \mintinline{cpp}{10 > 10} $\rightarrow$ \texttt{false} \\
+		   \texttt{>}     & Greater than             & \mintinline{cpp}{10 > 10} $\rightarrow$ \texttt{false} \\
 		   \texttt{<}     & Less than                 & \mintinline{cpp}{5 < 10} $\rightarrow$ \texttt{true}   \\
 		   \texttt{>=}    & Greater than or equal to  & \mintinline{cpp}{10 >= 10} $\rightarrow$ \texttt{true} \\
 		   \texttt{<=}    & Less than or equal to     & \mintinline{cpp}{5 <= 10} $\rightarrow$ \texttt{true}  \\ \bottomrule
 	\end{tabular}
 \end{center}
 
-\subsubsection{Logical operators}
+\subsubsection{Logical Operators}
 \index{Operators!Logical}
 Logical operators are used to combine multiple Boolean values in a formula into one truth value.
 
@@ -390,20 +418,19 @@ Logical operators are used to combine multiple Boolean values in a formula into 
 	\end{tabular}
 \end{center}
 
-\noindent Voor meer voorbeelden van het gebruik van logische operatoren, kan je een kijkje nemen naar waarheidstabellen~\cite{wiki:Waarheidstabel}.
 \noindent For more examples of using logical operators, you can take a look at truth tables~\cite{wiki:Truth table}.
 
 
 \chapter{Control Structures}
 \index{Control Structures}
-Control structures determine the course of the program. For example, it is possible to execute pieces of code only in specific cases, or to repeat a block of code several times.
+Control structures determine the course of a program. For example, it is possible to execute pieces of code only in certain cases, or to repeat a block of code many times.
 % if-then-else, switch, for, while, (break, continue)
 \section{If-then-else}
 \index{Control Structures!if-then-else}
 The simplest control structure is the \emph{if} statement. This can be further expanded with an \emph{else} block for further control over the execution order.
 
 \subsection{If-then}
-The if statement is used to execute code that is intended for specific cases. Only when the specified condition is met, will the instructions in the body of the if statement be executed. If the condition is not met, the instructions in the body will be skipped.
+The if statement is used to execute code that is intended for specific cases. Only when the specified condition is met, will the instructions in the body of the if statement be executed. If the condition is not met, the instructions in the body will be skipped.\\
 
 \begin{definition}[If]
 	\phantom{ }
@@ -421,7 +448,7 @@ The if statement is used to execute code that is intended for specific cases. On
 \pagebreak
 
 \subsection{Else}
-After an if statement, an else block can optionally be placed. The instructions in this block will only be executed if the condition of the if statement is \textbf{not} met. The code then looks like this.
+After an if statement, an else block can optionally be placed. The instructions in this block will only be executed if the condition of the if statement is \textbf{not} met. The code then looks like this.\\
 
 \begin{definition}[If-then-else]
 	\phantom{ }
@@ -442,7 +469,7 @@ After an if statement, an else block can optionally be placed. The instructions 
 \end{definition}
 
 \subsection{Nested if-statements}
-If there are several conditions that require testing, you can use a nested if statement. You place a new if statement in the else block where you test the following condition. This looks like this.
+When there are several conditions that require testing, you can use a nested if statement. Place a new if statement inside the else block where you test the following condition. This looks like this.
 
 \begin{example}[Nested if-statements]
 	\phantom{ }
@@ -462,7 +489,7 @@ if (x < 10) {
 \end{example}
 
 \noindent
-Because these nested if statements quickly become unclear, this code can be simplified as follows.
+Because nested if statements quickly become unclear, this code can be simplified as follows.
 
 \begin{example}[Else-if]
 	\phantom{ }
@@ -481,7 +508,7 @@ if (x < 10) {
 
 \section{Switch}
 \index{Control Structures!switch}
-If you want to test an expression against multiple values, you can also use a \emph{switch} statement instead of nested if statements.
+If you want to test an expression against multiple values, you can also use a \emph{switch} statement instead of nested if statements.\\
 
 \begin{definition}[Switch]
 	\phantom{ }
@@ -500,18 +527,18 @@ If you want to test an expression against multiple values, you can also use a \e
 \end{definition}
 
 \noindent
-Here the expression in the \texttt{switch} is evaluated once. Then its value is compared with the value in each \texttt{case}. If the values match, the corresponding block of instructions is executed.
+Here the expression in the \texttt{switch} is evaluated once. Its value is then compared with the value in each \texttt{case}. If the values match, the corresponding block of instructions is executed.
 
-The \texttt{break} statement ensures that, after a matching \texttt{case} has been found, matches with other \texttt{case} s should not be searched for. The \texttt{default} keyword can then be used to execute instructions in case no matching \texttt{case} is found.
+The \texttt{break} statement ensures that, after a matching \texttt{case} has been found, matches with other \texttt{case}s should not be searched for. The \texttt{default} keyword can then be used to execute instructions when no matching \texttt{case} is found.
 
 \begin{example}[Switch -- days of the week]
 	\label{example:switch}
 	\phantom{ }
 	\begin{minted}{cpp}
-int dag = 5;
+int day = 5;
 char c;
 
-switch (dag) {
+switch (day) {
   case 1:
     c = 'M';
     break;
@@ -527,9 +554,7 @@ switch (dag) {
   case 5:
     c = 'F';
     break;
-  case 6:
-    c = 'S';
-    break;
+  case 6: // same as case 7
   case 7:
     c = 'S';
     break;
@@ -540,19 +565,20 @@ switch (dag) {
 \end{example}
 
 \begin{exercise}[Switch -- days of the week]
-    After executing the above code (Example~\ref{example: switch}), what character is stored in variable \texttt{c}?
+    After executing the above code (Example~\ref{example:switch}), what character is stored in variable \texttt{c}?
 \end{exercise}
 
-\section{While loop}
+\section{While Loop}
 \index{Control Structures!while}
-If you want to execute a piece of code multiple times in a row, you can use a loop. The \texttt{while} loop contains a condition and a body with instructions. As long as the condition is true, the instructions in the body are repeated.
+If you want to execute a piece of code multiple times in a row, you can use a loop. The \texttt{while} loop contains a condition and a body with instructions. As long as the condition is true, the instructions in the body are repeatedly executed.
 
 \begin{definition}[While]
 	\phantom{ }
 	\begin{minted}{cpp}
   while (condition) {
     // body of the loop
-    instructie;
+
+    // instructions
   }
 	\end{minted}
 	\vspace{0cm}
@@ -570,13 +596,14 @@ while (vv <= 24) {
 	\end{minted}
 \end{example}
 
-\section{For-loop}
+\section{For Loop}
 \index{Control Structures!for}
-Often loops will occur where the number of repetitions is fixed in advance. These loops then have the following shape.
+Often loops occur where the number of repetitions is known in advance. These loops then have the following shape.
 
 \begin{example}
 	\label{example:while-for}
 	\phantom{ }
+    A loop with only 10 repetitions.
 	\begin{minted}{cpp}
 int i = 0;
 
@@ -589,24 +616,24 @@ while (i < 10) {
 \end{example}
 
 \noindent
-Before the start of the loop, the variable \texttt{i} is then first declared, which is used in the loop to count the number of iterations (repetitions). For this purpose, the value of \texttt{i} is incremented at the end of each iteration (\texttt{i++}). This type of loop can be written more easily with a \texttt{for} loop.
+Before the start of the loop, the variable \texttt{i} is declared, then used inside the loop to count the number of iterations (repetitions). The value of \texttt{i} is incremented at the end of each iteration (\texttt{i++}). This type of loop can be written more easily as a \texttt{for} loop.
 
 \begin{definition}[For]
 	\phantom{ }
 	\begin{minted}{cpp}
-  for (statement1; statement2; statement3) {
-    // body, containts a block of code that is repeated each time
-  }
+for (initialization; condition; increment/decrement) {
+  // body, contains a block of code that is repeated each time
+}
 	\end{minted}
 	At which:
 	\begin{description}
-        \item[statement1] is executed once before the start of the loop. Often this is the declaration of a \emph{loop variable}, for example \texttt{int i = 0}.
-		\item[statement2] represents the condition of the loop.
-		\item[statement3] is executed every time after iteration of the loop. Often this is a manipulation of the loop variable, such as \texttt{i++}.
+        \item[initialization] is executed once before the start of the loop. Often this is the declaration of a \emph{loop variable}, for example \texttt{int i = 0}.
+		\item[condition] represents the condition of the loop.
+		\item[increment/decrement] is executed every time after iteration of the loop. Often this is a manipulation of the loop variable, such as \texttt{i++}.
 	\end{description}
 \end{definition}
 \noindent
-The code from Example \ref{example:while-for} can therefore be written with a \texttt{for} loop as follows.
+The code from Example \ref{example:while-for} can therefore be written using a \texttt{for} loop as follows.
 
 \begin{example}
 	\phantom{ }
@@ -617,19 +644,19 @@ for (int i = 0; i < 10; i++) {
 	\end{minted}
 \end{example}
 
-\chapter{Functions and procedures}
+\chapter{Functions and Procedures}
 \index{Function}
 \index{Procedure}
-Functions and procedures are blocks of code that you can use in various places in your code. Instead of writing the same code over and over again, it is better to place the common code in a function. This also increases the readability of the code.
+Functions and procedures are blocks of code that you can reuse in various places throughout your code. Instead of writing the same code over and over, it is better to place the common code in a function. This also increases the readability of the code.
 
-\section{Functies definiëren}
+\section{Function Definition}
 % TODO: find english link
 % https://www.dinkum.nl/software/cplusplus/doc/functions/
 The definition of a function is structured as described below.
 \begin{definition}[Function]
 	\phantom{ }
 	\begin{minted}{cpp}
-  type function_name(argument) {
+  type function_name(arguments) {
     // here comes the common code
 
     return result;
@@ -643,22 +670,22 @@ The definition of a function consists of the heading and the body. The type of f
 \subsection{Type}
 The type of the function is the type of value that the function returns. A function is called from the code, after which the code is executed in the body of the function. The result of these calculations is then returned to the place where this function call took place. The result can then be used there.
 
-The primitive data types from Definition \ref{definition: primitive data types} can be used as a type of a function. It is also possible that a function has no result. We call such a function a procedure. If \emph{return type} we use \texttt{void}, the empty type.
+The primitive data types from Definition \ref{definition:primitive-data-types} can be used as a type of a function. It is also possible that a function returns no result. We call such a function a procedure. The \emph{return type} for procedures is \texttt{void}, the empty type.
 
 
 
-\subsection{Argument}
+\subsection{Arguments}
 \index{Parameter|seealso{Variable, Parameter}}
-\index{Argument|seealso{Parameter}}
+\index{Arguments|seealso{Parameter}}
 \index{Variable!Parameter}
-Information can be passed on to the function via the \emph{arguments} or \emph{parameters}. These parameters behave as variables within the body of the function. The different parameters are separated from each other in the header with a comma.
+Information can be passed into the function via the \emph{arguments} or \emph{parameters}. These parameters behave as variables within the body of the function. Multiple parameters are separated from each other in the header using a comma.
 
 \begin{example}[Function -- addition]
 	\phantom{ }
 	\begin{minted}{cpp}
-int optelling(int a, int b, int c) {
-  int som = a + b + c;
-  return som;
+int addemup(int a, int b, int c) {
+  int sum = a + b + c;
+  return sum;
 }
 	\end{minted}
 \end{example}
@@ -677,14 +704,14 @@ int minimum(int a, int b) {
 	\end{minted}
 \end{example}
 
-\section{Call functions}
-Once a function has been defined, this function can be called at other places in the code. Call a function as follows:
+\section{Calling Functions}
+Once a function has been defined, this function can be called from other places in the code. Call a function as follows:
 
 \begin{center}
 	\texttt{function\_name(argument);}
 \end{center}
 \noindent
-The function \texttt{minimum ()} from Example \ref{example: function-minimum} can therefore be called in the following way.
+The function \texttt{minimum()} from Example \ref{example:function-minimum} can therefore be called as follows.
 
 \begin{example}[Calling the function \emph{minimum()}]
 	\phantom{ }
@@ -693,6 +720,7 @@ int x = 42;
 int y = 13;
 
 int result = minimum(x, y);
+// result will equal 13
 	\end{minted}
 \end{example}
 
@@ -711,7 +739,7 @@ int result = minimum(x, y);
 \index{Arduino}
 \section{Program Structure}
 \index{Program Structure}
-Every Arduino program has the same structure. The most important features that keep recurring are the global variables, the \texttt{setup()} procedure and the \texttt{loop()} procedure. We discuss this in more detail in the following sections.
+Every Arduino program has the same structure. The most important features are the global variables, the \texttt{setup()} procedure and the \texttt{loop()} procedure. We discuss these in more detail in the following sections.
 
 \begin{definition}[Arduino Program Structure]
 	\phantom{}
@@ -729,33 +757,33 @@ Every Arduino program has the same structure. The most important features that k
 	\vspace{0cm}
 \end{definition}
 
-\subsection{Global variables}
+\subsection{Global Variables}
 \index{Variable!Global}
-The global variables are declared at the top of the Arduino program. These global variables can then be used anywhere in the program, both in the \texttt{setup()} and \texttt{loop ()} function.
+Any global variables are declared at the top of the Arduino program. These global variables can then be used anywhere in the program, both in the \texttt{setup()} and \texttt{loop()} function.
 
 \subsection{The \texttt{setup()} procedure}
-The \texttt{setup()} procedure is executed once when starting the program.
+The \texttt{setup()} procedure is executed once when the program starts.
 
 \begin{remark}
     In the \texttt{setup()} procedure you are probably going to initialize the values of various variables. It is important that you declare these variables \textbf{outside} the \texttt{setup()} function. Otherwise these variables are local and cannot be used outside the scope of the \texttt{setup()} function.
 \end{remark}
 
 \subsection{The \texttt{loop()} procedure}
-The \texttt{loop()} procedure does exactly what the name suggests. The code in this procedure is always executed again. The actual code of the Arduino program is written here. The repetition continues until the Arduino power is disconnected or the reset button is pressed.
+The \texttt{loop()} procedure does exactly what the name suggests. The code in this procedure is executed over and over again. The actual code of the Arduino program is written here. This repetition continues until the Arduino is powered off or the reset button is pressed.
 
-\section{Import from Libraries}
+\section{Using Libraries}
 \index{Library}
-When programming for Arduino, it is very common to use \emph{libraries}. Libraries contain functions written by other developers. They aim to reduce the complexity of your code by implementing operations at a lower level. This means that you do not have to program all communication with a display manually, for example, but use the functionality of the library for this.
+When programming for Arduino, it is very common to use \emph{libraries}. Libraries contain functions written by other developers. They aim to reduce the complexity of your code by implementing operations at a lower level. This means that you do not have to program all communication with a display manually, for example, but use the functionality of the library for this.\\
 
 \noindent
-You import a library into your code in the following way:
+You use a library in your code in the following way:
 \begin{center}
 	\mintinline{cpp}{#include <Library.h>}
 \end{center}
 
 \section{Arduino IDE}
 \index{IDE}
-We use the Arduino IDE for writing Arduino programs. This program is an \emph {Integrated Development Environment}, which means that it contains all the tools to write, compile and upload programs to the Arduino. The Arduino IDE can be downloaded for free from the Arduino website \footnote{\url{https://www.arduino.cc/en/Main/Software}}.
+The Arduino IDE is an easy way to get started writing Arduino programs. This program is an \emph {Integrated Development Environment}, which means that it contains all the tools to write, compile and upload programs to an Arduino. The Arduino IDE can be downloaded for free from the Arduino website \footnote{\url{https://www.arduino.cc/en/Main/Software}}.
 
 \begin{figure}[!h]
 	\centering
@@ -771,7 +799,7 @@ We use the Arduino IDE for writing Arduino programs. This program is an \emph {I
 	\includegraphics[width=13.4cm]{ArduboyGame.png}
 \end{figure}
 
-\section{Instellingen}
+\section{Preparation}
 \label{sec:arduboy-instellingen}
 % Arduino Leonardo
 % Importeren library
@@ -782,14 +810,15 @@ Before we can get started with programming games for the Arduboy, we first have 
 The \emph{Arduboy2} library contains a handy interface that ensures that we can easily access all functions of the device. This way we can fully focus on designing and programming the game itself.\\
 
 \noindent
-Before we can use this library, it must first be installed in the IDE. You do this as follows:
+Before we can use this library, it must first be installed in the IDE. You do this as follows:\\
 
 \begin{enumerate}
 	\item Click \textbf{Tools} > \textbf{Manage Libraries...}
-	\item In the \emph{Library Manager} window look for the library \textbf{Arduboy2}
-	\item Install the latest version by pointing to the \textbf{Arduboy2} library and clicking \textbf{Install}
+	\item In the \emph{Library Manager} window search for the library \textbf{Arduboy2}
+	\item Choose the latest version then click \textbf{Install}
 \end{enumerate}
-This way you can also install other libraries if you wish.
+
+This way easily install other libraries using this same process if you wish.
 
 \subsection{Installing the Arduboy as an Arduino board}
 \index{Board}
@@ -802,7 +831,13 @@ This way you can also install other libraries if you wish.
 \end{enumerate}
 
 \subsection{Board Selection}
-To let the IDE know that you are programming for the Arduboy, you must adjust the board in the IDE. Go to \textbf{Tools} > \textbf{Board} and choose \textbf{Arduboy} from this list.
+To let the IDE know that you are programming for the Arduboy, you must select the board in the IDE.
+
+\begin{enumerate}
+	\item Go to \textbf{Tools} > \textbf{Board}
+	\item Choose \textbf{Arduboy} from the list.
+\end{enumerate}
+
 
 \section{Program Structure}
 \index{Program Structure}
@@ -827,20 +862,20 @@ void loop() {
 }
 \end{minted}
 \noindent
-The code fragment above gives a template from where you can start to program an Arduboy game. The Arduboy2 library is loaded on the first line. A \texttt{Arduboy2} object is then created. This object is used to invoke the functionality of the library. In the \texttt{setup()} procedure, the functionality of the Arduboy is initialized.
+The code fragment above gives a template from which you can start to program an Arduboy game. The Arduboy2 library is included on the first line. A \texttt{Arduboy2} object is then created. This object is used to invoke the functionality of the library. Finally, during \texttt{setup()}, the functionality of the Arduboy is initialized.
 
 \section{The Arduboy2 Library}
 \index{Library}
 Here we provide an overview of the most important functions in the Arduboy2 library~\cite{arduboy:lib2-doc}. These functions can be used in this way:
 
 \begin{center}
-	\texttt{arduboy.function_name();}
+	\texttt{arduboy.function\_name();}
 \end{center}
 \noindent
 Optional parameters for the functions are \emph{italic}.
 
-\subsection{Init}
-These functions are used to initialize the functionality of the Arduboy.
+\subsection{Startup}
+These functions are used to properly initialize the Arduboy.
 
 \begin{libf}[begin()]
 	Initialize the hardware, display the logo, etc. This function must be called once in the \texttt{setup()} procedure.
@@ -870,11 +905,11 @@ These functions relate to the screen of the Arduboy.
 \end{libf}
 
 \begin{libf}[display()]
-	Place the contents of the display buffer on the screen.
+	Paint the contents of the display buffer to the screen.
 \end{libf}
 
 \begin{libf}[setFrameRate(fps)]
-	Set the frame rate.\\ \\
+	Sets the desired frame rate.\\ \\
 	\textbf{Parameter}
 	\begin{itemize}
 		\item \texttt{int fps}: desired frame-rate in frames per second
@@ -882,14 +917,14 @@ These functions relate to the screen of the Arduboy.
 \end{libf}
 
 \begin{libf}[nextFrame()]
-	Indicates if it is time to display the next frame.\\ \\
+	Indicates when it is time to display the next frame.\\ \\
 	\textbf{Returns}
 	\begin{itemize}
 		\item \texttt{bool}: \texttt{true} when it's time for the next frame, otherwise \texttt{false}
 	\end{itemize}
 \end{libf}
 
-\subsubsection{Draw}
+\subsubsection{Drawing}
 These functions are used to draw shapes on the screen of the Arduboy.
 
 \begin{libf}[drawPixel(x, y, \emph{color=WHITE})]
@@ -934,7 +969,7 @@ These functions are used to draw shapes on the screen of the Arduboy.
 		\item \texttt{int w}: width
 		\item \texttt{int h}: height
 		\item \texttt{int r}: radius of the rounding
-		\item \texttt{int color} (optioneel): kleur $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
+		\item \texttt{int color} (optional): color $\rightarrow$ \texttt{WHITE} of \texttt{BLACK}
 	\end{itemize}
 \end{libf}
 
