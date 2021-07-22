@@ -87,7 +87,7 @@
 {
 \fontfamily{ptm}\selectfont
 
-\noindent Copyright \copyright\ 2019 Stijn Caerts\\ % Copyright notice
+\noindent Copyright \copyright\ 2019 - 2021 Stijn Caerts\\ % Copyright notice
 
 \noindent \textsc{Jeugd, Cultuur en Wetenschap vzw}\\ % Publisher
 
@@ -99,7 +99,7 @@
 
 \vspace{1cm}
 
-\noindent \textit{Eerste versie, augustus 2019} % Printing/edition date
+\noindent \textit{Tweede versie, juli 2021} % Printing/edition date
 }
 
 %----------------------------------------------------------------------------------------
@@ -1196,8 +1196,68 @@ In de Arduino IDE klik je vervolgens op \textbf{Schets} > \textbf{Exporteer geco
 Je kan de emulator bedienen met het toetsenbord of door te klikken op de knoppen op het scherm.
 
 \section{Programma op Arduboy plaatsen}
+\index{Upload}
 Voor je het programma op de Arduboy plaatst, controleer je best of zeker het juiste board\index{Board} geselecteerd is (zie Sectie~\ref{sec:arduboy-instellingen}). Daarna zet je de Arduboy aan en verbind je hem met de computer via de USB-kabel. Vervolgens selecteer je de juiste poort via \textbf{Hulpmiddelen} > \textbf{Poort} en kies dan de optie waar Arduino bij staat.\\
 Nu ben je volledig klaar om het programma op de Arduboy te plaatsen. Je moet enkel nog op het pijltje (\textbf{Uploaden}) klikken en even wachten. Als alles goed gaat, staat je programma op de Arduboy.
+
+\subsection{Arduboy FX}
+\index{Arduboy FX}
+Het is mogelijk om meerdere spellen tegelijk op het flash-geheugen van de Arduboy FX op te slaan. Hiervoor moet je de spellen wel op een aangepaste manier uploaden\footnote{Uploading to FX: \url{https://community.arduboy.com/t/uploading-to-fx/9674/4}}.
+
+\begin{itemize}
+	\item Download de \href{https://github.com/MrBlinky/Arduboy-Python-Utilities}{Arduboy-Python-Utilities}\footnote{Arduboy-Python-Utilities: \url{https://github.com/MrBlinky/Arduboy-Python-Utilities}} en de standaard \href{https://github.com/MrBlinky/Arduboy-FX-mod-chip/blob/master/portable-activator/flash-image.bin}{flash image}\footnote{Default flash image:  \href{https://github.com/MrBlinky/Arduboy-FX-mod-chip/blob/master/portable-activator/flash-image.bin}{\texttt{https://github.com/MrBlinky/Arduboy-FX-mod-chip}}}. Deze image bevat al de games die vooraf geïnstalleerd worden op de Arduboy FX.
+	\item Installeer de nodige libraries voor de Python scripts:
+	\begin{minted}{bash}
+pip3 install pyserial pillow
+	\end{minted}
+	\item Decompile de flash image:
+	\begin{minted}{bash}
+python3 flashcart-decompiler.py path/to/flash-image.bin
+	\end{minted}
+	Naast de \texttt{flash-image.bin} file zou je nu de map \texttt{flash-image} moeten vinden.
+	\newpage
+	\item In deze map zitten 17 genummerde mappen (van 0 tot en met 16).
+	\begin{itemize}
+		\item Map \texttt{0} bevat het Arduboy FX startscherm.
+		\item Verder is er een map per categorie:
+		\begin{multicols}{4}
+			\begin{enumerate}
+				\item Action
+				\item Adventure
+				\item Arcade
+				\item Runner
+				\item Platform
+				\item Strategy
+				\item Puzzle
+				\item Skill
+				\item Tabletop
+				\item Racing
+				\item RPG
+				\item Shooter
+				\item Sports
+				\item Music
+				\item Apps
+				\item Tools
+			\end{enumerate}
+		\end{multicols}
+	\end{itemize}
+	\item Kies de categorie die het best aansluit bij de nieuwe game en maak een folder aan voor de game onder die categorie. Bijvoorbeeld voor een nieuwe game in de arcade categorie, maak je in de map \texttt{3} een nieuwe map met als naam het eerstvolgend ongebruikte getal, in dit geval \texttt{28}.
+	\item Kopieer het \texttt{.hex} bestand van de game en een screenshot of titelscherm naar deze nieuwe map. Hernoem de bestanden zodat ze het getal van de map bevatten, bijvoorbeeld \texttt{28.hex} en \texttt{28.png}.
+	\item Voeg de volgende lijn toe in \texttt{flashcart-index.csv}:
+	\begin{minted}{text}
+		3;3-28;3\28\28.png;3\28\28.hex;;
+	\end{minted}
+	\item Bouw de flash cart opnieuw, inclusief de nieuwe game:
+	\begin{minted}{bash}
+python3 flashcart-builder.py path/to/flash-image/flashcart-index.csv
+	\end{minted}
+	\item Sluit je Arduboy FX aan, zet hem aan en upload de nieuwe flash image:
+	\begin{minted}{bash}
+python3 flashcart-writer.py path/to/flash-image/flashcart-image.bin
+	\end{minted}
+	Je kan de flash image ook uploaden via een grafische interface, deze kan je starten met \mintinline{bash}{python3 uploader-gui.py}.
+	\item Je game is nu beschikbaar in het keuzemenu van de Arduboy FX! Je kan door de verschillende games bladeren met de pijltjestoetsen.
+\end{itemize}
 
 \vspace{1cm}
 
